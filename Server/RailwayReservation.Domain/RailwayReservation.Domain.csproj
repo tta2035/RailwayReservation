@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="BookingTicket\ValueObjects\" />
+    <Folder Include="Booking\ValueObjects\" />
+    <Folder Include="Coach\ValueObjects\" />
+    <Folder Include="Common\ValueObjects\" />
+    <Folder Include="Function\ValueObjects\" />
+    <Folder Include="GroupFunction\ValueObjects\" />
+    <Folder Include="GroupUser\ValueObjects\" />
+    <Folder Include="Group\ValueObjects\" />
+    <Folder Include="Paid\ValueObjects\" />
+    <Folder Include="Passenger\ValueObejcts\" />
+    <Folder Include="PaymentMethod\ValueObejcts\" />
+    <Folder Include="Refund\ValueObjects\" />
+    <Folder Include="Route\ValueObjects\" />
+    <Folder Include="SeatType\ValueObjects\" />
+    <Folder Include="Seat\ValueObjects\" />
+    <Folder Include="Station\ValueObjects\" />
+    <Folder Include="Ticket\ValueObjects\" />
+    <Folder Include="Train\ValueObjects\" />
+    <Folder Include="User\ValueObejcts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,56 @@
+﻿- tạo các record phục vụ cho controller : .Contarct/Authentication/
+	-> record LoginRequest, RegisterRequest, AuthenticationResponse
+- Tạo các service -> .Api/Controller
+	-> .Application/Services/Authentication
+	-> IAuthenticationService -> AuthenticationService & record AuthenticationResult
+- Controller sẽ dùng DI này xử lý và trả về response
+- builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+- tạo 1 mẫu DI chung cho tất cả
+	tạo class .Application/DependencyInjection.cs, 
+				.Infrastructure/DependencyInjection.cs -> triển khai và cấu hình service & wire(kết nối) mọi thứ ở đây
+
+- tạo thư mục .Application/Common/Interface để định nghĩa tất cả các interface
+- create interface IJwtTokenGenerator -> tới authentication service và sử dụng nó
+- create .I/JwtTokenGenerator implement Interface -> sử dụng Jwt để tạo token (coi code nhé)
+	" var signinCredentials = new SigningCredentials(
+                new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes("super-secret-keysuper-secret-key")),
+                    SecurityAlgorithms.HmacSha256
+                    );
+
+            var claims = new[]
+            {
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, PassengerID.ToString()),
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.GivenName, FullName),
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.FamilyName, ""),
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            };
+
+            var securityToken = new JwtSecurityToken(
+                issuer: "RailwayReservation",
+                expires: _dateTimeProvider.utcNow.AddMinutes(60),
+                claims:claims,
+                signingCredentials:signinCredentials
+                );
+
+            return new JwtSecurityTokenHandler().WriteToken( securityToken );"
+            -> code ban đầu -> thiết lập bằng cơm
+- đăng ký Interface này trong .I/DI.cs
+
+- cấu trúc Interface và triển khai: 
+	+ tạo .A/. . . /Interface
+	+ tạo .I/ . . ./Class : Interface
+	+ đăng ký trong .I/DI -. AddInfranstructure();
+
+- tạo IDateTimeProvider & DateTimeProvider
+	-> dùng cho expires trong JwtTokenGenerator
+
+- thiết lập JwtSetting trong appsettings.js -> thay cho tạo jwt cấu hình tay trong JwtTokenGenerator
+- đăng ký trong AddInfanstructure
+- sử dụng JwtSetting class trong JwtTokenGenerator để thiết lập các giá trị cho Jwt
+
+- run "dotnet user-secrets init" trên .Api
+    + dotnet user-secrets set "JwtSettings:Secrets" "super-secret-keysuper-secret-key"
+
+- ConnectString sẽ được cấu hình trong .I/DI class 
+

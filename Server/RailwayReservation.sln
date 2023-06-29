@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RailwayReservation.Api", "RailwayReservation\RailwayReservation.Api.csproj", "{29B8E6B5-A1CA-4DCE-AFDE-1270A33169F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RailwayReservation.Infranstructure", "RailwayReservation.Infranstructure\RailwayReservation.Infranstructure.csproj", "{2E4C1505-6691-4E58-8A48-9B0F7BCC5E59}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RailwayReservation.Domain", "RailwayReservation.Domain\RailwayReservation.Domain.csproj", "{66B0656B-6062-4F0B-B80C-0D806A6F4D9F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RailwayReservation.Contract", "RailwayReservation.Contract\RailwayReservation.Contract.csproj", "{70877A20-386D-4638-9529-68EB5AAEBC78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3EC74FE4-E0DA-421F-BFBE-E5C22063219C}"
+	ProjectSection(SolutionItems) = preProject
+		Note.txt = Note.txt
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RailwayReservation.Application", "RailwayReservation.Application\RailwayReservation.Application.csproj", "{012A07F1-AE51-49F4-8B7C-7D98C17B2DFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29B8E6B5-A1CA-4DCE-AFDE-1270A33169F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B8E6B5-A1CA-4DCE-AFDE-1270A33169F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B8E6B5-A1CA-4DCE-AFDE-1270A33169F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B8E6B5-A1CA-4DCE-AFDE-1270A33169F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E4C1505-6691-4E58-8A48-9B0F7BCC5E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E4C1505-6691-4E58-8A48-9B0F7BCC5E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E4C1505-6691-4E58-8A48-9B0F7BCC5E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E4C1505-6691-4E58-8A48-9B0F7BCC5E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66B0656B-6062-4F0B-B80C-0D806A6F4D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66B0656B-6062-4F0B-B80C-0D806A6F4D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66B0656B-6062-4F0B-B80C-0D806A6F4D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66B0656B-6062-4F0B-B80C-0D806A6F4D9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70877A20-386D-4638-9529-68EB5AAEBC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70877A20-386D-4638-9529-68EB5AAEBC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70877A20-386D-4638-9529-68EB5AAEBC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70877A20-386D-4638-9529-68EB5AAEBC78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012A07F1-AE51-49F4-8B7C-7D98C17B2DFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012A07F1-AE51-49F4-8B7C-7D98C17B2DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012A07F1-AE51-49F4-8B7C-7D98C17B2DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012A07F1-AE51-49F4-8B7C-7D98C17B2DFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F75ACAE-4B65-41D1-B4F4-6B6628F39CD6}
+	EndGlobalSection
+EndGlobal

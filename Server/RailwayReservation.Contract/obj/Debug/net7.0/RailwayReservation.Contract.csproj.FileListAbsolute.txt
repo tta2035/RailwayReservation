@@ -1,0 +1,12 @@
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\bin\Debug\net7.0\RailwayReservation.Contract.deps.json
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\bin\Debug\net7.0\RailwayReservation.Contract.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\bin\Debug\net7.0\RailwayReservation.Contract.pdb
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\obj\Debug\net7.0\RailwayReservation.Contract.csproj.AssemblyReference.cache
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\obj\Debug\net7.0\RailwayReservation.Contract.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\obj\Debug\net7.0\RailwayReservation.Contract.AssemblyInfoInputs.cache
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\obj\Debug\net7.0\RailwayReservation.Contract.AssemblyInfo.cs
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\obj\Debug\net7.0\RailwayReservation.Contract.csproj.CoreCompileInputs.cache
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\obj\Debug\net7.0\RailwayReservation.Contract.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\obj\Debug\net7.0\refint\RailwayReservation.Contract.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\obj\Debug\net7.0\RailwayReservation.Contract.pdb
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Contract\obj\Debug\net7.0\ref\RailwayReservation.Contract.dll

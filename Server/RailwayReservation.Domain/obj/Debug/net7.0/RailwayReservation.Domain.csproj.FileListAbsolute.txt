@@ -1,0 +1,12 @@
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\bin\Debug\net7.0\RailwayReservation.Domain.deps.json
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\bin\Debug\net7.0\RailwayReservation.Domain.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\bin\Debug\net7.0\RailwayReservation.Domain.pdb
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\obj\Debug\net7.0\RailwayReservation.Domain.csproj.AssemblyReference.cache
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\obj\Debug\net7.0\RailwayReservation.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\obj\Debug\net7.0\RailwayReservation.Domain.AssemblyInfoInputs.cache
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\obj\Debug\net7.0\RailwayReservation.Domain.AssemblyInfo.cs
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\obj\Debug\net7.0\RailwayReservation.Domain.csproj.CoreCompileInputs.cache
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\obj\Debug\net7.0\RailwayReservation.Domain.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\obj\Debug\net7.0\refint\RailwayReservation.Domain.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\obj\Debug\net7.0\RailwayReservation.Domain.pdb
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation.Domain\obj\Debug\net7.0\ref\RailwayReservation.Domain.dll
