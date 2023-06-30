@@ -25,7 +25,7 @@ public sealed class Train : AggregateRoot<TrainId, Guid>
     public DateTime? UpdateTime { get; set; }
 
     public ICollection<Coach.Coach> Coaches { get; set; } = new List<Coach.Coach>();
-    public ICollection<Ticket.Ticket> Tickets { get; set; } = new List<Ticket.Ticket>();
+    public ICollection<Trip.Trip> Trips { get; set; } = new List<Trip.Trip>();
 
     private Train() { }
 

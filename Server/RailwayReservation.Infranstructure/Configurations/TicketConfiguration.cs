@@ -7,6 +7,7 @@ using RailwayReservation.Domain.Station;
 using RailwayReservation.Domain.Ticket;
 using RailwayReservation.Domain.Ticket.ValueObjects;
 using RailwayReservation.Domain.Train.ValueObjects;
+using RailwayReservation.Domain.Trip.ValueObjects;
 using RailwayReservation.Domain.User.ValueObejcts;
 using System;
 using System.Collections.Generic;
@@ -48,15 +49,16 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
         builder.Property(e => e.DepartureTime).HasColumnType("datetime");
         builder.Property(e => e.Fare).HasColumnType("decimal(18, 0)");
         builder
-            .Property(e => e.RouteId)
-            .HasConversion(id => id.Value, value => RouteId.Create(value))
-            .HasColumnName("RouteID");
+            .Property(e => e.TripId)
+            .HasConversion(id => id.Value, value => TripId.Create(value))
+            .HasColumnName("TripID");
+
         builder
-            .HasOne(d => d.Route)
+            .HasOne(d => d.Trip)
             .WithMany(p => p.Tickets)
-            .HasForeignKey(d => d.RouteId)
+            .HasForeignKey(d => d.TripId)
             .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Ticket_Route");
+            .HasConstraintName("FK_Ticket_Trip");
 
         builder
             .Property(e => e.SeatId)
@@ -68,17 +70,6 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasForeignKey(d => d.SeatId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Ticket_Seat");
-
-        builder
-            .Property(e => e.TrainId)
-            .HasConversion(id => id.Value, value => TrainId.Create(value))
-            .HasColumnName("TrainID");
-        builder
-            .HasOne(d => d.Train)
-            .WithMany(p => p.Tickets)
-            .HasForeignKey(d => d.TrainId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Ticket_Train");
 
         builder
             .Property(e => e.UpdateBy)

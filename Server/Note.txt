@@ -54,3 +54,9 @@
 
 - ConnectString sẽ được cấu hình trong .I/DI class 
 
+- create .A/IPassengerRepository & .I/PassengerRepository
+    và sử dụng chúng trong .A/AuthenticationService
+
+## Về Global Error Handling
+- create Custom Exception Filter Attribute và áp dụng cho all Controllers
+

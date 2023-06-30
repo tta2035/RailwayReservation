@@ -14,6 +14,8 @@ using RailwayReservation.Infranstructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using RailwayReservation.Infranstructure.Persistance.Interceptors;
 using MediatR;
+using RailwayReservation.Application.Common.Interfaces.Persistences;
+using RailwayReservation.Infranstructure.Persistance.Repository;
 
 namespace RailwayReservation.Infranstructure;
 
@@ -29,6 +31,7 @@ public static class DependencyInjection
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
+        services.AddScoped<IPassengerRepository, PassengerRepository>();
         return services;
     }
 
@@ -36,7 +39,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<RailwayReservationDbContext>(options =>
         {
-            options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=RailwayTest;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;");
+            options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=Railway;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;");
 
         });
         services.AddScoped<PublishDomainEventsInterceptor>();

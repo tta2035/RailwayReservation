@@ -1,29 +1,28 @@
-using System.ComponentModel.Design;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
 
-namespace RailwayReservation.Domain.Paid.ValueObjects
+namespace RailwayReservation.Domain.Trip.ValueObjects
 {
-    public sealed class PaidId : AggregateRootId<Guid>
+    public class TripId : AggregateRootId<Guid>
     {
         public override Guid Value { get; protected set; }
 
-        private PaidId(Guid value)
+        private TripId(Guid value)
         {
             Value = value;
         }
 
-        public static PaidId CreateUnique()
+        public static TripId CreateUnique()
         {
-            return new PaidId(Guid.NewGuid());
+            return new TripId(Guid.NewGuid());
         }
 
-        public static PaidId Create(Guid value)
+        public static TripId Create(Guid value)
         {
-            return new PaidId(value);
+            return new TripId(value);
         }
 
         public override IEnumerable<object> GetEqualityComponents()

@@ -85,3 +85,4 @@ C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\MediatR.Contracts.dll
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\Newtonsoft.Json.dll

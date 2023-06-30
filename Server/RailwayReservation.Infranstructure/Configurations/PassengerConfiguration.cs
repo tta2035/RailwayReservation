@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Paid;
 using RailwayReservation.Domain.Passenger;
 using RailwayReservation.Domain.Passenger.ValueObejcts;
 using RailwayReservation.Domain.User.ValueObejcts;

@@ -10,7 +10,7 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Passenger;
 
-public sealed class Passenger : AggregateRoot<PassengerId, Guid>
+public class Passenger : AggregateRoot<PassengerId, Guid>
 {
     // [Key]
     public PassengerId Id { get; set; }
@@ -29,47 +29,44 @@ public sealed class Passenger : AggregateRoot<PassengerId, Guid>
 
     public string Address { get; set; } = null!;
 
-    public string? Image { get; set; }
+    public string? Image { get; set; } = null!;
 
-    public string? Token { get; set; }
+    public string? Token { get; set; } = null!;
 
-    public string? Description { get; set; }
+    public string? Description { get; set; } = null!;
 
-    public UserId? CreateBy { get; set; }
+    public UserId? CreateBy { get; set; } = null!;
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public UserId? UpdateBy { get; set; } = null!;
 
-    public DateTime? UpdateTime { get; set; }
-
-    public ICollection<BankingPassenger.BankingPassenger> BankingPassengers { get; set; } =
-        new List<BankingPassenger.BankingPassenger>();
+    public DateTime? UpdateTime { get; set; } = null!;
 
     public ICollection<Booking.Booking> Bookings { get; set; } = new List<Booking.Booking>();
 
     private Passenger() { }
 
-    private Passenger(
+    public Passenger(
         PassengerId passengerId,
         string fullName,
         DateTime dob,
         string genger,
         string email,
-        string? phoneNo,
+        string phoneNo,
         string password,
         string address,
-        string? image,
-        string? token,
-        string? description,
-        UserId? createBy,
+        string image,
+        string token,
+        string description,
+        UserId createBy,
         DateTime createTime,
-        UserId? updateBy,
+        UserId updateBy,
         DateTime? updateTime
     )
         : base(passengerId)
     {
-        // PassengerId = passengerId;
+        Id = passengerId;
         FullName = fullName;
         Dob = dob;
         Genger = genger;
@@ -86,17 +83,17 @@ public sealed class Passenger : AggregateRoot<PassengerId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Passenger Create(
+    public static Passenger Create(
         string fullName,
         DateTime dob,
         string genger,
         string email,
-        string? phoneNo,
+        string phoneNo,
         string password,
         string address,
-        string? image,
-        string? token,
-        string? description
+        string image,
+        string token,
+        string description
     )
     {
         return new(

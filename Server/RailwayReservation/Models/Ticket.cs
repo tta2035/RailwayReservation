@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using RailwayReservation.Domain.Trip;
 
 namespace RailwayReservation.Api.Models;
 
@@ -30,4 +31,8 @@ public partial class Ticket
     public DateTime? UpdateTime { get; set; }
 
     public virtual ICollection<BookingTicket> BookingTickets { get; set; } = new List<BookingTicket>();
+
+    public virtual Seat Seat { get; set; }
+
+    public virtual Trip Trip { get; set; }
 }

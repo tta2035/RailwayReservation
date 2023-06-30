@@ -24,9 +24,6 @@ public sealed class PaymentMethod : AggregateRoot<PaymentMethodId, Guid>
 
     public DateTime? UpdateTime { get; set; }
 
-    public ICollection<BankingPassenger.BankingPassenger> BankingPassengers { get; set; } =
-        new List<BankingPassenger.BankingPassenger>();
-
     public ICollection<Booking.Booking> Bookings { get; set; } = new List<Booking.Booking>();
 
     private PaymentMethod() { }

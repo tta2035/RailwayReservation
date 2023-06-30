@@ -19,8 +19,6 @@ public sealed class BookingTicket
 
     public TicketId TicketId { get; set; }
 
-    public int Quantity { get; set; }
-
     public string? Description { get; set; } = null!;
 
     public UserId? CreateBy { get; set; } = null!;
@@ -41,7 +39,6 @@ public sealed class BookingTicket
         // BookingTicketId bookingTicketId,
         BookingId bookingId,
         TicketId ticketId,
-        int quantity,
         string? description,
         UserId? createBy,
         DateTime createTime,
@@ -52,7 +49,6 @@ public sealed class BookingTicket
         // BookingTicketId = bookingTicketId;
         BookingId = bookingId;
         TicketId = ticketId;
-        Quantity = quantity;
         Description = description;
         CreateBy = createBy;
         CreateTime = createTime;
@@ -63,7 +59,6 @@ public sealed class BookingTicket
     private static BookingTicket Create(
         BookingId bookingId,
         TicketId ticketId,
-        int quantity,
         string? description
     )
     {
@@ -71,7 +66,6 @@ public sealed class BookingTicket
             // BookingTicketId.CreateUnique(),
             bookingId,
             ticketId,
-            quantity,
             description,
             null,
             DateTime.UtcNow,

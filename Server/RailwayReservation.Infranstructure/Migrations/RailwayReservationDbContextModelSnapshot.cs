@@ -22,73 +22,20 @@ namespace RailwayReservation.Infranstructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RailwayReservation.Domain.BankingPassenger.BankingPassenger", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BankingPassengerID");
-
-                    b.Property<string>("BankAccountNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("BankName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<Guid?>("CreateBy")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("createBy");
-
-                    b.Property<DateTime>("CreateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasColumnName("createTime")
-                        .HasDefaultValueSql("(getdate())");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("PassengerId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("PassengerID");
-
-                    b.Property<Guid>("PaymentMethodId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("PaymentMethodID");
-
-                    b.Property<Guid?>("UpdateBy")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("updateBy");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime")
-                        .HasColumnName("updateTime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PassengerId");
-
-                    b.HasIndex("PaymentMethodId");
-
-                    b.HasIndex(new[] { "BankAccountNumber" }, "IX_BankingPassenger_1")
-                        .IsUnique();
-
-                    b.ToTable("BankingPassenger", (string)null);
-                });
-
             modelBuilder.Entity("RailwayReservation.Domain.Booking.Booking", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("BookingID");
 
+                    b.Property<DateTime>("BookingTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal?>("CancellationFee")
                         .HasColumnType("decimal(18, 0)");
 
                     b.Property<string>("CancellationReason")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CancellationTime")
@@ -104,26 +51,36 @@ namespace RailwayReservation.Infranstructure.Migrations
                         .HasColumnName("createTime")
                         .HasDefaultValueSql("(getdate())");
 
-                    b.Property<Guid?>("DefaultPaymentMethod")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("DefaultPaymentMethod");
-
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("PaidAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("PaidTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("PassengerId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("PassengerId");
 
-                    b.Property<Guid?>("PassengerPaymentMethod")
+                    b.Property<Guid?>("PaymentMethodId")
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("PassengerPaymentMethod");
+                        .HasColumnName("PaymentMethodID");
 
                     b.Property<DateTime>("PaymentTerm")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("RefundAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("RefundTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalFare")
                         .HasColumnType("decimal(18, 0)");
@@ -139,15 +96,65 @@ namespace RailwayReservation.Infranstructure.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("updateTime");
 
-                    b.HasKey("Id");
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasIndex("DefaultPaymentMethod");
+                    b.HasKey("Id");
 
                     b.HasIndex("PassengerId");
 
-                    b.HasIndex("PassengerPaymentMethod");
+                    b.HasIndex("PaymentMethodId");
 
                     b.ToTable("Booking", (string)null);
+                });
+
+            modelBuilder.Entity("RailwayReservation.Domain.BookingStatus.BookingStatus", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("BookingStatusID");
+
+                    b.Property<Guid>("BookingId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("BookingID");
+
+                    b.Property<Guid?>("CreateBy")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("createBy");
+
+                    b.Property<DateTime?>("CreateTime")
+                        .HasColumnType("datetime")
+                        .HasColumnName("createTime");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nchar(50)")
+                        .IsFixedLength();
+
+                    b.Property<DateTime>("StatusTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("statusTime")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<Guid?>("UpdateBy")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("updateBy");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updateTime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.ToTable("BookingStatus", (string)null);
                 });
 
             modelBuilder.Entity("RailwayReservation.Domain.BookingTicket.BookingTicket", b =>
@@ -172,9 +179,6 @@ namespace RailwayReservation.Infranstructure.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
 
                     b.Property<Guid?>("UpdateBy")
                         .HasColumnType("uniqueidentifier")
@@ -381,47 +385,6 @@ namespace RailwayReservation.Infranstructure.Migrations
                     b.ToTable("GroupUser", (string)null);
                 });
 
-            modelBuilder.Entity("RailwayReservation.Domain.Paid.Paid", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("PaidID");
-
-                    b.Property<Guid>("BookingId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BookingID");
-
-                    b.Property<Guid?>("CreateBy")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("createBy");
-
-                    b.Property<DateTime>("CreateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasColumnName("createTime")
-                        .HasDefaultValueSql("(getdate())");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("PaidAmount")
-                        .HasColumnType("decimal(18, 0)");
-
-                    b.Property<Guid?>("UpdateBy")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("updateBy");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime")
-                        .HasColumnName("updateTime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
-
-                    b.ToTable("Paid", (string)null);
-                });
-
             modelBuilder.Entity("RailwayReservation.Domain.Passenger.Passenger", b =>
                 {
                     b.Property<Guid>("Id")
@@ -537,55 +500,6 @@ namespace RailwayReservation.Infranstructure.Migrations
                         .IsUnique();
 
                     b.ToTable("PaymentMethod", (string)null);
-                });
-
-            modelBuilder.Entity("RailwayReservation.Domain.Refund.Refund", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("RefundID");
-
-                    b.Property<Guid>("BookingId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BookingID");
-
-                    b.Property<Guid?>("CreateBy")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("createBy");
-
-                    b.Property<DateTime>("CreateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasColumnName("createTime")
-                        .HasDefaultValueSql("(getdate())");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("RefundAmount")
-                        .HasColumnType("decimal(18, 0)");
-
-                    b.Property<DateTime?>("RefundTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("UpdateBy")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("updateBy");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime")
-                        .HasColumnName("updateTime");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingId");
-
-                    b.ToTable("Refund", (string)null);
                 });
 
             modelBuilder.Entity("RailwayReservation.Domain.Route.Route", b =>
@@ -806,17 +720,17 @@ namespace RailwayReservation.Infranstructure.Migrations
                     b.Property<decimal?>("Fare")
                         .HasColumnType("decimal(18, 0)");
 
-                    b.Property<Guid>("RouteId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("RouteID");
-
                     b.Property<Guid>("SeatId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("SeatID");
 
-                    b.Property<Guid>("TrainId")
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("TripId")
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("TrainID");
+                        .HasColumnName("TripID");
 
                     b.Property<Guid?>("UpdateBy")
                         .HasColumnType("uniqueidentifier")
@@ -828,11 +742,9 @@ namespace RailwayReservation.Infranstructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RouteId");
-
                     b.HasIndex("SeatId");
 
-                    b.HasIndex("TrainId");
+                    b.HasIndex("TripId");
 
                     b.ToTable("Ticket", (string)null);
                 });
@@ -875,6 +787,57 @@ namespace RailwayReservation.Infranstructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Train", (string)null);
+                });
+
+            modelBuilder.Entity("RailwayReservation.Domain.Trip.Trip", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("TripID");
+
+                    b.Property<DateTime>("ArriveTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<Guid?>("CreateBy")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("createBy");
+
+                    b.Property<DateTime?>("CreateTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("createTime")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<DateTime>("DepartureTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RouteId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("RouteID");
+
+                    b.Property<Guid>("TrainId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("TrainID");
+
+                    b.Property<Guid?>("UpdateBy")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("updateBy");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime")
+                        .HasColumnName("updateTime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RouteId");
+
+                    b.HasIndex("TrainId");
+
+                    b.ToTable("Trip", (string)null);
                 });
 
             modelBuilder.Entity("RailwayReservation.Domain.User.User", b =>
@@ -938,48 +901,33 @@ namespace RailwayReservation.Infranstructure.Migrations
                     b.ToTable("User", (string)null);
                 });
 
-            modelBuilder.Entity("RailwayReservation.Domain.BankingPassenger.BankingPassenger", b =>
-                {
-                    b.HasOne("RailwayReservation.Domain.Passenger.Passenger", "Passenger")
-                        .WithMany("BankingPassengers")
-                        .HasForeignKey("PassengerId")
-                        .IsRequired()
-                        .HasConstraintName("FK_BankingPassenger_Passenger");
-
-                    b.HasOne("RailwayReservation.Domain.PaymentMethod.PaymentMethod", "PaymentMethod")
-                        .WithMany("BankingPassengers")
-                        .HasForeignKey("PaymentMethodId")
-                        .IsRequired()
-                        .HasConstraintName("FK_BankingPassenger_PaymentMethod1");
-
-                    b.Navigation("Passenger");
-
-                    b.Navigation("PaymentMethod");
-                });
-
             modelBuilder.Entity("RailwayReservation.Domain.Booking.Booking", b =>
                 {
-                    b.HasOne("RailwayReservation.Domain.PaymentMethod.PaymentMethod", "DefaultPaymentMethodNavigation")
-                        .WithMany("Bookings")
-                        .HasForeignKey("DefaultPaymentMethod")
-                        .HasConstraintName("FK_Booking_PaymentMethod");
-
                     b.HasOne("RailwayReservation.Domain.Passenger.Passenger", "Passenger")
                         .WithMany("Bookings")
                         .HasForeignKey("PassengerId")
                         .IsRequired()
                         .HasConstraintName("FK_Booking_Passenger");
 
-                    b.HasOne("RailwayReservation.Domain.BankingPassenger.BankingPassenger", "PassengerPaymentMethodNavigation")
+                    b.HasOne("RailwayReservation.Domain.PaymentMethod.PaymentMethod", "PaymentMethod")
                         .WithMany("Bookings")
-                        .HasForeignKey("PassengerPaymentMethod")
-                        .HasConstraintName("FK_Booking_BankingPassenger");
-
-                    b.Navigation("DefaultPaymentMethodNavigation");
+                        .HasForeignKey("PaymentMethodId")
+                        .HasConstraintName("FK_Booking_PaymentMethod");
 
                     b.Navigation("Passenger");
 
-                    b.Navigation("PassengerPaymentMethodNavigation");
+                    b.Navigation("PaymentMethod");
+                });
+
+            modelBuilder.Entity("RailwayReservation.Domain.BookingStatus.BookingStatus", b =>
+                {
+                    b.HasOne("RailwayReservation.Domain.Booking.Booking", "Booking")
+                        .WithMany("BookingStatuses")
+                        .HasForeignKey("BookingId")
+                        .IsRequired()
+                        .HasConstraintName("FK_BookingStatus_Booking");
+
+                    b.Navigation("Booking");
                 });
 
             modelBuilder.Entity("RailwayReservation.Domain.BookingTicket.BookingTicket", b =>
@@ -1050,28 +998,6 @@ namespace RailwayReservation.Infranstructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("RailwayReservation.Domain.Paid.Paid", b =>
-                {
-                    b.HasOne("RailwayReservation.Domain.Booking.Booking", "Booking")
-                        .WithMany("Paids")
-                        .HasForeignKey("BookingId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Paid_Booking");
-
-                    b.Navigation("Booking");
-                });
-
-            modelBuilder.Entity("RailwayReservation.Domain.Refund.Refund", b =>
-                {
-                    b.HasOne("RailwayReservation.Domain.Booking.Booking", "Booking")
-                        .WithMany("Refunds")
-                        .HasForeignKey("BookingId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Refund_Booking");
-
-                    b.Navigation("Booking");
-                });
-
             modelBuilder.Entity("RailwayReservation.Domain.Route.Route", b =>
                 {
                     b.HasOne("RailwayReservation.Domain.Station.Station", "DepartureStationNavigation")
@@ -1112,43 +1038,47 @@ namespace RailwayReservation.Infranstructure.Migrations
 
             modelBuilder.Entity("RailwayReservation.Domain.Ticket.Ticket", b =>
                 {
-                    b.HasOne("RailwayReservation.Domain.Route.Route", "Route")
-                        .WithMany("Tickets")
-                        .HasForeignKey("RouteId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Ticket_Route");
-
                     b.HasOne("RailwayReservation.Domain.Seat.Seat", "Seat")
                         .WithMany("Tickets")
                         .HasForeignKey("SeatId")
                         .IsRequired()
                         .HasConstraintName("FK_Ticket_Seat");
 
-                    b.HasOne("RailwayReservation.Domain.Train.Train", "Train")
+                    b.HasOne("RailwayReservation.Domain.Trip.Trip", "Trip")
                         .WithMany("Tickets")
-                        .HasForeignKey("TrainId")
+                        .HasForeignKey("TripId")
                         .IsRequired()
-                        .HasConstraintName("FK_Ticket_Train");
-
-                    b.Navigation("Route");
+                        .HasConstraintName("FK_Ticket_Trip");
 
                     b.Navigation("Seat");
+
+                    b.Navigation("Trip");
+                });
+
+            modelBuilder.Entity("RailwayReservation.Domain.Trip.Trip", b =>
+                {
+                    b.HasOne("RailwayReservation.Domain.Route.Route", "Route")
+                        .WithMany("Trips")
+                        .HasForeignKey("RouteId")
+                        .IsRequired()
+                        .HasConstraintName("FK_Trip_Route");
+
+                    b.HasOne("RailwayReservation.Domain.Train.Train", "Train")
+                        .WithMany("Trips")
+                        .HasForeignKey("TrainId")
+                        .IsRequired()
+                        .HasConstraintName("FK_Trip_Train");
+
+                    b.Navigation("Route");
 
                     b.Navigation("Train");
                 });
 
-            modelBuilder.Entity("RailwayReservation.Domain.BankingPassenger.BankingPassenger", b =>
-                {
-                    b.Navigation("Bookings");
-                });
-
             modelBuilder.Entity("RailwayReservation.Domain.Booking.Booking", b =>
                 {
+                    b.Navigation("BookingStatuses");
+
                     b.Navigation("BookingTickets");
-
-                    b.Navigation("Paids");
-
-                    b.Navigation("Refunds");
                 });
 
             modelBuilder.Entity("RailwayReservation.Domain.Coach.Coach", b =>
@@ -1170,21 +1100,17 @@ namespace RailwayReservation.Infranstructure.Migrations
 
             modelBuilder.Entity("RailwayReservation.Domain.Passenger.Passenger", b =>
                 {
-                    b.Navigation("BankingPassengers");
-
                     b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("RailwayReservation.Domain.PaymentMethod.PaymentMethod", b =>
                 {
-                    b.Navigation("BankingPassengers");
-
                     b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("RailwayReservation.Domain.Route.Route", b =>
                 {
-                    b.Navigation("Tickets");
+                    b.Navigation("Trips");
                 });
 
             modelBuilder.Entity("RailwayReservation.Domain.Seat.Seat", b =>
@@ -1213,6 +1139,11 @@ namespace RailwayReservation.Infranstructure.Migrations
                 {
                     b.Navigation("Coaches");
 
+                    b.Navigation("Trips");
+                });
+
+            modelBuilder.Entity("RailwayReservation.Domain.Trip.Trip", b =>
+                {
                     b.Navigation("Tickets");
                 });
 

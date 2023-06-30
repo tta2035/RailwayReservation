@@ -38,7 +38,7 @@ public sealed class Route : AggregateRoot<RouteId, Guid>
 
     public Station.Station DestinationStationNavigation { get; set; } = null!;
 
-    public ICollection<Ticket.Ticket> Tickets { get; set; } = new List<Ticket.Ticket>();
+    public ICollection<Trip.Trip> Trips { get; set; } = new List<Trip.Trip>();
 
     public Route(
         RouteId routeId,

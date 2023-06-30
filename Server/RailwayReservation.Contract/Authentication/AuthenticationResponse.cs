@@ -12,13 +12,13 @@ public record AuthenticationResponse (
     DateTime Dob,
     string Genger,
     string Email,
-    string? PhoneNo,
+    string PhoneNo,
     string Password,
     string Address,
-    string? Token,
-    string? Description,
-    int? CreateBy,
+    string Token,
+    string Description,
+    Guid? CreateBy,
     DateTime CreateTime,
-    int? UpdateBy,
+    Guid? UpdateBy,
     DateTime? UpdateTime
     );

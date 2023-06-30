@@ -8,6 +8,7 @@ using RailwayReservation.Domain.Route.ValueObjects;
 using RailwayReservation.Domain.Seat.ValueObjects;
 using RailwayReservation.Domain.Ticket.ValueObjects;
 using RailwayReservation.Domain.Train.ValueObjects;
+using RailwayReservation.Domain.Trip.ValueObjects;
 using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Ticket;
@@ -16,9 +17,7 @@ public sealed class Ticket : AggregateRoot<TicketId, Guid>
 {
     public TicketId Id { get; set; }
 
-    public RouteId RouteId { get; set; }
-
-    public TrainId TrainId { get; set; }
+    public TripId TripId { get; set; }
 
     public SeatId SeatId { get; set; }
 
@@ -37,67 +36,67 @@ public sealed class Ticket : AggregateRoot<TicketId, Guid>
     public UserId? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
+    public string Status { get; set; }
 
     public ICollection<BookingTicket.BookingTicket> BookingTickets { get; set; } =
         new List<BookingTicket.BookingTicket>();
 
-    public Route.Route Route { get; set; } = null!;
-
     public Seat.Seat Seat { get; set; } = null!;
 
-    public Train.Train Train { get; set; } = null!;
+    public Trip.Trip Trip { get; set; }
 
     private Ticket() { }
 
     public Ticket(
         TicketId ticketId,
-        RouteId routeId,
-        TrainId trainId,
+        TripId tripId,
         SeatId seatId,
         DateTime departureTime,
         DateTime arriveTime,
         decimal? fare,
         string? description,
+        string status,
         UserId? createBy,
         DateTime createTime,
         UserId? updateBy,
-        DateTime? updateTime
+        DateTime? updateTime        
     )
         : base(ticketId)
     {
         // TicketId = ticketId;
-        RouteId = routeId;
-        TrainId = trainId;
+        TripId = tripId;
         SeatId = seatId;
         DepartureTime = departureTime;
         ArriveTime = arriveTime;
         Fare = fare;
         Description = description;
+        Status = status;
         CreateBy = createBy;
         CreateTime = createTime;
         UpdateBy = updateBy;
         UpdateTime = updateTime;
+        
     }
 
     private static Ticket Create(
-        RouteId routeId,
-        TrainId trainId,
+        TripId tripId,
         SeatId seatId,
         DateTime departureTime,
         DateTime arriveTime,
         decimal? fare,
-        string? description
+        string? description,
+        string status
     )
     {
         return new(
             TicketId.CreateUnique(),
-            routeId,
-            trainId,
+            tripId,
             seatId,
             departureTime,
             arriveTime,
             fare,
             description,
+            status,
             null,
             DateTime.UtcNow,
             null,

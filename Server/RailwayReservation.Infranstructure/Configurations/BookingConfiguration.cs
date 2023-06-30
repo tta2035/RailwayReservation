@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RailwayReservation.Domain.BankingPassenger.ValueObjects;
 using RailwayReservation.Domain.Booking;
 using RailwayReservation.Domain.Booking.ValueObjects;
 using RailwayReservation.Domain.Common.Models;
@@ -24,9 +23,7 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
 
     private static void ConfigureBookingTable(EntityTypeBuilder<Booking> builder)
     {
-        builder.ToTable("Booking");
-
-        builder.HasKey(e => e.Id);
+        builder.ToTable("Booking").HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
             .ValueGeneratedNever()
@@ -67,27 +64,14 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
             .HasConstraintName("FK_Booking_Passenger");
 
         builder
-            .Property(e => e.PassengerPaymentMethod)
-            .HasConversion(id => id.Value, value => BankingPassengerId.Create(value))
-            .HasColumnName("PassengerPaymentMethod");
-
-        builder
-            .HasOne(d => d.PassengerPaymentMethodNavigation)
-            .WithMany(p => p.Bookings)
-            .HasForeignKey(d => d.PassengerPaymentMethod)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Booking_BankingPassenger");
-            
-        builder
-            .Property(e => e.DefaultPaymentMethod)
+            .Property(e => e.PaymentMethodId)
             .HasConversion(id => id.Value, value => PaymentMethodId.Create(value))
-            .HasColumnName("DefaultPaymentMethod");
-        builder
-            .HasOne(d => d.DefaultPaymentMethodNavigation)
-            .WithMany(p => p.Bookings)
-            .HasForeignKey(d => d.DefaultPaymentMethod)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Booking_PaymentMethod");
+            .HasColumnName("PaymentMethodID");
 
+        builder
+            .HasOne(d => d.PaymentMethod)
+            .WithMany(p => p.Bookings)
+            .HasForeignKey(d => d.PaymentMethodId)
+            .HasConstraintName("FK_Booking_PaymentMethod");
     }
 }

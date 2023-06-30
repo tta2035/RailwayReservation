@@ -30,21 +30,21 @@ namespace RailwayReservation.Api.Controllers
 
             // map sang response
             var response = new AuthenticationResponse(
-                authResult.PassengerId,
-                authResult.FullName,
-                authResult.Dob,
-                authResult.Genger,
-                authResult.Email,
-                authResult.PhoneNo,
-                authResult.Password,
-                authResult.Address,
-                authResult.Token,
-                "",
-                0,
-                new DateTime(),
-                0, 
-                new DateTime()
-                );
+               authResult.passenger.Id.Value,
+               authResult.passenger.FullName,
+               authResult.passenger.Dob,
+               authResult.passenger.Genger,
+               authResult.passenger.Email,
+               authResult.passenger.PhoneNo,
+               authResult.passenger.Password,
+               authResult.passenger.Address,
+               authResult.token,
+               authResult.passenger.Description,
+               authResult.passenger.CreateBy is not null ? authResult.passenger.CreateBy.Value : null,
+               authResult.passenger.CreateTime,
+               authResult.passenger.UpdateBy is not null ? authResult.passenger.UpdateBy.Value : null,
+               authResult.passenger.UpdateTime
+               );
             return Ok(response);
         }
 
@@ -57,23 +57,23 @@ namespace RailwayReservation.Api.Controllers
                 );
 
             // map sang response
-            var response = new AuthenticationResponse(
-                authResult.PassengerId,
-                authResult.FullName,
-                authResult.Dob,
-                authResult.Genger,
-                authResult.Email,
-                authResult.PhoneNo,
-                authResult.Password,
-                authResult.Address,
-                authResult.Token,
-                "",
-                0,
-                new DateTime(),
-                0,
-                new DateTime()
-                );
-            return Ok(response);
+            //var response = new AuthenticationResponse(
+            //    authResult.PassengerId,
+            //    authResult.FullName,
+            //    authResult.Dob,
+            //    authResult.Genger,
+            //    authResult.Email,
+            //    authResult.PhoneNo,
+            //    authResult.Password,
+            //    authResult.Address,
+            //    authResult.Token,
+            //    "",
+            //    0,
+            //    new DateTime(),
+            //    0,
+            //    new DateTime()
+            //    );
+            return Ok(authResult);
         }
     }
 }
