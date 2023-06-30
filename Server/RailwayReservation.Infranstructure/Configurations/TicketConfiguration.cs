@@ -52,13 +52,34 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasConversion(id => id.Value, value => RouteId.Create(value))
             .HasColumnName("RouteID");
         builder
+            .HasOne(d => d.Route)
+            .WithMany(p => p.Tickets)
+            .HasForeignKey(d => d.RouteId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Ticket_Route");
+
+        builder
             .Property(e => e.SeatId)
             .HasConversion(id => id.Value, value => SeatId.Create(value))
             .HasColumnName("SeatID");
         builder
+            .HasOne(d => d.Seat)
+            .WithMany(p => p.Tickets)
+            .HasForeignKey(d => d.SeatId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Ticket_Seat");
+
+        builder
             .Property(e => e.TrainId)
             .HasConversion(id => id.Value, value => TrainId.Create(value))
             .HasColumnName("TrainID");
+        builder
+            .HasOne(d => d.Train)
+            .WithMany(p => p.Tickets)
+            .HasForeignKey(d => d.TrainId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Ticket_Train");
+
         builder
             .Property(e => e.UpdateBy)
             .HasConversion(id => id.Value, value => UserId.Create(value))

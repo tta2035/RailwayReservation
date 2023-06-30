@@ -60,18 +60,18 @@ public class SeatConfiguration : IEntityTypeConfiguration<Seat>
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
-        // builder
-        //     .HasOne(d => d.Coach)
-        //     .WithMany(p => p.Seats)
-        //     .HasForeignKey(d => d.CoachId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_Seat_Coach");
+        builder
+            .HasOne(d => d.Coach)
+            .WithMany(p => p.Seats)
+            .HasForeignKey(d => d.CoachId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Seat_Coach");
 
-        // builder
-        //     .HasOne(d => d.SeatType)
-        //     .WithMany(p => p.Seats)
-        //     .HasForeignKey(d => d.SeatTypeId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_Seat_SeatType");
+        builder
+            .HasOne(d => d.SeatType)
+            .WithMany(p => p.Seats)
+            .HasForeignKey(d => d.SeatTypeId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Seat_SeatType");
     }
 }

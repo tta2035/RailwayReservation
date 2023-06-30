@@ -11,7 +11,7 @@ namespace RailwayReservation.Domain.SeatType;
 
 public sealed class SeatType : AggregateRoot<SeatTypeId, Guid>
 {
-    // public SeatTypeId SeatTypeId { get; set; }
+    public SeatTypeId Id { get; set; }
 
     public string SeatTypeName { get; set; } = null!;
 

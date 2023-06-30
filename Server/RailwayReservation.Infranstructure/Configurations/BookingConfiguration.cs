@@ -59,35 +59,35 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
             .Property(e => e.PassengerId)
             .HasConversion(id => id.Value, value => PassengerId.Create(value))
             .HasColumnName("PassengerId");
-        // builder
-        //     .HasOne(d => d.Passenger)
-        //     .WithMany(p => p.Bookings)
-        //     .HasForeignKey(d => d.PassengerId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_Booking_Passenger");
+        builder
+            .HasOne(d => d.Passenger)
+            .WithMany(p => p.Bookings)
+            .HasForeignKey(d => d.PassengerId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Booking_Passenger");
 
         builder
             .Property(e => e.PassengerPaymentMethod)
             .HasConversion(id => id.Value, value => BankingPassengerId.Create(value))
             .HasColumnName("PassengerPaymentMethod");
 
-        // builder
-        //     .HasOne(d => d.PassengerPaymentMethodNavigation)
-        //     .WithMany(p => p.Bookings)
-        //     .HasForeignKey(d => d.PassengerPaymentMethod)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_Booking_BankingPassenger");
+        builder
+            .HasOne(d => d.PassengerPaymentMethodNavigation)
+            .WithMany(p => p.Bookings)
+            .HasForeignKey(d => d.PassengerPaymentMethod)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Booking_BankingPassenger");
             
         builder
             .Property(e => e.DefaultPaymentMethod)
             .HasConversion(id => id.Value, value => PaymentMethodId.Create(value))
             .HasColumnName("DefaultPaymentMethod");
-        // builder
-        //     .HasOne(d => d.DefaultPaymentMethodNavigation)
-        //     .WithMany(p => p.Bookings)
-        //     .HasForeignKey(d => d.DefaultPaymentMethod)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_Booking_PaymentMethod");
+        builder
+            .HasOne(d => d.DefaultPaymentMethodNavigation)
+            .WithMany(p => p.Bookings)
+            .HasForeignKey(d => d.DefaultPaymentMethod)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Booking_PaymentMethod");
 
     }
 }

@@ -57,11 +57,11 @@ public class RefundConfiguration : IEntityTypeConfiguration<Refund>
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
-        // builder
-        //     .HasOne(d => d.Booking)
-        //     .WithMany(p => p.Refunds)
-        //     .HasForeignKey(d => d.BookingId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_Refund_Booking");
+        builder
+            .HasOne(d => d.Booking)
+            .WithMany(p => p.Refunds)
+            .HasForeignKey(d => d.BookingId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Refund_Booking");
     }
 }

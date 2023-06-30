@@ -11,7 +11,7 @@ namespace RailwayReservation.Domain.Station;
 
 public sealed class Station : AggregateRoot<StationId, Guid>
 {
-    // public StationId StationId { get; set; }
+    public StationId Id { get; set; }
 
     public string StationName { get; set; } = null!;
 
@@ -25,13 +25,14 @@ public sealed class Station : AggregateRoot<StationId, Guid>
 
     public DateTime? UpdateTime { get; set; }
 
-    public ICollection<Route.Route> RouteDepartureStationNavigations { get; set; } =
+    public ICollection<Route.Route>? RouteDepartureStationNavigations { get; set; } =
         new List<Route.Route>();
 
-    public ICollection<Route.Route> RouteDestinationStationNavigations { get; set; } =
+    public ICollection<Route.Route>? RouteDestinationStationNavigations { get; set; } =
         new List<Route.Route>();
 
-private Station() {}
+    private Station() { }
+
     public Station(
         StationId stationId,
         string stationName,

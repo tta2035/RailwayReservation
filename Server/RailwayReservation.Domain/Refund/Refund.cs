@@ -12,7 +12,7 @@ namespace RailwayReservation.Domain.Refund;
 
 public sealed class Refund : AggregateRoot<RefundId, Guid>
 {
-    // public RefundId RefundId { get; set; }
+    public RefundId Id { get; set; }
 
     public BookingId BookingId { get; set; }
 

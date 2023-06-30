@@ -27,12 +27,12 @@ public class RouteConfiguration : IEntityTypeConfiguration<Route>
 
         builder.HasIndex(e => e.RouteName, "IX_Route_1").IsUnique();
 
-        builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
             .ValueGeneratedNever()
             .HasConversion(id => id.Value, value => RouteId.Create(value))
             .HasColumnName("RouteID");
+        builder.HasKey(e => e.Id);
 
         // builder.Property(e => e.RouteId).HasColumnName("RouteID");
         builder
@@ -56,16 +56,9 @@ public class RouteConfiguration : IEntityTypeConfiguration<Route>
             .Property(e => e.DepartureStation)
             .HasConversion(id => id.Value, value => StationId.Create(value))
             .HasColumnName("DepartureStation");
-        // builder.OwnsMany(
-        //     d => d.DepartureStationNavigation,
-        //     stationBuilder =>
-        //     {
-        //         stationBuilder.WithOwner().HasForeignKey("DinnerId");
-        //     }
-        // );
         builder
             .HasOne(d => d.DepartureStationNavigation)
-            .WithMany()
+            .WithMany(p => p.RouteDepartureStationNavigations)
             .HasForeignKey(d => d.DepartureStation)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Route_Station");
@@ -73,7 +66,7 @@ public class RouteConfiguration : IEntityTypeConfiguration<Route>
         builder
             .Property(e => e.DestinationStation)
             .HasConversion(id => id.Value, value => StationId.Create(value))
-            .HasColumnName("DepartureStation");
+            .HasColumnName("DestinationStation");
         builder
             .HasOne(d => d.DestinationStationNavigation)
             .WithMany(p => p.RouteDestinationStationNavigations)

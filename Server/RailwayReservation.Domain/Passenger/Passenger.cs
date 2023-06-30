@@ -13,7 +13,7 @@ namespace RailwayReservation.Domain.Passenger;
 public sealed class Passenger : AggregateRoot<PassengerId, Guid>
 {
     // [Key]
-    // public PassengerId PassengerId { get; set; }
+    public PassengerId Id { get; set; }
 
     public string FullName { get; set; } = null!;
 

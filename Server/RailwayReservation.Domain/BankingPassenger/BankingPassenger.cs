@@ -14,7 +14,7 @@ namespace RailwayReservation.Domain.BankingPassenger;
 
 public class BankingPassenger : AggregateRoot<BankingPassengerId, Guid>
 {
-    // public BankingPassengerId BankingPassengerId { get; set; }
+    public BankingPassengerId Id { get; set; }
 
     public PaymentMethodId PaymentMethodId { get; set; }
 

@@ -12,7 +12,7 @@ namespace RailwayReservation.Domain.Paid;
 
 public sealed class Paid : AggregateRoot<PaidId, Guid>
 {
-    // public PaidId PaidId { get; set; }
+    public PaidId Id { get; set; }
 
     public BookingId BookingId { get; set; }
 

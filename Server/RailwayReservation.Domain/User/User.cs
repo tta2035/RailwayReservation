@@ -10,7 +10,7 @@ namespace RailwayReservation.Domain.User;
 
 public sealed class User : AggregateRoot<UserId, Guid>
 {
-    // public UserId UserId { get; set; }
+    public UserId Id { get; set; }
     public string UserName { get; set; } = null!;
 
     public string Email { get; set; } = null!;

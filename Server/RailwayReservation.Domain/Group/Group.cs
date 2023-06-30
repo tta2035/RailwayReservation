@@ -11,7 +11,7 @@ namespace RailwayReservation.Domain.Group;
 
 public sealed class Group : AggregateRoot<GroupId, Guid>
 {
-    // public GroupId GroupId { get; set; }
+    public GroupId Id { get; set; }
 
     public string GroupName { get; set; } = null!;
 

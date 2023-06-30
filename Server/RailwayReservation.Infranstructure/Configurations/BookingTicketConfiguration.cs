@@ -26,7 +26,7 @@ public class BookingTicketConfiguration : IEntityTypeConfiguration<BookingTicket
     {
         builder.ToTable("BookingTicket");
 
-        builder.HasKey(e => new { e.BookingId, e.TicketId });
+        builder.HasKey(nameof(BookingTicket.BookingId), nameof(BookingTicket.TicketId));
         // builder
         //     .Property(e => e.BookingTicketId)
         //     .ValueGeneratedNever()
@@ -58,18 +58,18 @@ public class BookingTicketConfiguration : IEntityTypeConfiguration<BookingTicket
 
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
-        // builder
-        //     .HasOne(d => d.Booking)
-        //     .WithMany(p => p.BookingTickets)
-        //     .HasForeignKey(d => d.BookingId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_BookingTicket_Booking");
+        builder
+            .HasOne(d => d.Booking)
+            .WithMany(p => p.BookingTickets)
+            .HasForeignKey(d => d.BookingId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_BookingTicket_Booking");
 
-        // builder
-        //     .HasOne(d => d.Ticket)
-        //     .WithMany(p => p.BookingTickets)
-        //     .HasForeignKey(d => d.TicketId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_BookingTicket_Ticket");
+        builder
+            .HasOne(d => d.Ticket)
+            .WithMany(p => p.BookingTickets)
+            .HasForeignKey(d => d.TicketId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_BookingTicket_Ticket");
     }
 }

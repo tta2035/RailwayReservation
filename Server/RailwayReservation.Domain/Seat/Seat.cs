@@ -13,7 +13,7 @@ namespace RailwayReservation.Domain.Seat;
 
 public sealed class Seat : AggregateRoot<SeatId, Guid>
 {
-    // public SeatId SeatId { get; set; }
+    public SeatId Id { get; set; }
 
     public CoachId CoachId { get; set; }
 
@@ -34,6 +34,7 @@ public sealed class Seat : AggregateRoot<SeatId, Guid>
     public Coach.Coach Coach { get; set; } = null!;
 
     public SeatType.SeatType SeatType { get; set; } = null!;
+    public ICollection<Ticket.Ticket> Tickets { get; set; } = new List<Ticket.Ticket>();
 
     private Seat() {}
     public Seat(

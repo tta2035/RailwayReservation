@@ -22,11 +22,9 @@ public class GroupFunctionConfiguration : IEntityTypeConfiguration<GroupFunction
 
     private static void ConfigureGroupFunctionTable(EntityTypeBuilder<GroupFunction> builder)
     {
-        builder.HasKey(e => new { e.GroupId, e.FunctionId });
+        builder.HasKey(nameof(GroupFunction.GroupId), nameof(GroupFunction.FunctionId));
+        
         builder.ToTable("GroupFunction");
-
-        builder.HasKey(e => e.GroupId);
-        builder.HasKey(e => e.FunctionId);
 
         builder
             .Property(e => e.GroupId)
@@ -51,18 +49,18 @@ public class GroupFunctionConfiguration : IEntityTypeConfiguration<GroupFunction
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
-        // builder
-        //     .HasOne(d => d.Function)
-        //     .WithMany(p => p.GroupFunctions)
-        //     .HasForeignKey(d => d.FunctionId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_GroupFunction_Function");
+        builder
+            .HasOne(d => d.Function)
+            .WithMany(p => p.GroupFunctions)
+            .HasForeignKey(d => d.FunctionId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_GroupFunction_Function");
 
-        // builder
-        //     .HasOne(d => d.Group)
-        //     .WithMany(p => p.GroupFunctions)
-        //     .HasForeignKey(d => d.GroupId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_GroupFunction_Group");
+        builder
+            .HasOne(d => d.Group)
+            .WithMany(p => p.GroupFunctions)
+            .HasForeignKey(d => d.GroupId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_GroupFunction_Group");
     }
 }

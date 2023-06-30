@@ -55,11 +55,11 @@ public class CoachConfiguration : IEntityTypeConfiguration<Coach>
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
-        // builder
-        //     .HasOne(d => d.Train)
-        //     .WithMany(p => p.Coaches)
-        //     .HasForeignKey(d => d.TrainId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_Coach_Train");
+        builder
+            .HasOne(d => d.Train)
+            .WithMany(p => p.Coaches)
+            .HasForeignKey(d => d.TrainId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Coach_Train");
     }
 }

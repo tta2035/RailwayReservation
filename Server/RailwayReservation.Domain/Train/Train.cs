@@ -11,7 +11,7 @@ namespace RailwayReservation.Domain.Train;
 
 public sealed class Train : AggregateRoot<TrainId, Guid>
 {
-    // public TrainId TrainId { get; set; }
+    public TrainId Id { get; set; }
     public string TrainName { get; set; } = null!;
 
     public string? Description { get; set; }
@@ -25,6 +25,7 @@ public sealed class Train : AggregateRoot<TrainId, Guid>
     public DateTime? UpdateTime { get; set; }
 
     public ICollection<Coach.Coach> Coaches { get; set; } = new List<Coach.Coach>();
+    public ICollection<Ticket.Ticket> Tickets { get; set; } = new List<Ticket.Ticket>();
 
     private Train() { }
 

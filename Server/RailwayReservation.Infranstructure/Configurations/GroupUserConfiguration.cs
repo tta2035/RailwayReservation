@@ -23,11 +23,8 @@ public class GroupUserConfiguration : IEntityTypeConfiguration<GroupUser>
 
     private static void ConfigureGroupUserTable(EntityTypeBuilder<GroupUser> builder)
     {
-        builder.HasKey(e => new { e.GroupId, e.UserId });
+        builder.HasKey(nameof(GroupUser.GroupId), nameof(GroupUser.UserId));
         builder.ToTable("GroupUser");
-
-        builder.HasKey(e => e.GroupId);
-        builder.HasKey(e => e.UserId);
 
         builder
             .Property(e => e.GroupId)
@@ -52,18 +49,18 @@ public class GroupUserConfiguration : IEntityTypeConfiguration<GroupUser>
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
-        // builder
-        //     .HasOne(d => d.Group)
-        //     .WithMany(p => p.GroupUsers)
-        //     .HasForeignKey(d => d.GroupId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_GroupUser_Group");
+        builder
+            .HasOne(d => d.Group)
+            .WithMany(p => p.GroupUsers)
+            .HasForeignKey(d => d.GroupId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_GroupUser_Group");
 
-        // builder
-        //     .HasOne(d => d.User)
-        //     .WithMany(p => p.GroupUsers)
-        //     .HasForeignKey(d => d.UserId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_GroupUser_User");
+        builder
+            .HasOne(d => d.User)
+            .WithMany(p => p.GroupUsers)
+            .HasForeignKey(d => d.UserId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_GroupUser_User");
     }
 }

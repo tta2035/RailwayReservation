@@ -12,7 +12,7 @@ namespace RailwayReservation.Domain.Coach;
 
 public sealed class Coach : AggregateRoot<CoachId, Guid>
 {
-    // public CoachId CoachId { get; set; }
+    public CoachId Id { get; set; }
 
     public string CoachNo { get; set; } = null!;
 

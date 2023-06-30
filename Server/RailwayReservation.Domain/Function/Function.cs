@@ -11,7 +11,7 @@ namespace RailwayReservation.Domain.Function;
 
 public sealed class Function : AggregateRoot<FunctionId, Guid>
 {
-    // public FunctionId FunctionId { get; set; }
+    public FunctionId Id { get; set; }
 
     public string FunctionName { get; set; } = null!;
 

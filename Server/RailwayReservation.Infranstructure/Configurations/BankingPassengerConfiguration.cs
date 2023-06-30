@@ -58,18 +58,18 @@ public class BankingPassengerConfiguration : IEntityTypeConfiguration<BankingPas
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
-        // builder
-        //     .HasOne(d => d.Passenger)
-        //     .WithMany(p => p.BankingPassengers)
-        //     .HasForeignKey(d => d.PassengerId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_BankingPassenger_Passenger");
+        builder
+            .HasOne(d => d.Passenger)
+            .WithMany(p => p.BankingPassengers)
+            .HasForeignKey(d => d.PassengerId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_BankingPassenger_Passenger");
 
-        // builder
-        //     .HasOne(d => d.PaymentMethod)
-        //     .WithMany(p => p.BankingPassengers)
-        //     .HasForeignKey(d => d.PaymentMethodId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_BankingPassenger_PaymentMethod1");
+        builder
+            .HasOne(d => d.PaymentMethod)
+            .WithMany(p => p.BankingPassengers)
+            .HasForeignKey(d => d.PaymentMethodId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_BankingPassenger_PaymentMethod1");
     }
 }

@@ -10,7 +10,7 @@ namespace RailwayReservation.Domain.PaymentMethod;
 
 public sealed class PaymentMethod : AggregateRoot<PaymentMethodId, Guid>
 {
-    // public PaymentMethodId PaymentMethodId { get; set; }
+    public PaymentMethodId Id { get; set; }
 
     public string PaymentMethodName { get; set; } = null!;
 

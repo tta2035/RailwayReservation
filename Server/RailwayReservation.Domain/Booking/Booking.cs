@@ -14,7 +14,7 @@ namespace RailwayReservation.Domain.Booking;
 
 public class Booking : AggregateRoot<BookingId, Guid>
 {
-    // public BookingId BookingId { get; set; }
+    public BookingId Id { get; set; }
 
     public PassengerId PassengerId { get; set; }
 

@@ -25,4 +25,8 @@
     <ProjectReference Include="..\RailwayReservation.Application\RailwayReservation.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

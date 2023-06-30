@@ -54,11 +54,11 @@ public class PaidConfiguration : IEntityTypeConfiguration<Paid>
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
-        // builder
-        //     .HasOne(d => d.Booking)
-        //     .WithMany(p => p.Paids)
-        //     .HasForeignKey(d => d.BookingId)
-        //     .OnDelete(DeleteBehavior.ClientSetNull)
-        //     .HasConstraintName("FK_Paid_Booking");
+        builder
+            .HasOne(d => d.Booking)
+            .WithMany(p => p.Paids)
+            .HasForeignKey(d => d.BookingId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_Paid_Booking");
     }
 }

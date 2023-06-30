@@ -26,12 +26,12 @@ public class StationConfiguration : IEntityTypeConfiguration<Station>
 
         builder.HasIndex(e => e.StationName, "IX_Station_1").IsUnique();
 
-        builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
             .ValueGeneratedNever()
             .HasConversion(id => id.Value, value => StationId.Create(value))
             .HasColumnName("StationID");
+        builder.HasKey(e => e.Id);
 
         // builder.Property(e => e.StationId).HasColumnName("StationID");
         builder

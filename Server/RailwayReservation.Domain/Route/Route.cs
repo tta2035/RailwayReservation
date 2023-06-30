@@ -12,7 +12,7 @@ namespace RailwayReservation.Domain.Route;
 
 public sealed class Route : AggregateRoot<RouteId, Guid>
 {
-    // public RouteId RouteId { get; set; }
+    public RouteId Id { get; set; }
 
     public string RouteName { get; set; } = null!;
 
@@ -33,10 +33,12 @@ public sealed class Route : AggregateRoot<RouteId, Guid>
     public DateTime? UpdateTime { get; set; }
 
     public Station.Station DepartureStationNavigation { get; set; } = null!;
+
     //public IReadOnlyList<Station.Station> DepartureStationNavigation => _departureStationNavigation.AsReadOnly();
 
     public Station.Station DestinationStationNavigation { get; set; } = null!;
 
+    public ICollection<Ticket.Ticket> Tickets { get; set; } = new List<Ticket.Ticket>();
 
     public Route(
         RouteId routeId,
@@ -64,9 +66,7 @@ public sealed class Route : AggregateRoot<RouteId, Guid>
         UpdateTime = updateTime;
     }
 
-    private Route()
-    {
-    }
+    private Route() { }
 
     private static Route Create(
         string routeName,

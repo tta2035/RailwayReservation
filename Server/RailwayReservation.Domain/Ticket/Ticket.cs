@@ -14,7 +14,7 @@ namespace RailwayReservation.Domain.Ticket;
 
 public sealed class Ticket : AggregateRoot<TicketId, Guid>
 {
-    // public TicketId TicketId { get; set; }
+    public TicketId Id { get; set; }
 
     public RouteId RouteId { get; set; }
 
@@ -41,7 +41,14 @@ public sealed class Ticket : AggregateRoot<TicketId, Guid>
     public ICollection<BookingTicket.BookingTicket> BookingTickets { get; set; } =
         new List<BookingTicket.BookingTicket>();
 
-private Ticket() {}
+    public Route.Route Route { get; set; } = null!;
+
+    public Seat.Seat Seat { get; set; } = null!;
+
+    public Train.Train Train { get; set; } = null!;
+
+    private Ticket() { }
+
     public Ticket(
         TicketId ticketId,
         RouteId routeId,
