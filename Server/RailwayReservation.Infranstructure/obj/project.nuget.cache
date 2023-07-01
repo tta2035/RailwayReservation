@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "gmuctOfELORMN6suth0OK9iNHaAzfcr/5EDzhkoamXV7aYAIfUFd9niKWd7d0uM6obIaXvVx6yU6fu+p1MC7+w==",
+  "dgSpecHash": "9t7UMevBw8qtc/liLVgqGJrLRoFJjBXJbeGKDiO4wPIVkvlylYvi/lqtWO+TULF2sEwQPq8Oqk0Dhs5kHFEPfA==",
   "success": true,
   "projectFilePath": "C:\\Users\\MSI Modern\\RailwayReservation\\Server\\RailwayReservation.Infranstructure\\RailwayReservation.Infranstructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MSI Modern\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\erroror\\1.2.1\\erroror.1.2.1.nupkg.sha512",
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\fluentvalidation\\11.5.2\\fluentvalidation.11.5.2.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

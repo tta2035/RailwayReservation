@@ -12,8 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
         .AddApplication()
         .AddInfanstructure(builder.Configuration);
-builder.Services.AddControllers(option => option.Filters.Add<ErrorHandlingHandlingAttribute>());
-//builder.Services.AddControllers();
+//builder.Services.AddControllers(option => option.Filters.Add<ErrorHandlingHandlingAttribute>());
+builder.Services.AddControllers();
 
 // Add services to the container.
 
@@ -50,7 +50,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

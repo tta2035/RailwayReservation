@@ -28,7 +28,7 @@ internal class GroupConfiguration : IEntityTypeConfiguration<Group>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => GroupId.Create(value))
             .HasColumnName("GroupID");
         // builder.Property(e => e.GroupId).HasColumnName("GroupID");

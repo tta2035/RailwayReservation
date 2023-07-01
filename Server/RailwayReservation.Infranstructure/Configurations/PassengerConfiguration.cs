@@ -24,12 +24,12 @@ public class PassengerConfiguration : IEntityTypeConfiguration<Passenger>
         builder.ToTable("Passenger").HasKey(d => d.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => PassengerId.Create(value))
             .HasColumnName("PassengerID");
 
         //builder.Property(e => e.PassengerId)
-        //    .ValueGeneratedNever()
+        //    
         //    .HasColumnName("PassengerID");
 
         builder.HasIndex(e => new { e.Email, e.PhoneNo }, "IX_Passenger_1").IsUnique();

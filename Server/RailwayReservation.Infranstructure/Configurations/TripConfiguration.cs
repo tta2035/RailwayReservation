@@ -25,7 +25,7 @@ namespace RailwayReservation.Infranstructure.Configurations
 
             builder
                 .Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasConversion(id => id.Value, value => TripId.Create(value))
                 .HasColumnName("TripID");
             builder.Property(e => e.ArriveTime).HasColumnType("datetime");

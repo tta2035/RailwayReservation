@@ -29,7 +29,7 @@ public class TrainConfiguration : IEntityTypeConfiguration<Train>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => TrainId.Create(value))
             .HasColumnName("TrainID");
 

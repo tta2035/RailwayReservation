@@ -28,7 +28,7 @@ public class StationConfiguration : IEntityTypeConfiguration<Station>
 
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => StationId.Create(value))
             .HasColumnName("StationID");
         builder.HasKey(e => e.Id);

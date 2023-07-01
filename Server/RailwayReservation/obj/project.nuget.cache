@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "zcAVsq3lr1LSbZe71H/4J4snnQmQGnJQSbWXw8R03A/r0eoqw1YFvDX+zkC2QCNkwVWbedMjDsYOL5cRD0yI2Q==",
+  "dgSpecHash": "IRr70ikH9PoRGJSujl5z7A3Ff0XtP5Q7PPw8P1cWVoogIHDAWuUl2mGoFXtut6CAsSvABciPBtoyqqrdIfF7wg==",
   "success": true,
   "projectFilePath": "C:\\Users\\MSI Modern\\RailwayReservation\\Server\\RailwayReservation\\RailwayReservation.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MSI Modern\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\erroror\\1.2.1\\erroror.1.2.1.nupkg.sha512",
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\fluentvalidation\\11.5.2\\fluentvalidation.11.5.2.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\mapster\\7.3.0\\mapster.7.3.0.nupkg.sha512",
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\mapster.core\\1.2.0\\mapster.core.1.2.0.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.5\\microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",

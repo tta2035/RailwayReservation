@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "U541urMW/3o4JIGFRrRpTEH0zoP2pzGiknJA3HPD6tqH8gI6eRhC7ilspu59JO8BXmYFeE/OOA8KhcnNHmP40Q==",
+  "dgSpecHash": "IUzPfWkmfvlon25xacrOpZKTh1IJvfL/gkCsKgR5v8J2QfqLVfYMw5jwy6etCOquLgg6jcnvvKDUt3aYTyV1jg==",
   "success": true,
   "projectFilePath": "C:\\Users\\MSI Modern\\RailwayReservation\\Server\\RailwayReservation.Contract\\RailwayReservation.Contract.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\erroror\\1.2.1\\erroror.1.2.1.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -27,13 +27,13 @@ public class PaymentMethodConfiguration : IEntityTypeConfiguration<PaymentMethod
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => PaymentMethodId.Create(value))
             .HasColumnName("PaymentMethodID");
 
         // builder
         //     .Property(e => e.PaymentMethodId)
-        //     .ValueGeneratedNever()
+        //     
         //     .HasColumnName("PaymentMethodID");
         builder
             .Property(e => e.CreateBy)

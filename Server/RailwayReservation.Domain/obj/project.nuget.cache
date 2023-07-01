@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "p5IhpqxT/oyKKSTUrT4ChNCiVtYlRqNOGlE2ar2mTNy3jlBdY6M2BU+xqOzL33IYSu7XfVm9ifrHPDw1NiBPTQ==",
+  "dgSpecHash": "O+xe88SE5WvF72nwBg0oLh9KB565K6n5DA+66clus1L6dWoO6sVh6iNZlQir7hgWROI0LxUIuwzSkA1ypYqd4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\MSI Modern\\RailwayReservation\\Server\\RailwayReservation.Domain\\RailwayReservation.Domain.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\erroror\\1.2.1\\erroror.1.2.1.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\MSI Modern\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -15,7 +15,6 @@ C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\obj\Debug\net7.
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\obj\Debug\net7.0\RailwayReservation.Api.AssemblyInfoInputs.cache
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\obj\Debug\net7.0\RailwayReservation.Api.AssemblyInfo.cs
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\obj\Debug\net7.0\RailwayReservation.Api.csproj.CoreCompileInputs.cache
-C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\obj\Debug\net7.0\RailwayReservation.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\obj\Debug\net7.0\RailwayReservation.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\obj\Debug\net7.0\staticwebassets\msbuild.RailwayReservation.Api.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\obj\Debug\net7.0\staticwebassets\msbuild.build.RailwayReservation.Api.props
@@ -86,3 +85,8 @@ C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
 C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\ErrorOr.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\Mapster.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\bin\Debug\net7.0\Mapster.Core.dll
+C:\Users\MSI Modern\RailwayReservation\Server\RailwayReservation\obj\Debug\net7.0\RailwayReservation.Api.MvcApplicationPartsAssemblyInfo.cs

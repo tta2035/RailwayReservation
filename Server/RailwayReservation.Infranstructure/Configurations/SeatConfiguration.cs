@@ -31,11 +31,11 @@ public class SeatConfiguration : IEntityTypeConfiguration<Seat>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => SeatId.Create(value))
             .HasColumnName("SeatID");
 
-        // builder.Property(e => e.SeatId).ValueGeneratedNever().HasColumnName("SeatID");
+        // builder.Property(e => e.SeatId).HasColumnName("SeatID");
         builder
             .Property(e => e.CoachId)
             .HasConversion(id => id.Value, value => CoachId.Create(value))

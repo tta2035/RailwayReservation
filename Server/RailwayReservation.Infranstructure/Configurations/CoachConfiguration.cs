@@ -30,7 +30,7 @@ public class CoachConfiguration : IEntityTypeConfiguration<Coach>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => CoachId.Create(value))
             .HasColumnName("CoachID");
 

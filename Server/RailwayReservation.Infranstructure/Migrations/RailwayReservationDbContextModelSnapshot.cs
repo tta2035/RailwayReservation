@@ -25,8 +25,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Booking.Booking", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BookingID");
+                        .HasColumnName("BookingID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<DateTime>("BookingTime")
                         .HasColumnType("datetime2");
@@ -111,8 +113,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.BookingStatus.BookingStatus", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BookingStatusID");
+                        .HasColumnName("BookingStatusID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier")
@@ -792,8 +796,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Trip.Trip", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("TripID");
+                        .HasColumnName("TripID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<DateTime>("ArriveTime")
                         .HasColumnType("datetime");

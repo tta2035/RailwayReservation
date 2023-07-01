@@ -26,11 +26,11 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
         builder.ToTable("Booking").HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            .HasDefaultValueSql("(newid())")
             .HasConversion(id => id.Value, value => BookingId.Create(value))
             .HasColumnName("BookingID");
 
-        // builder.Property(e => e.BookingId).ValueGeneratedNever().HasColumnName("BookingID");
+        // builder.Property(e => e.BookingId).HasDefaultValueSql("(newid())").HasColumnName("BookingID");
         builder.Property(e => e.CancellationFee).HasColumnType("decimal(18, 0)");
         builder.Property(e => e.CancellationTime).HasColumnType("datetime");
         builder

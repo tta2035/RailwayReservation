@@ -31,11 +31,11 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => TicketId.Create(value))
             .HasColumnName("TicketID");
 
-        // builder.Property(e => e.TicketId).ValueGeneratedNever().HasColumnName("TicketID");
+        // builder.Property(e => e.TicketId).HasColumnName("TicketID");
         builder.Property(e => e.ArriveTime).HasColumnType("datetime");
         builder
             .Property(e => e.CreateBy)

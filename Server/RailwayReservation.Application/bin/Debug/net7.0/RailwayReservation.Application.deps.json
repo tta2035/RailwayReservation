@@ -8,11 +8,29 @@
     ".NETCoreApp,Version=v7.0": {
       "RailwayReservation.Application/1.0.0": {
         "dependencies": {
+          "ErrorOr": "1.2.1",
+          "FluentValidation": "11.5.2",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "RailwayReservation.Domain": "1.0.0"
         },
         "runtime": {
           "RailwayReservation.Application.dll": {}
+        }
+      },
+      "ErrorOr/1.2.1": {
+        "runtime": {
+          "lib/net6.0/ErrorOr.dll": {
+            "assemblyVersion": "1.2.1.0",
+            "fileVersion": "1.2.1.0"
+          }
+        }
+      },
+      "FluentValidation/11.5.2": {
+        "runtime": {
+          "lib/net7.0/FluentValidation.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.5.2.0"
+          }
         }
       },
       "MediatR/12.0.1": {
@@ -56,7 +74,9 @@
       },
       "RailwayReservation.Domain/1.0.0": {
         "dependencies": {
-          "MediatR": "12.0.1"
+          "ErrorOr": "1.2.1",
+          "MediatR": "12.0.1",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0"
         },
         "runtime": {
           "RailwayReservation.Domain.dll": {}
@@ -69,6 +89,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "ErrorOr/1.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5xcbQErEPQKq2z/sLwSaFPX3T2G7x4ISX0us0X7jSxXSQT/wlfOOhw4knPUN/GWOf2strhuzdvRA36JViwvu+A==",
+      "path": "erroror/1.2.1",
+      "hashPath": "erroror.1.2.1.nupkg.sha512"
+    },
+    "FluentValidation/11.5.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kj/hW/iusp2zq1Vt1YPLgDj6UG0DhoJXGkLwjLwm3j7vUtRF8DVA5vHJfItG3BxDjLWJUR2pvw8fK7rnuysZNA==",
+      "path": "fluentvalidation/11.5.2",
+      "hashPath": "fluentvalidation.11.5.2.nupkg.sha512"
     },
     "MediatR/12.0.1": {
       "type": "package",

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "3aa5aIRcCrIrHiRvmEamjJEBJ9G2+rKo8aRdYd7KmQJI87RSSLNhaDf6s80aeQzcwD4k/x3WKyOvX5Sa59f9Yw==",
+  "dgSpecHash": "nCOWsrHlR8xg2KWVAKBDLn1hWHgwp2ETuFpz4Q5O4Jw0pHdVytrq9szYBKzPHFXUlAdbOeNzRAPEKn9jWCC7Kw==",
   "success": true,
   "projectFilePath": "C:\\Users\\MSI Modern\\RailwayReservation\\Server\\RailwayReservation.Application\\RailwayReservation.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\erroror\\1.2.1\\erroror.1.2.1.nupkg.sha512",
+    "C:\\Users\\MSI Modern\\.nuget\\packages\\fluentvalidation\\11.5.2\\fluentvalidation.11.5.2.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\MSI Modern\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",

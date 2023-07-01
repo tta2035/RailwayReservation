@@ -65,7 +65,7 @@ public partial class RailwayContext : DbContext
             entity.HasIndex(e => e.BankAccountNumber, "IX_BankingPassenger_1").IsUnique();
 
             entity.Property(e => e.BankingPassengerId)
-                .ValueGeneratedNever()
+                
                 .HasColumnName("BankingPassengerID");
             entity.Property(e => e.BankAccountNumber).HasMaxLength(50);
             entity.Property(e => e.BankName).HasMaxLength(50);
@@ -97,7 +97,7 @@ public partial class RailwayContext : DbContext
             entity.ToTable("Booking");
 
             entity.Property(e => e.BookingId)
-                .ValueGeneratedNever()
+                
                 .HasColumnName("BookingID");
             entity.Property(e => e.CancellationFee).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.CancellationTime).HasColumnType("datetime");
@@ -286,7 +286,7 @@ public partial class RailwayContext : DbContext
             entity.ToTable("Paid");
 
             entity.Property(e => e.PaidId)
-                .ValueGeneratedNever()
+                
                 .HasColumnName("PaidID");
             entity.Property(e => e.BookingId).HasColumnName("BookingID");
             entity.Property(e => e.CreateBy).HasColumnName("createBy");
@@ -313,7 +313,7 @@ public partial class RailwayContext : DbContext
             entity.HasIndex(e => new { e.Email, e.PhoneNo }, "IX_Passenger_1").IsUnique();
 
             entity.Property(e => e.PassengerId)
-                .ValueGeneratedNever()
+                
                 .HasColumnName("PassengerID");
             entity.Property(e => e.Address).HasMaxLength(150);
             entity.Property(e => e.CreateBy).HasColumnName("createBy");
@@ -344,7 +344,7 @@ public partial class RailwayContext : DbContext
             entity.HasIndex(e => e.PaymentMethodName, "IX_PaymentMethod_1").IsUnique();
 
             entity.Property(e => e.PaymentMethodId)
-                .ValueGeneratedNever()
+                
                 .HasColumnName("PaymentMethodID");
             entity.Property(e => e.CreateBy).HasColumnName("createBy");
             entity.Property(e => e.CreateTime)
@@ -363,7 +363,7 @@ public partial class RailwayContext : DbContext
             entity.ToTable("Refund");
 
             entity.Property(e => e.RefundId)
-                .ValueGeneratedNever()
+                
                 .HasColumnName("RefundID");
             entity.Property(e => e.BookingId).HasColumnName("BookingID");
             entity.Property(e => e.CreateBy).HasColumnName("createBy");
@@ -423,7 +423,7 @@ public partial class RailwayContext : DbContext
             entity.HasIndex(e => e.SeatNo, "IX_Seat_1").IsUnique();
 
             entity.Property(e => e.SeatId)
-                .ValueGeneratedNever()
+                
                 .HasColumnName("SeatID");
             entity.Property(e => e.CoachId).HasColumnName("CoachID");
             entity.Property(e => e.CreateBy).HasColumnName("createBy");
@@ -456,7 +456,7 @@ public partial class RailwayContext : DbContext
             entity.HasIndex(e => e.SeatTypeName, "IX_SeatType_1").IsUnique();
 
             entity.Property(e => e.SeatTypeId)
-                .ValueGeneratedNever()
+                
                 .HasColumnName("SeatTypeID");
             entity.Property(e => e.CreateBy).HasColumnName("createBy");
             entity.Property(e => e.CreateTime)
@@ -495,7 +495,7 @@ public partial class RailwayContext : DbContext
             entity.ToTable("Ticket");
 
             entity.Property(e => e.TicketId)
-                .ValueGeneratedNever()
+                
                 .HasColumnName("TicketID");
             entity.Property(e => e.ArriveTime).HasColumnType("datetime");
             entity.Property(e => e.CreateBy).HasColumnName("createBy");

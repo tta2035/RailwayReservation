@@ -24,7 +24,7 @@ namespace RailwayReservation.Infranstructure.Configurations
 
             builder
                 .Property(e => e.Id)
-                .ValueGeneratedNever()
+                .HasDefaultValueSql("(newid())")
                 .HasConversion(id => id.Value, value => BookingStatusId.Create(value))
                 .HasColumnName("BookingStatusID");
             builder

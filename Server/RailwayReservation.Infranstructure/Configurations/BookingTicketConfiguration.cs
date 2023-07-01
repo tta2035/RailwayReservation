@@ -29,7 +29,7 @@ public class BookingTicketConfiguration : IEntityTypeConfiguration<BookingTicket
         builder.HasKey(nameof(BookingTicket.BookingId), nameof(BookingTicket.TicketId));
         // builder
         //     .Property(e => e.BookingTicketId)
-        //     .ValueGeneratedNever()
+        //     
         //     .HasConversion(id => id.Value, value => BookingTicketId.Create(value))
         //     .HasColumnName("BookingTicketID");
 

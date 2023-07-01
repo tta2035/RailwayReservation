@@ -28,7 +28,7 @@ internal class FunctionConfiguration : IEntityTypeConfiguration<Function>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => FunctionId.Create(value))
             .HasColumnName("FunctionID");
         // builder.Property(e => e.FunctionId).HasColumnName("FunctionID");

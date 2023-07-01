@@ -29,7 +29,7 @@ public class RouteConfiguration : IEntityTypeConfiguration<Route>
 
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
+            
             .HasConversion(id => id.Value, value => RouteId.Create(value))
             .HasColumnName("RouteID");
         builder.HasKey(e => e.Id);
