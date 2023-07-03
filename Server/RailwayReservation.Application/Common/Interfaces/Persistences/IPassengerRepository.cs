@@ -1,15 +1,13 @@
-﻿using RailwayReservation.Domain.Passenger;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RailwayReservation.Application.Common.DTOs;
+using RailwayReservation.Domain.Passenger;
 
 namespace RailwayReservation.Application.Common.Interfaces.Persistences;
 
-public interface IPassengerRepository
+public interface IPassengerRepository: IGenericRepository<Passenger, PassengerDto>
 {
-    Passenger? GetUserByPhoneNo(string phoneNo);
-    Passenger? GetUserByEmail(string email);
-    void Add(Passenger passenger);
+    Passenger? First();
+    Task<Passenger?> GetPassengerLogin(LoginDto dto);
+    Task<bool> CheckEmailExistAsync(string email);
+    Task<bool> CheckEmailPhoneNoAsync(string phoneNo);
+    string CheckPasswordStrength(string password);
 }

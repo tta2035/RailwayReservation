@@ -30,15 +30,13 @@ public class CoachConfiguration : IEntityTypeConfiguration<Coach>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => CoachId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("CoachID");
 
         // builder.Property(e => e.CoachId).HasColumnName("CoachID");
         builder.Property(e => e.CoachNo).HasMaxLength(50);
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -47,11 +45,9 @@ public class CoachConfiguration : IEntityTypeConfiguration<Coach>
             .HasColumnName("createTime");
         builder
             .Property(e => e.TrainId)
-            .HasConversion(id => id.Value, value => TrainId.Create(value))
             .HasColumnName("TrainID");
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 

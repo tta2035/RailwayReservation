@@ -26,16 +26,14 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
         builder.ToTable("Booking").HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => BookingId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("BookingID");
 
-        // builder.Property(e => e.BookingId).ValueGeneratedNever().HasColumnName("BookingID");
+        // builder.Property(e => e.BookingId).HasDefaultValueSql("(newid())").HasColumnName("BookingID");
         builder.Property(e => e.CancellationFee).HasColumnType("decimal(18, 0)");
         builder.Property(e => e.CancellationTime).HasColumnType("datetime");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -48,13 +46,11 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
         builder.Property(e => e.TotalPayment).HasColumnType("decimal(18, 0)");
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
         builder
             .Property(e => e.PassengerId)
-            .HasConversion(id => id.Value, value => PassengerId.Create(value))
             .HasColumnName("PassengerId");
         builder
             .HasOne(d => d.Passenger)
@@ -65,7 +61,6 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
 
         builder
             .Property(e => e.PaymentMethodId)
-            .HasConversion(id => id.Value, value => PaymentMethodId.Create(value))
             .HasColumnName("PaymentMethodID");
 
         builder

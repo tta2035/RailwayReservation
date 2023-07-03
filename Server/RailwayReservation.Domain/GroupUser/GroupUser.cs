@@ -10,15 +10,15 @@ namespace RailwayReservation.Domain.GroupUser;
 
 public class GroupUser
 {
-    public GroupId GroupId { get; set; }
+    public Guid GroupId { get; set; }
 
-    public UserId UserId { get; set; }
+    public Guid UserId { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime? CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -29,11 +29,11 @@ public class GroupUser
     private GroupUser() { }
 
     public GroupUser(
-        GroupId groupId,
-        UserId userId,
-        UserId? createBy,
+        Guid groupId,
+        Guid userId,
+        Guid? createBy,
         DateTime? createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
     {
@@ -45,7 +45,7 @@ public class GroupUser
         UpdateTime = updateTime;
     }
 
-    private static GroupUser Create(GroupId groupId, UserId userId)
+    public static GroupUser Create(Guid groupId, Guid userId)
     {
         return new(groupId, userId, null, DateTime.UtcNow, null, DateTime.UtcNow);
     }

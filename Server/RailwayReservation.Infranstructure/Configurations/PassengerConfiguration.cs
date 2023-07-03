@@ -24,12 +24,11 @@ public class PassengerConfiguration : IEntityTypeConfiguration<Passenger>
         builder.ToTable("Passenger").HasKey(d => d.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => PassengerId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("PassengerID");
 
         //builder.Property(e => e.PassengerId)
-        //    .ValueGeneratedNever()
+        //    .HasDefaultValueSql("(newid())")
         //    .HasColumnName("PassengerID");
 
         builder.HasIndex(e => new { e.Email, e.PhoneNo }, "IX_Passenger_1").IsUnique();
@@ -37,7 +36,6 @@ public class PassengerConfiguration : IEntityTypeConfiguration<Passenger>
         builder.Property(e => e.Address).HasMaxLength(150);
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -51,10 +49,9 @@ public class PassengerConfiguration : IEntityTypeConfiguration<Passenger>
         builder.Property(e => e.Image).HasMaxLength(50);
         builder.Property(e => e.Password).HasMaxLength(100);
         builder.Property(e => e.PhoneNo).HasMaxLength(10);
-        builder.Property(e => e.Token).HasMaxLength(50).HasColumnName("token");
+        builder.Property(e => e.Token).HasColumnName("token");
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
     }

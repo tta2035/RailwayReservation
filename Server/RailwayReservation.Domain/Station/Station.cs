@@ -9,19 +9,19 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Station;
 
-public sealed class Station : AggregateRoot<StationId, Guid>
+public sealed class Station// : AggregateRoot<StationId, Guid>
 {
-    public StationId Id { get; set; }
+    public Guid Id { get; set; }
 
-    public string StationName { get; set; } = null!;
+    public string StationName { get; set; }
 
     public string? Description { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -31,18 +31,17 @@ public sealed class Station : AggregateRoot<StationId, Guid>
     public ICollection<Route.Route>? RouteDestinationStationNavigations { get; set; } =
         new List<Route.Route>();
 
-    private Station() { }
+    public Station() { }
 
     public Station(
-        StationId stationId,
+        Guid stationId,
         string stationName,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(stationId)
     {
         // StationId = stationId;
         StationName = stationName;
@@ -53,10 +52,10 @@ public sealed class Station : AggregateRoot<StationId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Station Create(string stationName, string? description)
+    public static Station Create(string stationName, string? description)
     {
         return new(
-            StationId.CreateUnique(),
+            new Guid(),
             stationName,
             description,
             null,

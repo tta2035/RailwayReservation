@@ -9,18 +9,18 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Train;
 
-public sealed class Train : AggregateRoot<TrainId, Guid>
+public sealed class Train// : AggregateRoot<TrainId, Guid>
 {
-    public TrainId Id { get; set; }
+    public Guid Id { get; set; }
     public string TrainName { get; set; } = null!;
 
     public string? Description { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -30,15 +30,14 @@ public sealed class Train : AggregateRoot<TrainId, Guid>
     private Train() { }
 
     public Train(
-        TrainId trainId,
+        Guid trainId,
         string trainName,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(trainId)
     {
         // TrainId = trainId;
         TrainName = trainName;
@@ -49,10 +48,10 @@ public sealed class Train : AggregateRoot<TrainId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Train Create(string trainName, string? description)
+    public static Train Create(string trainName, string? description)
     {
         return new(
-            TrainId.CreateUnique(),
+            new Guid(),
             trainName,
             description,
             null,

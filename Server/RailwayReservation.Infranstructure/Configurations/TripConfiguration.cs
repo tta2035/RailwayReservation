@@ -25,13 +25,11 @@ namespace RailwayReservation.Infranstructure.Configurations
 
             builder
                 .Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasConversion(id => id.Value, value => TripId.Create(value))
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("TripID");
             builder.Property(e => e.ArriveTime).HasColumnType("datetime");
             builder
                 .Property(e => e.CreateBy)
-                .HasConversion(id => id.Value, value => UserId.Create(value))
                 .HasColumnName("createBy");
             builder
                 .Property(e => e.CreateTime)
@@ -41,15 +39,12 @@ namespace RailwayReservation.Infranstructure.Configurations
             builder.Property(e => e.DepartureTime).HasColumnType("datetime");
             builder
                 .Property(e => e.RouteId)
-                .HasConversion(id => id.Value, value => RouteId.Create(value))
                 .HasColumnName("RouteID");
             builder
                 .Property(e => e.TrainId)
-                .HasConversion(id => id.Value, value => TrainId.Create(value))
                 .HasColumnName("TrainID");
             builder
                 .Property(e => e.UpdateBy)
-                .HasConversion(id => id.Value, value => UserId.Create(value))
                 .HasColumnName("updateBy");
             builder
                 .Property(e => e.UpdateTime)

@@ -10,11 +10,11 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Refund;
 
-public sealed class Refund : AggregateRoot<RefundId, Guid>
+public sealed class Refund// : AggregateRoot<RefundId, Guid>
 {
-    public RefundId Id { get; set; }
+    public Guid Id { get; set; }
 
-    public BookingId BookingId { get; set; }
+    public Guid BookingId { get; set; }
 
     public decimal RefundAmount { get; set; }
 
@@ -24,11 +24,11 @@ public sealed class Refund : AggregateRoot<RefundId, Guid>
 
     public string? Description { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -36,18 +36,17 @@ public sealed class Refund : AggregateRoot<RefundId, Guid>
 
 
     public Refund(
-        RefundId refundId,
-        BookingId bookingId,
+        Guid refundId,
+        Guid bookingId,
         decimal refundAmount,
         int status,
         DateTime? refundTime,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(refundId)
     {
         // RefundId = refundId;
         BookingId = bookingId;
@@ -66,7 +65,7 @@ public sealed class Refund : AggregateRoot<RefundId, Guid>
     }
 
     private static Refund Create(
-        BookingId bookingId,
+        Guid bookingId,
         decimal refundAmount,
         int status,
         DateTime? refundTime,
@@ -74,7 +73,7 @@ public sealed class Refund : AggregateRoot<RefundId, Guid>
     )
     {
         return new(
-            RefundId.CreateUnique(),
+            new Guid(),
             bookingId,
             refundAmount,
             status,

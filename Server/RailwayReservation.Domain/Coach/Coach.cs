@@ -10,21 +10,21 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Coach;
 
-public sealed class Coach : AggregateRoot<CoachId, Guid>
+public sealed class Coach// : AggregateRoot<CoachId, Guid>
 {
-    public CoachId Id { get; set; }
+    public Guid Id { get; set; }
 
     public string CoachNo { get; set; } = null!;
 
-    public TrainId TrainId { get; set; }
+    public Guid TrainId { get; set; }
 
     public string? Description { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -35,16 +35,15 @@ public sealed class Coach : AggregateRoot<CoachId, Guid>
     private Coach() {}
 
     public Coach(
-        CoachId coachId,
+        Guid coachId,
         string coachNo,
-        TrainId trainId,
+        Guid trainId,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(coachId)
     {
         // CoachId = coachId;
         CoachNo = coachNo;
@@ -56,10 +55,10 @@ public sealed class Coach : AggregateRoot<CoachId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Coach Create(string coachNo, TrainId trainId, string? description)
+    private static Coach Create(string coachNo, Guid trainId, string? description)
     {
         return new(
-            CoachId.CreateUnique(),
+            new Guid(),
             coachNo,
             trainId,
             description,

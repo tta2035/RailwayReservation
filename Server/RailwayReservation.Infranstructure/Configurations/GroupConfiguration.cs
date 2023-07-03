@@ -28,13 +28,11 @@ internal class GroupConfiguration : IEntityTypeConfiguration<Group>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => GroupId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("GroupID");
         // builder.Property(e => e.GroupId).HasColumnName("GroupID");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -44,7 +42,6 @@ internal class GroupConfiguration : IEntityTypeConfiguration<Group>
         builder.Property(e => e.GroupName).HasMaxLength(50);
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
     }

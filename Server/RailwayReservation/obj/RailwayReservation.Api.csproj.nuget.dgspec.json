@@ -49,6 +49,30 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "EFCore.Extensions": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "ErrorOr": {
+              "target": "Package",
+              "version": "[1.2.1, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -114,6 +138,28 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "EFCore.Extensions": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -175,9 +221,25 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "EFCore.Extensions": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.3.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.1.0, )"
             }
           },
           "imports": [
@@ -245,6 +307,26 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "EFCore.Extensions": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -355,6 +437,30 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "EFCore.Extensions": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "ErrorOr": {
+              "target": "Package",
+              "version": "[1.2.1, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -402,6 +508,10 @@
             "Microsoft.IdentityModel.JsonWebTokens": {
               "target": "Package",
               "version": "[6.31.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.7, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

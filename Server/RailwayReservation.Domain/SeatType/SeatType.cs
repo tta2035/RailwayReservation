@@ -9,21 +9,21 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.SeatType;
 
-public sealed class SeatType : AggregateRoot<SeatTypeId, Guid>
+public sealed class SeatType// : AggregateRoot<SeatTypeId, Guid>
 {
-    public SeatTypeId Id { get; set; }
+    public Guid Id { get; set; }
 
     public string SeatTypeName { get; set; } = null!;
 
-    public decimal RaitoFare { get; set; }
+    public float RaitoFare { get; set; }
 
     public string? Description { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -31,16 +31,15 @@ public sealed class SeatType : AggregateRoot<SeatTypeId, Guid>
 
 private SeatType() {}
     public SeatType(
-        SeatTypeId seatTypeId,
+        Guid seatTypeId,
         string seatTypeName,
-        decimal raitoFare,
+        float raitoFare,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(seatTypeId)
     {
         // SeatTypeId = seatTypeId;
         SeatTypeName = seatTypeName;
@@ -52,10 +51,10 @@ private SeatType() {}
         UpdateTime = updateTime;
     }
 
-    private static SeatType Create(string seatTypeName, decimal raitoFare, string? description)
+    private static SeatType Create(string seatTypeName, float raitoFare, string? description)
     {
         return new(
-            SeatTypeId.CreateUnique(),
+            new Guid(),
             seatTypeName,
             raitoFare,
             description,

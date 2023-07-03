@@ -28,15 +28,13 @@ public class StationConfiguration : IEntityTypeConfiguration<Station>
 
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => StationId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("StationID");
         builder.HasKey(e => e.Id);
 
         // builder.Property(e => e.StationId).HasColumnName("StationID");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -46,7 +44,6 @@ public class StationConfiguration : IEntityTypeConfiguration<Station>
         builder.Property(e => e.StationName).HasMaxLength(50);
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
     }

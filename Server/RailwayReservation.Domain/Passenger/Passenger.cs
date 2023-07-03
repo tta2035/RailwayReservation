@@ -10,10 +10,10 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Passenger;
 
-public class Passenger : AggregateRoot<PassengerId, Guid>
+public class Passenger// : AggregateRoot<PassengerId, Guid>
 {
     // [Key]
-    public PassengerId Id { get; set; }
+    public Guid Id { get; set; }
 
     public string FullName { get; set; } = null!;
 
@@ -35,11 +35,11 @@ public class Passenger : AggregateRoot<PassengerId, Guid>
 
     public string? Description { get; set; } = null!;
 
-    public UserId? CreateBy { get; set; } = null!;
+    public Guid? CreateBy { get; set; } = null!;
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; } = null!;
+    public Guid? UpdateBy { get; set; } = null!;
 
     public DateTime? UpdateTime { get; set; } = null!;
 
@@ -48,7 +48,7 @@ public class Passenger : AggregateRoot<PassengerId, Guid>
     private Passenger() { }
 
     public Passenger(
-        PassengerId passengerId,
+        Guid passengerId,
         string fullName,
         DateTime dob,
         string genger,
@@ -59,12 +59,11 @@ public class Passenger : AggregateRoot<PassengerId, Guid>
         string image,
         string token,
         string description,
-        UserId createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(passengerId)
     {
         Id = passengerId;
         FullName = fullName;
@@ -97,7 +96,7 @@ public class Passenger : AggregateRoot<PassengerId, Guid>
     )
     {
         return new(
-            PassengerId.CreateUnique(),
+            new Guid(),
             fullName,
             dob,
             genger,

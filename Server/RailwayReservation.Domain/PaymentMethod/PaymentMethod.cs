@@ -8,19 +8,19 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.PaymentMethod;
 
-public sealed class PaymentMethod : AggregateRoot<PaymentMethodId, Guid>
+public sealed class PaymentMethod// : AggregateRoot<PaymentMethodId, Guid>
 {
-    public PaymentMethodId Id { get; set; }
+    public Guid Id { get; set; }
 
     public string PaymentMethodName { get; set; } = null!;
 
     public string? Description { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -29,15 +29,14 @@ public sealed class PaymentMethod : AggregateRoot<PaymentMethodId, Guid>
     private PaymentMethod() { }
 
     public PaymentMethod(
-        PaymentMethodId paymentMethodId,
+        Guid paymentMethodId,
         string paymentMethodName,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(paymentMethodId)
     {
         // PaymentMethodId = paymentMethodId;
         PaymentMethodName = paymentMethodName;
@@ -51,7 +50,7 @@ public sealed class PaymentMethod : AggregateRoot<PaymentMethodId, Guid>
     private static PaymentMethod Create(string paymentMethodName, string? description)
     {
         return new(
-            PaymentMethodId.CreateUnique(),
+            new Guid(),
             paymentMethodName,
             description,
             null,

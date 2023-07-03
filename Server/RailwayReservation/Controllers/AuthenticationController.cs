@@ -1,7 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RailwayReservation.Application.Common.DTOs;
+using RailwayReservation.Application.Common.Interfaces.Persistences;
 using RailwayReservation.Application.Services.Authentication;
 using RailwayReservation.Contract.Authentication;
+using RailwayReservation.Domain.Passenger;
+using RailwayReservation.Domain.Passenger.ValueObejcts;
+using System;
 
 namespace RailwayReservation.Api.Controllers
 {
@@ -10,70 +16,79 @@ namespace RailwayReservation.Api.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationService _auth;
+        private readonly IPassengerRepository _repo;
 
-        public AuthenticationController(IAuthenticationService authenticationService) { 
+        public AuthenticationController(
+            IAuthenticationService authenticationService,
+            IPassengerRepository passengerRepository
+        )
+        {
             _auth = authenticationService;
+            _repo = passengerRepository;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index() {
+            return Ok(await _repo.GetAll());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Passenger>> GetPassenger(Guid id)
+        {
+            var respone = await _repo.getById(id);
+            if (respone is null)
+            {
+                return NotFound();
+            }
+            return Ok(respone);
         }
 
         [HttpPost("regiter")]
-        public async Task<IActionResult> Register(RegisterRequest request)
+        public async Task<IActionResult> Register(PassengerDto request)
         {
-            var authResult = _auth.Register(
-                request.FullName,
-                request.Dob,
-                request.Genger,
-                request.Email,
-                request.PhoneNo,
-                request.Password,
-                request.Address
-                );
-
-            // map sang response
-            var response = new AuthenticationResponse(
-               authResult.passenger.Id.Value,
-               authResult.passenger.FullName,
-               authResult.passenger.Dob,
-               authResult.passenger.Genger,
-               authResult.passenger.Email,
-               authResult.passenger.PhoneNo,
-               authResult.passenger.Password,
-               authResult.passenger.Address,
-               authResult.token,
-               authResult.passenger.Description,
-               authResult.passenger.CreateBy is not null ? authResult.passenger.CreateBy.Value : null,
-               authResult.passenger.CreateTime,
-               authResult.passenger.UpdateBy is not null ? authResult.passenger.UpdateBy.Value : null,
-               authResult.passenger.UpdateTime
-               );
-            return Ok(response);
+            var response = _auth.Register(request).Result;
+            var test = response.Id;
+            
+            try
+            {
+                var result = _repo.Insert(response);
+                return Ok(result);
+                /*
+                int i = await _repo.CheckSaveChangesAsync();
+                if(i > 0)
+                {
+                    response = _repo.getById(response.Id);
+                    return Ok(response);
+                    
+                }
+                return BadRequest(new
+                {
+                    Message = "Không thêm được"
+                });
+                */
+            }
+            catch (Exception ex) {
+                return BadRequest(new
+                {
+                    Message = ex.InnerException?.Message
+                });
+            }
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginDto request)
         {
-            var authResult = _auth.Login(
-                request.Email,
-                request.Password
-                );
-
-            // map sang response
-            //var response = new AuthenticationResponse(
-            //    authResult.PassengerId,
-            //    authResult.FullName,
-            //    authResult.Dob,
-            //    authResult.Genger,
-            //    authResult.Email,
-            //    authResult.PhoneNo,
-            //    authResult.Password,
-            //    authResult.Address,
-            //    authResult.Token,
-            //    "",
-            //    0,
-            //    new DateTime(),
-            //    0,
-            //    new DateTime()
-            //    );
-            return Ok(authResult);
+            try
+            {
+                var respone = _auth.login(request);
+                return Ok(respone);
+            } catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    Message = ex.InnerException?.Message
+                });
+            }
         }
     }
 }

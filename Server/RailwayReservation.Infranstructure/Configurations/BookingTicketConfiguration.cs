@@ -29,22 +29,18 @@ public class BookingTicketConfiguration : IEntityTypeConfiguration<BookingTicket
         builder.HasKey(nameof(BookingTicket.BookingId), nameof(BookingTicket.TicketId));
         // builder
         //     .Property(e => e.BookingTicketId)
-        //     .ValueGeneratedNever()
-        //     .HasConversion(id => id.Value, value => BookingTicketId.Create(value))
+        //     .HasDefaultValueSql("(newid())")
         //     .HasColumnName("BookingTicketID");
 
         builder
             .Property(e => e.BookingId)
-            .HasConversion(id => id.Value, value => BookingId.Create(value))
             .HasColumnName("BookingID");
 
         builder
             .Property(e => e.TicketId)
-            .HasConversion(id => id.Value, value => TicketId.Create(value))
             .HasColumnName("TicketID");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -53,7 +49,6 @@ public class BookingTicketConfiguration : IEntityTypeConfiguration<BookingTicket
             .HasColumnName("createTime");
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
 
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");

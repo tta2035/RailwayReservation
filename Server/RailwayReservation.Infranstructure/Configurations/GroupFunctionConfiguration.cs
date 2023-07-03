@@ -28,15 +28,12 @@ public class GroupFunctionConfiguration : IEntityTypeConfiguration<GroupFunction
 
         builder
             .Property(e => e.GroupId)
-            .HasConversion(id => id.Value, value => GroupId.Create(value))
             .HasColumnName("GroupID");
         builder
             .Property(e => e.FunctionId)
-            .HasConversion(id => id.Value, value => FunctionId.Create(value))
             .HasColumnName("FunctionID");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -45,7 +42,6 @@ public class GroupFunctionConfiguration : IEntityTypeConfiguration<GroupFunction
             .HasColumnName("createTime");
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 

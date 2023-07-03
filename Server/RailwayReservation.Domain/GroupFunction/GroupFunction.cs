@@ -11,15 +11,15 @@ namespace RailwayReservation.Domain.GroupFunction;
 
 public class GroupFunction
 {
-    public GroupId GroupId { get; set; }
+    public Guid GroupId { get; set; }
 
-    public FunctionId FunctionId { get; set; }
+    public Guid FunctionId { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime? CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -30,11 +30,11 @@ public class GroupFunction
     private GroupFunction() { }
 
     public GroupFunction(
-        GroupId groupId,
-        FunctionId functionId,
-        UserId? createBy,
+        Guid groupId,
+        Guid functionId,
+        Guid? createBy,
         DateTime? createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
     {
@@ -46,7 +46,7 @@ public class GroupFunction
         UpdateTime = updateTime;
     }
 
-    private static GroupFunction Create(GroupId groupId, FunctionId functionId)
+    public static GroupFunction Create(Guid groupId, Guid functionId)
     {
         return new(groupId, functionId, null, DateTime.UtcNow, null, DateTime.UtcNow);
     }

@@ -8,9 +8,9 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.User;
 
-public sealed class User : AggregateRoot<UserId, Guid>
+public class User// : AggregateRoot<UserId, Guid>
 {
-    public UserId Id { get; set; }
+    public Guid Id { get; set; }
     public string UserName { get; set; } = null!;
 
     public string Email { get; set; } = null!;
@@ -23,11 +23,11 @@ public sealed class User : AggregateRoot<UserId, Guid>
 
     public string? Token { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime? CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -37,19 +37,18 @@ public sealed class User : AggregateRoot<UserId, Guid>
     private User() { }
 
     public User(
-        UserId userId,
+        Guid userId,
         string userName,
         string email,
         string password,
         string firstName,
         string lastName,
         string? token,
-        UserId? createBy,
+        Guid? createBy,
         DateTime? createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(userId)
     {
         // UserId = userId;
         UserName = userName;
@@ -64,7 +63,7 @@ public sealed class User : AggregateRoot<UserId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static User Create(
+    public static User Create(
         string userName,
         string email,
         string password,
@@ -74,7 +73,7 @@ public sealed class User : AggregateRoot<UserId, Guid>
     )
     {
         return new(
-            UserId.CreateUnique(),
+            new Guid(),
             userName,
             email,
             password,

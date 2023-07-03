@@ -9,17 +9,17 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Function;
 
-public sealed class Function : AggregateRoot<FunctionId, Guid>
+public sealed class Function// : AggregateRoot<FunctionId, Guid>
 {
-    public FunctionId Id { get; set; }
+    public Guid Id { get; set; }
 
     public string FunctionName { get; set; } = null!;
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime? CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -29,14 +29,13 @@ public sealed class Function : AggregateRoot<FunctionId, Guid>
     private Function() { }
 
     public Function(
-        FunctionId functionId,
+        Guid functionId,
         string functionName,
-        UserId? createBy,
+        Guid? createBy,
         DateTime? createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(functionId)
     {
         // FunctionId = functionId;
         FunctionName = functionName;
@@ -49,7 +48,7 @@ public sealed class Function : AggregateRoot<FunctionId, Guid>
     private static Function Create(string functionName)
     {
         return new(
-            FunctionId.CreateUnique(),
+            new Guid(),
             functionName,
             null,
             DateTime.UtcNow,

@@ -9,17 +9,17 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Group;
 
-public sealed class Group : AggregateRoot<GroupId, Guid>
+public sealed class Group// : AggregateRoot<GroupId, Guid>
 {
-    public GroupId Id { get; set; }
+    public Guid Id { get; set; }
 
     public string GroupName { get; set; } = null!;
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime? CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -31,14 +31,13 @@ public sealed class Group : AggregateRoot<GroupId, Guid>
 
     private Group() {}
     public Group(
-        GroupId groupId,
+        Guid groupId,
         string groupName,
-        UserId? createBy,
+        Guid? createBy,
         DateTime? createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(groupId)
     {
         // GroupId = groupId;
         GroupName = groupName;
@@ -48,8 +47,8 @@ public sealed class Group : AggregateRoot<GroupId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Group Create(string groupName)
+    public static Group Create(string groupName)
     {
-        return new(GroupId.CreateUnique(), groupName, null, DateTime.UtcNow, null, DateTime.UtcNow);
+        return new(new Guid(), groupName, null, DateTime.UtcNow, null, DateTime.UtcNow);
     }
 }

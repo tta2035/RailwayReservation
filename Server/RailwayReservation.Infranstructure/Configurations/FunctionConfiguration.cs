@@ -28,13 +28,11 @@ internal class FunctionConfiguration : IEntityTypeConfiguration<Function>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => FunctionId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("FunctionID");
         // builder.Property(e => e.FunctionId).HasColumnName("FunctionID");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -44,7 +42,6 @@ internal class FunctionConfiguration : IEntityTypeConfiguration<Function>
         builder.Property(e => e.FunctionName).HasMaxLength(50);
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
     }

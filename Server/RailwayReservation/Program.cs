@@ -1,3 +1,4 @@
+using System.Reflection;
 using RailwayReservation.Application;
 using RailwayReservation.Infranstructure;
 using RailwayReservation.Application.Services.Authentication;
@@ -6,10 +7,20 @@ using RailwayReservation.Api.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
+using RailwayReservation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using RailwayReservation.Infranstructure.Persistance;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//builder.Services.AddMapping();
+builder.Services.AddDbContext<RailwayReservationDbContext>();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).GetTypeInfo().Assembly));
 builder.Services
+        //.AddMapping()
         .AddApplication()
         .AddInfanstructure(builder.Configuration);
 builder.Services.AddControllers(option => option.Filters.Add<ErrorHandlingHandlingAttribute>());

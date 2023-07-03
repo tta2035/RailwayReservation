@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Paid\**" />
+    <EmbeddedResource Remove="Paid\**" />
+    <None Remove="Paid\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="BookingTicket\ValueObjects\" />
     <Folder Include="Booking\ValueObjects\" />
     <Folder Include="Coach\ValueObjects\" />
@@ -15,7 +21,6 @@
     <Folder Include="GroupFunction\ValueObjects\" />
     <Folder Include="GroupUser\ValueObjects\" />
     <Folder Include="Group\ValueObjects\" />
-    <Folder Include="Paid\ValueObjects\" />
     <Folder Include="Passenger\ValueObejcts\" />
     <Folder Include="PaymentMethod\ValueObejcts\" />
     <Folder Include="Refund\ValueObjects\" />
@@ -29,7 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="EFCore.Extensions" Version="1.0.0" />
+    <PackageReference Include="Mapster" Version="7.3.0" />
     <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
   </ItemGroup>
 
 </Project>

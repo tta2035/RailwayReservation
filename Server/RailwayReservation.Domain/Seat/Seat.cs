@@ -11,23 +11,23 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Seat;
 
-public sealed class Seat : AggregateRoot<SeatId, Guid>
+public sealed class Seat// : AggregateRoot<SeatId, Guid>
 {
-    public SeatId Id { get; set; }
+    public Guid Id { get; set; }
 
-    public CoachId CoachId { get; set; }
+    public Guid CoachId { get; set; }
 
-    public SeatTypeId SeatTypeId { get; set; }
+    public Guid SeatTypeId { get; set; }
 
     public string SeatNo { get; set; } = null!;
 
     public string? Description { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -38,17 +38,16 @@ public sealed class Seat : AggregateRoot<SeatId, Guid>
 
     private Seat() {}
     public Seat(
-        SeatId seatId,
-        CoachId coachId,
-        SeatTypeId seatTypeId,
+        Guid seatId,
+        Guid coachId,
+        Guid seatTypeId,
         string seatNo,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(seatId)
     {
         // SeatId = seatId;
         CoachId = coachId;
@@ -62,14 +61,14 @@ public sealed class Seat : AggregateRoot<SeatId, Guid>
     }
 
     private static Seat Create(
-        CoachId coachId,
-        SeatTypeId seatTypeId,
+        Guid coachId,
+        Guid seatTypeId,
         string seatNo,
         string? description
     )
     {
         return new(
-            SeatId.CreateUnique(),
+            new Guid(),
             coachId,
             seatTypeId,
             seatNo,

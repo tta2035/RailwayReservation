@@ -31,15 +31,13 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => TicketId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("TicketID");
 
-        // builder.Property(e => e.TicketId).ValueGeneratedNever().HasColumnName("TicketID");
+        // builder.Property(e => e.TicketId).HasDefaultValueSql("(newid())").HasColumnName("TicketID");
         builder.Property(e => e.ArriveTime).HasColumnType("datetime");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -50,7 +48,6 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
         builder.Property(e => e.Fare).HasColumnType("decimal(18, 0)");
         builder
             .Property(e => e.TripId)
-            .HasConversion(id => id.Value, value => TripId.Create(value))
             .HasColumnName("TripID");
 
         builder
@@ -62,7 +59,6 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
 
         builder
             .Property(e => e.SeatId)
-            .HasConversion(id => id.Value, value => SeatId.Create(value))
             .HasColumnName("SeatID");
         builder
             .HasOne(d => d.Seat)
@@ -73,7 +69,6 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
 
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
     }

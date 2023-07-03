@@ -29,15 +29,13 @@ public class RouteConfiguration : IEntityTypeConfiguration<Route>
 
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => RouteId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("RouteID");
         builder.HasKey(e => e.Id);
 
         // builder.Property(e => e.RouteId).HasColumnName("RouteID");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -48,13 +46,11 @@ public class RouteConfiguration : IEntityTypeConfiguration<Route>
         builder.Property(e => e.RouteName).HasMaxLength(50);
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
         builder
             .Property(e => e.DepartureStation)
-            .HasConversion(id => id.Value, value => StationId.Create(value))
             .HasColumnName("DepartureStation");
         builder
             .HasOne(d => d.DepartureStationNavigation)
@@ -65,7 +61,6 @@ public class RouteConfiguration : IEntityTypeConfiguration<Route>
 
         builder
             .Property(e => e.DestinationStation)
-            .HasConversion(id => id.Value, value => StationId.Create(value))
             .HasColumnName("DestinationStation");
         builder
             .HasOne(d => d.DestinationStationNavigation)

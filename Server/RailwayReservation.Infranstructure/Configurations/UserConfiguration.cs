@@ -28,14 +28,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => UserId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("UserID");
 
         // builder.Property(e => e.UserId).HasColumnName("UserID");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -49,7 +47,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(e => e.Token).HasColumnName("token");
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
         builder.Property(e => e.UserName).HasMaxLength(50);

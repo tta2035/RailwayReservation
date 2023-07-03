@@ -25,8 +25,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Booking.Booking", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BookingID");
+                        .HasColumnName("BookingID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<DateTime>("BookingTime")
                         .HasColumnType("datetime2");
@@ -66,6 +68,7 @@ namespace RailwayReservation.Infranstructure.Migrations
                         .HasColumnName("PassengerId");
 
                     b.Property<Guid?>("PaymentMethodId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("PaymentMethodID");
 
@@ -111,8 +114,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.BookingStatus.BookingStatus", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("BookingStatusID");
+                        .HasColumnName("BookingStatusID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid>("BookingId")
                         .HasColumnType("uniqueidentifier")
@@ -198,8 +203,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Coach.Coach", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CoachID");
+                        .HasColumnName("CoachID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<string>("CoachNo")
                         .IsRequired()
@@ -244,8 +251,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Function.Function", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("FunctionID");
+                        .HasColumnName("FunctionID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid?>("CreateBy")
                         .HasColumnType("uniqueidentifier")
@@ -281,8 +290,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Group.Group", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("GroupID");
+                        .HasColumnName("GroupID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid?>("CreateBy")
                         .HasColumnType("uniqueidentifier")
@@ -388,8 +399,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Passenger.Passenger", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("PassengerID");
+                        .HasColumnName("PassengerID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -441,8 +454,7 @@ namespace RailwayReservation.Infranstructure.Migrations
                         .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Token")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("token");
 
                     b.Property<Guid?>("UpdateBy")
@@ -465,8 +477,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.PaymentMethod.PaymentMethod", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("PaymentMethodID");
+                        .HasColumnName("PaymentMethodID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid?>("CreateBy")
                         .HasColumnType("uniqueidentifier")
@@ -505,8 +519,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Route.Route", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("RouteID");
+                        .HasColumnName("RouteID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid?>("CreateBy")
                         .HasColumnType("uniqueidentifier")
@@ -560,8 +576,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Seat.Seat", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("SeatID");
+                        .HasColumnName("SeatID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid>("CoachId")
                         .HasColumnType("uniqueidentifier")
@@ -612,8 +630,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.SeatType.SeatType", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("SeatTypeID");
+                        .HasColumnName("SeatTypeID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid?>("CreateBy")
                         .HasColumnType("uniqueidentifier")
@@ -655,8 +675,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Station.Station", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("StationID");
+                        .HasColumnName("StationID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid?>("CreateBy")
                         .HasColumnType("uniqueidentifier")
@@ -695,8 +717,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Ticket.Ticket", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("TicketID");
+                        .HasColumnName("TicketID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<DateTime>("ArriveTime")
                         .HasColumnType("datetime");
@@ -752,8 +776,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Train.Train", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("TrainID");
+                        .HasColumnName("TrainID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid?>("CreateBy")
                         .HasColumnType("uniqueidentifier")
@@ -792,8 +818,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.Trip.Trip", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("TripID");
+                        .HasColumnName("TripID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<DateTime>("ArriveTime")
                         .HasColumnType("datetime");
@@ -843,8 +871,10 @@ namespace RailwayReservation.Infranstructure.Migrations
             modelBuilder.Entity("RailwayReservation.Domain.User.User", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserID");
+                        .HasColumnName("UserID")
+                        .HasDefaultValueSql("(newid())");
 
                     b.Property<Guid?>("CreateBy")
                         .HasColumnType("uniqueidentifier")
@@ -912,6 +942,8 @@ namespace RailwayReservation.Infranstructure.Migrations
                     b.HasOne("RailwayReservation.Domain.PaymentMethod.PaymentMethod", "PaymentMethod")
                         .WithMany("Bookings")
                         .HasForeignKey("PaymentMethodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK_Booking_PaymentMethod");
 
                     b.Navigation("Passenger");

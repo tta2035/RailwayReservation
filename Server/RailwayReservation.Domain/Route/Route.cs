@@ -10,25 +10,25 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Route;
 
-public sealed class Route : AggregateRoot<RouteId, Guid>
+public sealed class Route// : AggregateRoot<RouteId, Guid>
 {
-    public RouteId Id { get; set; }
+    public Guid Id { get; set; }
 
     public string RouteName { get; set; } = null!;
 
-    public StationId DepartureStation { get; set; }
+    public Guid DepartureStation { get; set; }
 
-    public StationId DestinationStation { get; set; }
+    public Guid DestinationStation { get; set; }
 
     public decimal RouteFare { get; set; }
 
     public string? Description { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
 
@@ -41,18 +41,17 @@ public sealed class Route : AggregateRoot<RouteId, Guid>
     public ICollection<Trip.Trip> Trips { get; set; } = new List<Trip.Trip>();
 
     public Route(
-        RouteId routeId,
+        Guid routeId,
         string routeName,
-        StationId departureStation,
-        StationId destinationStation,
+        Guid departureStation,
+        Guid destinationStation,
         decimal routeFare,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(routeId)
     {
         // RouteId = routeId;
         RouteName = routeName;
@@ -68,16 +67,16 @@ public sealed class Route : AggregateRoot<RouteId, Guid>
 
     private Route() { }
 
-    private static Route Create(
+    public static Route Create(
         string routeName,
-        StationId departureStation,
-        StationId destinationStation,
+        Guid departureStation,
+        Guid destinationStation,
         decimal routeFare,
         string? description
     )
     {
         return new(
-            RouteId.CreateUnique(),
+            new Guid(),
             routeName,
             departureStation,
             destinationStation,

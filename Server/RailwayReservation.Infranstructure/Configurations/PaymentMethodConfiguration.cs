@@ -27,17 +27,15 @@ public class PaymentMethodConfiguration : IEntityTypeConfiguration<PaymentMethod
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => PaymentMethodId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("PaymentMethodID");
 
         // builder
         //     .Property(e => e.PaymentMethodId)
-        //     .ValueGeneratedNever()
+        //     .HasDefaultValueSql("(newid())")
         //     .HasColumnName("PaymentMethodID");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -47,7 +45,6 @@ public class PaymentMethodConfiguration : IEntityTypeConfiguration<PaymentMethod
         builder.Property(e => e.PaymentMethodName).HasMaxLength(50);
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
     }

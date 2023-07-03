@@ -11,11 +11,11 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Booking;
 
-public class Booking : AggregateRoot<BookingId, Guid>
+public class Booking //// : AggregateRoot<BookingId, Guid>
 {
-    public BookingId Id { get; set; }
+    public Guid Id { get; set; }
 
-    public PassengerId PassengerId { get; set; }
+    public Guid PassengerId { get; set; }
 
     public decimal TotalFare { get; set; }
 
@@ -25,35 +25,35 @@ public class Booking : AggregateRoot<BookingId, Guid>
 
     public DateTime PaymentTerm { get; set; }
 
-    public PaymentMethodId? PaymentMethodId { get; set; }
+    public Guid? PaymentMethodId { get; set; } = null!;
 
-    public DateTime? CancellationTime { get; set; }
+    public DateTime? CancellationTime { get; set; } = null!;
 
-    public decimal? CancellationFee { get; set; }
+    public decimal? CancellationFee { get; set; } = null!;
 
-    public string CancellationReason { get; set; }
+    public string? CancellationReason { get; set; } = null!;
 
-    public string Description { get; set; }
+    public string? Description { get; set; } = null!;
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; } = null!;
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; } = null!;
 
-    public DateTime? UpdateTime { get; set; }
+    public DateTime? UpdateTime { get; set; } = null!;
 
     public DateTime BookingTime { get; set; }
 
     public Guid? UserId { get; set; }
 
-    public decimal? PaidAmount { get; set; }
+    public decimal? PaidAmount { get; set; } = null!;
 
-    public DateTime? PaidTime { get; set; }
+    public DateTime? PaidTime { get; set; } = null!;
 
-    public decimal? RefundAmount { get; set; }
+    public decimal? RefundAmount { get; set; } = null!;
 
-    public DateTime? RefundTime { get; set; }
+    public DateTime? RefundTime { get; set; } = null!;
 
     public virtual ICollection<BookingStatus.BookingStatus> BookingStatuses { get; set; } = new List<BookingStatus.BookingStatus>();
 
@@ -66,23 +66,22 @@ public class Booking : AggregateRoot<BookingId, Guid>
     private Booking() {}
 
     public Booking(
-        BookingId bookingId,
-        PassengerId passengerId,
+        Guid bookingId,
+        Guid passengerId,
         decimal totalFare,
         decimal totalPayment,
         string status,
         DateTime paymentTerm,
-        PaymentMethodId paymentMethodId,
+        Guid? paymentMethodId,
         DateTime? cancellationTime,
         decimal? cancellationFee,
         string? cancellationReason,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
-        : base(bookingId)
     {
         // Id = bookingId;
         PassengerId = passengerId;
@@ -101,13 +100,13 @@ public class Booking : AggregateRoot<BookingId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Booking Create(
-        PassengerId passengerId,
+    public static Booking Create(
+        Guid passengerId,
         decimal totalFare,
         decimal totalPayment,
         string status,
         DateTime paymentTerm,
-        PaymentMethodId paymentMethodId,
+        Guid paymentMethodId,
         DateTime? cancellationTime,
         decimal? cancellationFee,
         string? cancellationReason,
@@ -115,7 +114,7 @@ public class Booking : AggregateRoot<BookingId, Guid>
     )
     {
         return new(
-            BookingId.CreateUnique(),
+            new Guid(),
             passengerId,
             totalFare,
             totalPayment,

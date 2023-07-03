@@ -12,20 +12,20 @@ using RailwayReservation.Domain.User.ValueObejcts;
 namespace RailwayReservation.Domain.BookingTicket;
 
 public sealed class BookingTicket
-//  : AggregateRoot<BookingTicketId, Guid>
+// // : AggregateRoot<BookingTicketId, Guid>
 {
     // public BookingTicketId BookingTicketId { get; set; }
-    public BookingId BookingId { get; set; }
+    public Guid BookingId { get; set; }
 
-    public TicketId TicketId { get; set; }
+    public Guid TicketId { get; set; }
 
     public string? Description { get; set; } = null!;
 
-    public UserId? CreateBy { get; set; } = null!;
+    public Guid? CreateBy { get; set; } = null!;
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; } = null!;
+    public Guid? UpdateBy { get; set; } = null!;
 
     public DateTime? UpdateTime { get; set; } = null!;
 
@@ -37,12 +37,12 @@ public sealed class BookingTicket
 
     public BookingTicket(
         // BookingTicketId bookingTicketId,
-        BookingId bookingId,
-        TicketId ticketId,
+        Guid bookingId,
+        Guid ticketId,
         string? description,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime
     )
     {
@@ -57,8 +57,8 @@ public sealed class BookingTicket
     }
 
     private static BookingTicket Create(
-        BookingId bookingId,
-        TicketId ticketId,
+        Guid bookingId,
+        Guid ticketId,
         string? description
     )
     {

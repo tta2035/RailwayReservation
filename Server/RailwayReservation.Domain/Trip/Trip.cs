@@ -10,13 +10,13 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Trip
 {
-    public class Trip : AggregateRoot<TripId, Guid>
+    public class Trip// : AggregateRoot<TripId, Guid>
     {
-        public TripId Id { get; set; }
+        public Guid Id { get; set; }
 
-        public TrainId TrainId { get; set; }
+        public Guid TrainId { get; set; }
 
-        public RouteId RouteId { get; set; }
+        public Guid RouteId { get; set; }
 
         public DateTime DepartureTime { get; set; }
 
@@ -24,11 +24,11 @@ namespace RailwayReservation.Domain.Trip
 
         public string Description { get; set; }
 
-        public UserId? CreateBy { get; set; }
+        public Guid? CreateBy { get; set; }
 
         public DateTime? CreateTime { get; set; }
 
-        public UserId? UpdateBy { get; set; }
+        public Guid? UpdateBy { get; set; }
 
         public DateTime? UpdateTime { get; set; }
 
@@ -41,18 +41,17 @@ namespace RailwayReservation.Domain.Trip
         private Trip() { }
 
         public Trip(
-            TripId id,
-            TrainId trainId,
-            RouteId routeId,
+            Guid id,
+            Guid trainId,
+            Guid routeId,
             DateTime departureTime,
             DateTime arriveTime,
             string description,
-            UserId? createBy,
+            Guid? createBy,
             DateTime? createTime,
-            UserId? updateBy,
+            Guid? updateBy,
             DateTime? updateTime
         )
-            : base(id)
         {
             // Id = id;
             TrainId = trainId;
@@ -67,15 +66,15 @@ namespace RailwayReservation.Domain.Trip
         }
 
         private static Trip Create(
-            TrainId trainId,
-            RouteId routeId,
+            Guid trainId,
+            Guid routeId,
             DateTime departureTime,
             DateTime arriveTime,
             string description
         )
         {
             return new(
-                TripId.CreateUnique(),
+                new Guid(),
                 trainId,
                 routeId,
                 departureTime,

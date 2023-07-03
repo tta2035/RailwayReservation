@@ -9,21 +9,21 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.BookingStatus
 {
-    public class BookingStatus : AggregateRoot<BookingStatusId, Guid>
+    public class BookingStatus// : AggregateRoot<BookingStatusId, Guid>
     {
-        public BookingStatusId Id { get; set; }
+        public Guid Id { get; set; }
 
-        public BookingId BookingId { get; set; }
+        public Guid BookingId { get; set; }
 
         public string Status { get; set; }
 
         public DateTime StatusTime { get; set; }
 
-        public UserId? CreateBy { get; set; }
+        public Guid? CreateBy { get; set; }
 
         public DateTime? CreateTime { get; set; }
 
-        public UserId? UpdateBy { get; set; }
+        public Guid? UpdateBy { get; set; }
 
         public DateTime? UpdateTime { get; set; }
 
@@ -34,17 +34,16 @@ namespace RailwayReservation.Domain.BookingStatus
         private BookingStatus() { }
 
         public BookingStatus(
-            BookingStatusId id,
-            BookingId bookingId,
+            Guid id,
+            Guid bookingId,
             string status,
             DateTime statusTime,
-            UserId? createBy,
+            Guid? createBy,
             DateTime? createTime,
-            UserId? updateBy,
+            Guid? updateBy,
             DateTime? updateTime,
             string description
         )
-            : base(id)
         {
             // Id = id;
             BookingId = bookingId;
@@ -58,14 +57,14 @@ namespace RailwayReservation.Domain.BookingStatus
         }
 
         private static BookingStatus Create(
-            BookingId bookingId,
+            Guid bookingId,
             string status,
             DateTime statusTime,
             string description
         )
         {
             return new(
-                BookingStatusId.CreateUnique(),
+                new Guid(),
                 bookingId,
                 status,
                 statusTime,

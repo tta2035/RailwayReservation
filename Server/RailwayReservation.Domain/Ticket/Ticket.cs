@@ -13,13 +13,13 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Ticket;
 
-public sealed class Ticket : AggregateRoot<TicketId, Guid>
+public sealed class Ticket// : AggregateRoot<TicketId, Guid>
 {
-    public TicketId Id { get; set; }
+    public Guid Id { get; set; }
 
-    public TripId TripId { get; set; }
+    public Guid TripId { get; set; }
 
-    public SeatId SeatId { get; set; }
+    public Guid SeatId { get; set; }
 
     public DateTime DepartureTime { get; set; }
 
@@ -29,11 +29,11 @@ public sealed class Ticket : AggregateRoot<TicketId, Guid>
 
     public string? Description { get; set; }
 
-    public UserId? CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
-    public UserId? UpdateBy { get; set; }
+    public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
     public string Status { get; set; }
@@ -48,20 +48,19 @@ public sealed class Ticket : AggregateRoot<TicketId, Guid>
     private Ticket() { }
 
     public Ticket(
-        TicketId ticketId,
-        TripId tripId,
-        SeatId seatId,
+        Guid ticketId,
+        Guid tripId,
+        Guid seatId,
         DateTime departureTime,
         DateTime arriveTime,
         decimal? fare,
         string? description,
         string status,
-        UserId? createBy,
+        Guid? createBy,
         DateTime createTime,
-        UserId? updateBy,
+        Guid? updateBy,
         DateTime? updateTime        
     )
-        : base(ticketId)
     {
         // TicketId = ticketId;
         TripId = tripId;
@@ -78,9 +77,9 @@ public sealed class Ticket : AggregateRoot<TicketId, Guid>
         
     }
 
-    private static Ticket Create(
-        TripId tripId,
-        SeatId seatId,
+    public static Ticket Create(
+        Guid tripId,
+        Guid seatId,
         DateTime departureTime,
         DateTime arriveTime,
         decimal? fare,
@@ -89,7 +88,7 @@ public sealed class Ticket : AggregateRoot<TicketId, Guid>
     )
     {
         return new(
-            TicketId.CreateUnique(),
+            new Guid(),
             tripId,
             seatId,
             departureTime,

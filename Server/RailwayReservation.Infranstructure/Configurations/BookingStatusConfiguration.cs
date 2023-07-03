@@ -11,29 +11,26 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Infranstructure.Configurations
 {
-    public class BookingStatusConfiguration : IEntityTypeConfiguration<BookingStatus>
+    public class BookingStatusConfiguration : IEntityTypeConfiguration<Domain.BookingStatus.BookingStatus>
     {
-        public void Configure(EntityTypeBuilder<BookingStatus> builder)
+        public void Configure(EntityTypeBuilder<Domain.BookingStatus.BookingStatus> builder)
         {
             ConfigureBookingStatusTable(builder);
         }
 
-        private static void ConfigureBookingStatusTable(EntityTypeBuilder<BookingStatus> builder)
+        private static void ConfigureBookingStatusTable(EntityTypeBuilder<Domain.BookingStatus.BookingStatus> builder)
         {
             builder.ToTable("BookingStatus");
 
             builder
                 .Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasConversion(id => id.Value, value => BookingStatusId.Create(value))
+                .HasDefaultValueSql("(newid())")
                 .HasColumnName("BookingStatusID");
             builder
                 .Property(e => e.BookingId)
-                .HasConversion(id => id.Value, value => BookingId.Create(value))
                 .HasColumnName("BookingID");
             builder
                 .Property(e => e.CreateBy)
-                .HasConversion(id => id.Value, value => UserId.Create(value))
                 .HasColumnName("createBy");
             builder
                 .Property(e => e.CreateTime)
@@ -47,7 +44,6 @@ namespace RailwayReservation.Infranstructure.Configurations
                 .HasColumnName("statusTime");
             builder
                 .Property(e => e.UpdateBy)
-                .HasConversion(id => id.Value, value => UserId.Create(value))
                 .HasColumnName("updateBy");
             builder
                 .Property(e => e.UpdateTime)

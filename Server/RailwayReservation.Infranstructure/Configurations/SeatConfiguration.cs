@@ -31,18 +31,15 @@ public class SeatConfiguration : IEntityTypeConfiguration<Seat>
         builder.HasKey(e => e.Id);
         builder
             .Property(e => e.Id)
-            .ValueGeneratedNever()
-            .HasConversion(id => id.Value, value => SeatId.Create(value))
+            .HasDefaultValueSql("(newid())")
             .HasColumnName("SeatID");
 
-        // builder.Property(e => e.SeatId).ValueGeneratedNever().HasColumnName("SeatID");
+        // builder.Property(e => e.SeatId).HasDefaultValueSql("(newid())").HasColumnName("SeatID");
         builder
             .Property(e => e.CoachId)
-            .HasConversion(id => id.Value, value => CoachId.Create(value))
             .HasColumnName("CoachID");
         builder
             .Property(e => e.CreateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("createBy");
         builder
             .Property(e => e.CreateTime)
@@ -52,11 +49,9 @@ public class SeatConfiguration : IEntityTypeConfiguration<Seat>
         builder.Property(e => e.SeatNo).HasMaxLength(50);
         builder
             .Property(e => e.SeatTypeId)
-            .HasConversion(id => id.Value, value => SeatTypeId.Create(value))
             .HasColumnName("SeatTypeID");
         builder
             .Property(e => e.UpdateBy)
-            .HasConversion(id => id.Value, value => UserId.Create(value))
             .HasColumnName("updateBy");
         builder.Property(e => e.UpdateTime).HasColumnType("datetime").HasColumnName("updateTime");
 
