@@ -8,6 +8,6 @@ namespace RailwayReservation.Application.SeatType.Commands
 {
     public class DeleteSeatTypeCommand : IRequest<int>
     {
-        
+        public Guid  Id { get; set; }
     }
 }

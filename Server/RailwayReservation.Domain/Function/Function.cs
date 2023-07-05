@@ -13,7 +13,7 @@ public sealed class Function// : AggregateRoot<FunctionId, Guid>
 {
     public Guid Id { get; set; }
 
-    public string FunctionName { get; set; } = null!;
+    public string FunctionName { get; set; }
 
     public Guid? CreateBy { get; set; }
 

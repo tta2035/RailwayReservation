@@ -51,10 +51,10 @@ namespace RailwayReservation.Application.Booking.DTO
 
         public DateTime? RefundTime { get; set; }
 
-        public List<BookingTicket> ListBookingTicket { get; set; } =
-            new List<BookingTicket>();
-        public List<BookingStatus> ListBookingStatus { get; set; } =
-            new List<BookingStatus>();
+        public List<Domain.Ticket.Ticket> ListTicket { get; set; } =
+            new();
+        public List<Domain.BookingStatus.BookingStatus> ListBookingStatus { get; set; } =
+            new();
 
         public BookingResponse(
             Guid id,
@@ -77,9 +77,7 @@ namespace RailwayReservation.Application.Booking.DTO
             decimal? paidAmount,
             DateTime? paidTime,
             decimal? refundAmount,
-            DateTime? refundTime,
-            List<BookingTicket> listBookingTicket,
-            List<BookingStatus> listBookingStatus
+            DateTime? refundTime
         )
         {
             Id = id;
@@ -103,8 +101,6 @@ namespace RailwayReservation.Application.Booking.DTO
             PaidTime = paidTime;
             RefundAmount = refundAmount;
             RefundTime = refundTime;
-            ListBookingTicket = listBookingTicket;
-            ListBookingStatus = listBookingStatus;
         }
     }
 }

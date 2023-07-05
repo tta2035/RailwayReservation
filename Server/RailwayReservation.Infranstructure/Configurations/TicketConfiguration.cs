@@ -35,7 +35,7 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasColumnName("TicketID");
 
         // builder.Property(e => e.TicketId).HasDefaultValueSql("(newid())").HasColumnName("TicketID");
-        builder.Property(e => e.ArriveTime).HasColumnType("datetime");
+        // builder.Property(e => e.ArriveTime).HasColumnType("datetime");
         builder
             .Property(e => e.CreateBy)
             .HasColumnName("createBy");
@@ -44,7 +44,7 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasDefaultValueSql("(getdate())")
             .HasColumnType("datetime")
             .HasColumnName("createTime");
-        builder.Property(e => e.DepartureTime).HasColumnType("datetime");
+        // builder.Property(e => e.DepartureTime).HasColumnType("datetime");
         builder.Property(e => e.Fare).HasColumnType("decimal(18, 0)");
         builder
             .Property(e => e.TripId)

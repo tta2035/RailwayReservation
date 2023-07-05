@@ -15,11 +15,11 @@ public sealed class SeatType// : AggregateRoot<SeatTypeId, Guid>
 
     public string SeatTypeName { get; set; } = null!;
 
-    public float RaitoFare { get; set; }
+    public double RaitoFare { get; set; }
 
     public string? Description { get; set; }
 
-    public Guid? CreateBy { get; set; }
+    public Guid CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
@@ -33,9 +33,9 @@ private SeatType() {}
     public SeatType(
         Guid seatTypeId,
         string seatTypeName,
-        float raitoFare,
+        double raitoFare,
         string? description,
-        Guid? createBy,
+        Guid createBy,
         DateTime createTime,
         Guid? updateBy,
         DateTime? updateTime
@@ -51,14 +51,14 @@ private SeatType() {}
         UpdateTime = updateTime;
     }
 
-    private static SeatType Create(string seatTypeName, float raitoFare, string? description)
+    public static SeatType Create(string seatTypeName, double raitoFare, string? description, Guid createBy)
     {
         return new(
             new Guid(),
             seatTypeName,
             raitoFare,
             description,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

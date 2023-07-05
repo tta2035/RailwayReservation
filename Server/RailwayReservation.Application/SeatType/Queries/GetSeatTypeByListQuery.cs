@@ -7,7 +7,7 @@ using RailwayReservation.Application.SeatType.DTO;
 
 namespace RailwayReservation.Application.SeatType.Queries
 {
-    public class GetSeatTypeByListQuery : IRequest<SeatTypeResponse>
+    public class GetSeatTypeByListQuery : IRequest<List<SeatTypeResponse>>
     {
         
     }

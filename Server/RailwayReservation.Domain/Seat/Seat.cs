@@ -19,7 +19,7 @@ public sealed class Seat// : AggregateRoot<SeatId, Guid>
 
     public Guid SeatTypeId { get; set; }
 
-    public string SeatNo { get; set; } = null!;
+    public string SeatNo { get; set; }
 
     public string? Description { get; set; }
 
@@ -64,7 +64,8 @@ public sealed class Seat// : AggregateRoot<SeatId, Guid>
         Guid coachId,
         Guid seatTypeId,
         string seatNo,
-        string? description
+        string? description,
+        Guid? createBy
     )
     {
         return new(
@@ -73,7 +74,7 @@ public sealed class Seat// : AggregateRoot<SeatId, Guid>
             seatTypeId,
             seatNo,
             description,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

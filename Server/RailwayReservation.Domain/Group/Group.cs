@@ -13,7 +13,7 @@ public sealed class Group// : AggregateRoot<GroupId, Guid>
 {
     public Guid Id { get; set; }
 
-    public string GroupName { get; set; } = null!;
+    public string GroupName { get; set; }
 
     public Guid? CreateBy { get; set; }
 

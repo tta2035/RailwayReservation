@@ -1,3 +1,4 @@
+using RailwayReservation.Application.BookingTicket.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace RailwayReservation.Application.Common.Interfaces.Persistences
     public interface IBookingTicketRepository
         : IGenericRepository<
             Domain.BookingTicket.BookingTicket,
-            Domain.BookingTicket.BookingTicket
+            BookingTicketResponse
         > { }
 }

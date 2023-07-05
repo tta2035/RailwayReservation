@@ -40,7 +40,7 @@ public class SeatTypeConfiguration : IEntityTypeConfiguration<SeatType>
             .HasDefaultValueSql("(getdate())")
             .HasColumnType("datetime")
             .HasColumnName("createTime");
-        builder.Property(e => e.RaitoFare).HasColumnType("decimal(18, 0)");
+        // builder.Property(e => e.RaitoFare).HasColumnType("decimal(18, 0)");
         builder.Property(e => e.SeatTypeName).HasMaxLength(50);
         builder
             .Property(e => e.UpdateBy)

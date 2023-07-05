@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RailwayReservation.Application.Coach.DTO;
 using RailwayReservation.Domain.Coach;
 
 namespace RailwayReservation.Application.Train.DTO
@@ -22,6 +23,6 @@ namespace RailwayReservation.Application.Train.DTO
         public DateTime? UpdateTime { get; set; }
         public int CoachQuantity { get; set; }
         public int SeatQuantity { get; set; }
-        public List<Coach> Coaches { get; set; } = new List<Coach>();
+        public List<CoachResponse> Coaches { get; set; } = new();
     }
 }

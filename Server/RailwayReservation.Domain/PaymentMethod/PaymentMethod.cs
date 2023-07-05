@@ -12,7 +12,7 @@ public sealed class PaymentMethod// : AggregateRoot<PaymentMethodId, Guid>
 {
     public Guid Id { get; set; }
 
-    public string PaymentMethodName { get; set; } = null!;
+    public string PaymentMethodName { get; set; }
 
     public string? Description { get; set; }
 
