@@ -21,10 +21,6 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
 
     public Guid SeatId { get; set; }
 
-    public DateTime DepartureTime { get; set; }
-
-    public DateTime ArriveTime { get; set; }
-
     public decimal? Fare { get; set; }
 
     public string? Description { get; set; }
@@ -51,8 +47,6 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
         Guid ticketId,
         Guid tripId,
         Guid seatId,
-        DateTime departureTime,
-        DateTime arriveTime,
         decimal? fare,
         string? description,
         string status,
@@ -65,8 +59,6 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
         // TicketId = ticketId;
         TripId = tripId;
         SeatId = seatId;
-        DepartureTime = departureTime;
-        ArriveTime = arriveTime;
         Fare = fare;
         Description = description;
         Status = status;
@@ -80,8 +72,6 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
     public static Ticket Create(
         Guid tripId,
         Guid seatId,
-        DateTime departureTime,
-        DateTime arriveTime,
         decimal? fare,
         string? description,
         string status
@@ -91,8 +81,6 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
             new Guid(),
             tripId,
             seatId,
-            departureTime,
-            arriveTime,
             fare,
             description,
             status,

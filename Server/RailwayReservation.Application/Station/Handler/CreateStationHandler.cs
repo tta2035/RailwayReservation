@@ -19,11 +19,11 @@ namespace RailwayReservation.Application.Station.Handler
 
         public async Task<Domain.Station.Station> Handle(CreateStationCommand request, CancellationToken cancellationToken)
         {
-            var station = Domain.Station.Station.Create(
+            var item = Domain.Station.Station.Create(
                 request.StationName,
                 request.Description
             );
-            return await _stationRepository.Insert(station);
+            return await _stationRepository.Insert(item);
         }
     }
 }

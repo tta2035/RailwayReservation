@@ -42,6 +42,50 @@ using RailwayReservation.Application.Station.Commands;
 using RailwayReservation.Application.Station.DTO;
 using RailwayReservation.Domain.Station;
 using RailwayReservation.Application.Station.Handler;
+using RailwayReservation.Application.BookingStatus.Handler;
+using RailwayReservation.Application.BookingStatus.DTO;
+using RailwayReservation.Application.BookingStatus.Commands;
+using RailwayReservation.Application.BookingStatus.Queries;
+using RailwayReservation.Application.BookingTicket.Handler;
+using RailwayReservation.Application.BookingTicket.Commands;
+using RailwayReservation.Application.BookingTicket.DTO;
+using RailwayReservation.Application.BookingTicket.Queries;
+using RailwayReservation.Application.Coach.Handler;
+using RailwayReservation.Application.Coach.Commands;
+using RailwayReservation.Application.Coach.DTO;
+using RailwayReservation.Application.Coach.Queries;
+using RailwayReservation.Application.Function.Handler;
+using RailwayReservation.Application.Function.Commands;
+using RailwayReservation.Application.Function.Queries;
+using RailwayReservation.Application.Function.DTO;
+using RailwayReservation.Application.Group.Handler;
+using RailwayReservation.Application.Group.Commands;
+using RailwayReservation.Application.Group.Queries;
+using RailwayReservation.Application.Group.DTO;
+using RailwayReservation.Application.GroupFunction.Handler;
+using RailwayReservation.Application.GroupFunction.Commands;
+using RailwayReservation.Application.GroupUser.Handler;
+using RailwayReservation.Application.GroupUser.Commands;
+using RailwayReservation.Application.PaymentMethod.Handler;
+using RailwayReservation.Application.PaymentMethod.Commands;
+using RailwayReservation.Application.PaymentMethod.Queries;
+using RailwayReservation.Application.PaymentMethod.DTO;
+using RailwayReservation.Application.Seat.Handler;
+using RailwayReservation.Application.Seat.Commands;
+using RailwayReservation.Application.Seat.Queries;
+using RailwayReservation.Application.Seat.DTO;
+using RailwayReservation.Application.SeatType.Handler;
+using RailwayReservation.Application.SeatType.Commands;
+using RailwayReservation.Application.SeatType.Queries;
+using RailwayReservation.Application.SeatType.DTO;
+using RailwayReservation.Application.Ticket.Handler;
+using RailwayReservation.Application.Ticket.Commands;
+using RailwayReservation.Application.Ticket.Queries;
+using RailwayReservation.Application.Ticket.DTO;
+using RailwayReservation.Application.Trip.Handler;
+using RailwayReservation.Application.Trip.Commands;
+using RailwayReservation.Application.Trip.Queries;
+using RailwayReservation.Application.Trip.DTO;
 
 namespace RailwayReservation.Infranstructure;
 
@@ -86,24 +130,81 @@ public static class DependencyInjection
         services.AddTransient<IRequestHandler<UpdateBookingCommand, int>, UpdateBookingHandler>();
         services.AddTransient<IRequestHandler<DeleteBookingCommand, int>, DeleteBookingHandler>();
 
-        services.AddTransient<IRequestHandler<GetUserListQuery, List<UserDto>>, GetUserListHandler>();        
-        services.AddTransient<IRequestHandler<GetUserByIdQuery, UserDto>, GetUserByIdHandler>();
-        services.AddTransient<IRequestHandler<CreateUserCommand, User>, CreateUserHandler>();
-        services.AddTransient<IRequestHandler<UpdateUserCommand, int>, UpdateUserHandler>();
-        services.AddTransient<IRequestHandler<DeleteUserCommand, int>, DeleteUserHandler>();
+        // booking status
+        services.AddTransient<IRequestHandler<CreateBookingStatusCommand, Domain.BookingStatus.BookingStatus>, CreateBookingStatusHandler>();
+        services.AddTransient<IRequestHandler<DeleteBookingStatusCommand, int>, DeleteBookingStatusHandler>();
+        services.AddTransient<IRequestHandler<UpdateBookingStatusCommand, int>, UpdateBookingStatusHandler>();
+        services.AddTransient<IRequestHandler<GetBookingStatusByIdQuery, BookingStatusResponse>, GetBookingStatusByIdHandler>();
+        services.AddTransient<IRequestHandler<GetListBookingStatusQuery, List<BookingStatusResponse>>, GetListBookingStatusHandler>();
 
-        services.AddTransient<IRequestHandler<GetRouteListQuery, List<RouteResponse>>, GetRouteListHandler>();        
+        // booking ticket
+        services.AddTransient<IRequestHandler<CreateBookingTicketCommand, Domain.BookingTicket.BookingTicket>, CreateBookingTicketHandler>();
+        services.AddTransient<IRequestHandler<DeleteBookingTicketCommand, int>, DeleteBookingTicketHandler>();
+        services.AddTransient<IRequestHandler<UpdateBookingTicketCommand, int>, UpdateBookingTicketHadler>();
+        services.AddTransient<IRequestHandler<GetBookingTicketByIdQuery, BookingTicketResponse>, GetBookingTicketByIdHandler>();
+        services.AddTransient<IRequestHandler<GetBookingTicketByBookingQuery, List<BookingTicketResponse>>, GetBookingTicketByBookingHandler>();
+        services.AddTransient<IRequestHandler<GetBookingTicketListQuery, List<BookingTicketResponse>>, GetBookingTicketListHadler>();
+
+        // coach
+        services.AddTransient<IRequestHandler<CreateCoachCommand, Domain.Coach.Coach>, CreateCoachHandler>();
+        services.AddTransient<IRequestHandler<DeleteCoachCommand, int>, DeleteCoachHandler>();
+        services.AddTransient<IRequestHandler<UpdateCoachCommand, int>, UpdateCoachHadler>();
+        services.AddTransient<IRequestHandler<GetCoachByIdQuery, CoachResponse>, GetCoachByIdHadler>();
+        services.AddTransient<IRequestHandler<GetCoachByTrainIdQuery, List<CoachResponse>>, GetCoachByTrainIdHandler>();
+        services.AddTransient<IRequestHandler<GetCoachListQuery, List<CoachResponse>>, GetCoachListHandler>();
+
+        // function
+        services.AddTransient<IRequestHandler<CreateFunctionCommand, Domain.Function.Function>, CreateFunctionHandler>();
+        services.AddTransient<IRequestHandler<DeleteFunctionCommand, int>, DeleteFunctionHandler>();
+        services.AddTransient<IRequestHandler<UpdateFunctionCommand, int>, UpdateFunctionHandler>();
+        services.AddTransient<IRequestHandler<GetFunctionByIdQuery, FunctionResponse>, GetFunctionByIdHandler>();
+        services.AddTransient<IRequestHandler<GetFunctionListQuery, List<FunctionResponse>>, GetFunctionListHandler>();
+        //services.AddTransient<IRequestHandler<GetCoachListQuery, List<FunctionResponse>>, GetCoachListHandler>();
+
+        // group
+        services.AddTransient<IRequestHandler<CreateGroupCommand, Domain.Group.Group>, CreateGroupHandler>();
+        services.AddTransient<IRequestHandler<DeleteGroupCommand, int>, DeleteGroupHandler>();
+        services.AddTransient<IRequestHandler<UpdateGroupCommand, int>, UpdateGroupHandler>();
+        services.AddTransient<IRequestHandler<GetGroupByIdQuery, GroupResponse>, GetGroupByIdHandler>();
+        services.AddTransient<IRequestHandler<GetGroupListQuery, List<GroupResponse>>, GetGroupListHandler>();
+
+        // groupfunction
+        services.AddTransient<IRequestHandler<CreateGroupFunctionCommand, Domain.GroupFunction.GroupFunction>, CreateGroupFunctionHandler>();
+        services.AddTransient<IRequestHandler<DeleteGroupFunctionCommand, int>, DeleteGroupFunctionHandler>();
+        services.AddTransient<IRequestHandler<UpdateGroupFunctionCommand, int>, UpdateGroupFunctionHandler>();
+
+        // group user
+        services.AddTransient<IRequestHandler<CreateGroupUserCommand, Domain.GroupUser.GroupUser>, CreateGroupUserHandler>();
+        services.AddTransient<IRequestHandler<DeleteGroupUserCommand, int>, DeleteGroupUserHandler>();
+        services.AddTransient<IRequestHandler<UpdateGroupUserCommand, int>, UpdateGroupUserHandler>();
+
+        // payment method
+        services.AddTransient<IRequestHandler<CreatePaymentMethodCommand, Domain.PaymentMethod.PaymentMethod>, CreatePaymentMethodHandler>();
+        services.AddTransient<IRequestHandler<DeletePaymentMethodCommand, int>, DeletePaymentMethodHandler>();
+        services.AddTransient<IRequestHandler<UpdatePaymentMethodCommand, int>, UpdatePaymentMethodHandler>();
+        services.AddTransient<IRequestHandler<GetPaymentMethodByIdQuery, PaymentMethodResponse>, GetPaymentMethodByIdHandler>();
+        services.AddTransient<IRequestHandler<GetPaymentMethodListQuery, List<PaymentMethodResponse>>, GetPaymentMethodListHandler>();
+
+        // route
+        services.AddTransient<IRequestHandler<GetRouteListQuery, List<RouteResponse>>, GetRouteListHandler>();
         services.AddTransient<IRequestHandler<GetRouteByIdQuery, RouteResponse>, GetRouteByIdHandler>();
         services.AddTransient<IRequestHandler<CreateRouteCommand, Route>, CreateRouteHandler>();
         services.AddTransient<IRequestHandler<UpdateRouteCommand, int>, UpdateRouteHandler>();
         services.AddTransient<IRequestHandler<DeleteRouteCommand, int>, DeleteRouteHandler>();
 
-        // train
-        services.AddTransient<IRequestHandler<GetTrainListQuery, List<TrainResponse>>, GetTrainListHandler>();        
-        services.AddTransient<IRequestHandler<GetTrainByIdQuery, TrainResponse>, GetTrainByIdHandler>();
-        services.AddTransient<IRequestHandler<CreateTrainCommand, Train>, CreateTrainHandler>();
-        services.AddTransient<IRequestHandler<UpdateTrainCommand, int>, UpdateTrainHandler>();
-        services.AddTransient<IRequestHandler<DeleteTrainCommand, int>, DeleteTrainHandler>();
+        // seat
+        services.AddTransient<IRequestHandler<CreateSeatCommand, Domain.Seat.Seat>, CreateSeatHandler>();
+        services.AddTransient<IRequestHandler<DeleteSeatCommand, int>, DeleteSeatHandler>();
+        services.AddTransient<IRequestHandler<UpdateSeatCommand, int>, UpdateSeatHandler>();
+        services.AddTransient<IRequestHandler<GetSeatByIdQuery, SeatResponse>, GetSeatByIdHandler>();
+        services.AddTransient<IRequestHandler<GetSeatListQuery, List<SeatResponse>>, GetSeatListHandler>();
+
+        // seat type
+        services.AddTransient<IRequestHandler<CreateSeatTypeCommand, Domain.SeatType.SeatType>, CreateSeatTypeHandler>();
+        services.AddTransient<IRequestHandler<DeleteSeatTypeCommand, int>, DeleteSeatTypeHandler>();
+        services.AddTransient<IRequestHandler<UpdateSeatTypeCommand, int>, UpdateSeatTypeHandler>();
+        services.AddTransient<IRequestHandler<GetSeatTypeByIdQuery, SeatTypeResponse>, GetSeatTypeByIdHandler>();
+        services.AddTransient<IRequestHandler<GetSeatTypeByListQuery, List<SeatTypeResponse>>, GetSeatTypeByListHandler>();
 
         // station
         services.AddTransient<IRequestHandler<GetStationListQuery, List<StationResponse>>, GetStationListHandler>();
@@ -111,6 +212,36 @@ public static class DependencyInjection
         services.AddTransient<IRequestHandler<CreateStationCommand, Station>, CreateStationHandler>();
         services.AddTransient<IRequestHandler<UpdateStationCommand, int>, UpdateStationHandler>();
         services.AddTransient<IRequestHandler<DeleteStationCommand, int>, DeleteStationHandler>();
+
+        // ticket
+        services.AddTransient<IRequestHandler<CreateTicketCommand, Domain.Ticket.Ticket>, CreateTicketHandler>();
+        services.AddTransient<IRequestHandler<DeleteTicketCommand, int>, DeleteTicketHandler>();
+        services.AddTransient<IRequestHandler<UpdateTicketCommand, int>, UpdateTicketHandler>();
+        services.AddTransient<IRequestHandler<GetTicketByIdQuery, TicketResponse>, GetTicketByIdHandler>();
+        services.AddTransient<IRequestHandler<GetTicketListQuery, List<TicketResponse>>, GetTicketListHandler>();
+
+
+        // train
+        services.AddTransient<IRequestHandler<GetTrainListQuery, List<TrainResponse>>, GetTrainListHandler>();
+        services.AddTransient<IRequestHandler<GetTrainByIdQuery, TrainResponse>, GetTrainByIdHandler>();
+        services.AddTransient<IRequestHandler<CreateTrainCommand, Train>, CreateTrainHandler>();
+        services.AddTransient<IRequestHandler<UpdateTrainCommand, int>, UpdateTrainHandler>();
+        services.AddTransient<IRequestHandler<DeleteTrainCommand, int>, DeleteTrainHandler>();
+
+        // trip
+        services.AddTransient<IRequestHandler<CreateTripCommand, Domain.Trip.Trip>, CreateTripHandler>();
+        services.AddTransient<IRequestHandler<DeleteTripCommand, int>, DeleteTripHandler>();
+        services.AddTransient<IRequestHandler<UpdateTripCommand, int>, UpdateTripHandler>();
+        services.AddTransient<IRequestHandler<GetTripByIdQuery, TripResponse>, GetTripByIdHandler>();
+        services.AddTransient<IRequestHandler<GetTripListQuery, List<TripResponse>>, GetTripListHandler>();
+
+
+        // user
+        services.AddTransient<IRequestHandler<GetUserListQuery, List<UserDto>>, GetUserListHandler>();        
+        services.AddTransient<IRequestHandler<GetUserByIdQuery, UserDto>, GetUserByIdHandler>();
+        services.AddTransient<IRequestHandler<CreateUserCommand, User>, CreateUserHandler>();
+        services.AddTransient<IRequestHandler<UpdateUserCommand, int>, UpdateUserHandler>();
+        services.AddTransient<IRequestHandler<DeleteUserCommand, int>, DeleteUserHandler>();
 
         return services;
     }
