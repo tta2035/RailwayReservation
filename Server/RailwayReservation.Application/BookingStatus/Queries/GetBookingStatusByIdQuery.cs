@@ -9,6 +9,6 @@ namespace RailwayReservation.Application.BookingStatus.Queries
 {
     public class GetBookingStatusByIdQuery : IRequest<BookingStatusResponse>
     {
-        
+        public Guid Id { get; set; }
     }
 }

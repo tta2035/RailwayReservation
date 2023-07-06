@@ -11,16 +11,16 @@ namespace RailwayReservation.Application.Coach.Handler
 {
     public class GetCoachListHandler : IRequestHandler<GetCoachListQuery, List<CoachResponse>>
     {
-        private readonly IBookingStatusRepository _repo;
+        private readonly ICoachRepository _repo;
 
-        public GetCoachListHandler(IBookingStatusRepository repo)
+        public GetCoachListHandler(ICoachRepository repo)
         {
             _repo = repo;
         }
 
-        public Task<List<CoachResponse>> Handle(GetCoachListQuery request, CancellationToken cancellationToken)
+        public async Task<List<CoachResponse>> Handle(GetCoachListQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetAll();
         }
     }
 }

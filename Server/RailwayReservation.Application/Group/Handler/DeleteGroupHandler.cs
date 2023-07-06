@@ -17,9 +17,9 @@ namespace RailwayReservation.Application.Group.Handler
             _repo = repo;
         }
 
-        public Task<int> Handle(DeleteGroupCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteGroupCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.Delete(request.Id);
         }
     }
 }

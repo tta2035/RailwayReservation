@@ -10,16 +10,16 @@ namespace RailwayReservation.Application.Coach.Handler
 {
     public class DeleteCoachHandler : IRequestHandler<DeleteCoachCommand, int>
     {
-        private readonly IBookingStatusRepository _repo;
+        private readonly ICoachRepository _repo;
 
-        public DeleteCoachHandler(IBookingStatusRepository repo)
+        public DeleteCoachHandler(ICoachRepository repo)
         {
             _repo = repo;
         }
 
-        public Task<int> Handle(DeleteCoachCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteCoachCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.Delete(request.Id);
         }
     }
 }

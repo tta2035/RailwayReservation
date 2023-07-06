@@ -10,5 +10,10 @@ namespace RailwayReservation.Application.Common.Interfaces.Persistences
         : IGenericRepository<
             Domain.BookingTicket.BookingTicket,
             BookingTicketResponse
-        > { }
+        > {
+        Task<List<BookingTicketResponse>> GetByBookingId(Guid bookingId);
+        Task<List<BookingTicketResponse>> GetByTicketId(Guid ticketId);
+        Task<Domain.BookingTicket.BookingTicket> GetBy2Id(Guid bookingId, Guid ticketId);
+        Task<int> DeleteBy2Id(Guid bookingId, Guid ticketId);
+    }
 }

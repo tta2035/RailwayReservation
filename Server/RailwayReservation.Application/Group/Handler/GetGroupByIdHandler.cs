@@ -18,9 +18,9 @@ namespace RailwayReservation.Application.Group.Handler
             _repo = repo;
         }
 
-        public Task<GroupResponse> Handle(GetGroupByIdQuery request, CancellationToken cancellationToken)
+        public async Task<GroupResponse> Handle(GetGroupByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetResponseById(request.Id);
         }
     }
 }

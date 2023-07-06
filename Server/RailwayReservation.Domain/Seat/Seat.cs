@@ -60,7 +60,7 @@ public sealed class Seat// : AggregateRoot<SeatId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Seat Create(
+    public static Seat Create(
         Guid coachId,
         Guid seatTypeId,
         string seatNo,

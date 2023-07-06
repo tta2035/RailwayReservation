@@ -9,7 +9,7 @@ using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.SeatType;
 
-public sealed class SeatType// : AggregateRoot<SeatTypeId, Guid>
+public sealed class SeatType // : AggregateRoot<SeatTypeId, Guid>
 {
     public Guid Id { get; set; }
 
@@ -19,7 +19,7 @@ public sealed class SeatType// : AggregateRoot<SeatTypeId, Guid>
 
     public string? Description { get; set; }
 
-    public Guid CreateBy { get; set; }
+    public Guid? CreateBy { get; set; }
 
     public DateTime CreateTime { get; set; }
 
@@ -29,13 +29,14 @@ public sealed class SeatType// : AggregateRoot<SeatTypeId, Guid>
 
     public ICollection<Seat.Seat> Seats { get; set; } = new List<Seat.Seat>();
 
-private SeatType() {}
+    private SeatType() { }
+
     public SeatType(
         Guid seatTypeId,
         string seatTypeName,
         double raitoFare,
         string? description,
-        Guid createBy,
+        Guid? createBy,
         DateTime createTime,
         Guid? updateBy,
         DateTime? updateTime
@@ -51,7 +52,12 @@ private SeatType() {}
         UpdateTime = updateTime;
     }
 
-    public static SeatType Create(string seatTypeName, double raitoFare, string? description, Guid createBy)
+    public static SeatType Create(
+        string seatTypeName,
+        double raitoFare,
+        string? description,
+        Guid? createBy
+    )
     {
         return new(
             new Guid(),

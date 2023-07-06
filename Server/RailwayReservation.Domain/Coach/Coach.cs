@@ -55,14 +55,14 @@ public sealed class Coach// : AggregateRoot<CoachId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Coach Create(string coachNo, Guid trainId, string? description)
+    public static Coach Create(string coachNo, Guid trainId, Guid? createBy, string? description)
     {
         return new(
             new Guid(),
             coachNo,
             trainId,
             description,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

@@ -17,9 +17,17 @@ namespace RailwayReservation.Application.BookingTicket.Handler
             _repo = repo;
         }
 
-        public Task<int> Handle(UpdateBookingTicketCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateBookingTicketCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = await _repo.GetBy2Id(request.BookingId, request.TicketId);
+
+            item.BookingId = request.BookingId;
+            item.TicketId = request.TicketId;
+            item.Description = request.Description;
+            item.UpdateBy = request.UpdateBy;
+            item.UpdateTime = DateTime.UtcNow;
+             
+             return await _repo.Update(item);
         }
     }
 }

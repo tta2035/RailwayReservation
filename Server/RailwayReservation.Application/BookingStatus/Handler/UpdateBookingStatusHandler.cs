@@ -17,9 +17,18 @@ namespace RailwayReservation.Application.BookingStatus.Handler
             _repo = repo;
         }
 
-        public Task<int> Handle(UpdateBookingStatusCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateBookingStatusCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = await _repo.getById(request.Id);
+            if(item is null) return default;
+            
+            item.Status = request.Status;
+            item.StatusTime = request.StatusTime;
+            item.UpdateBy = request.UpdateBy;
+            item.UpdateTime = DateTime.UtcNow;
+            item.Description = request.Description;
+
+            return await _repo.Update(item);
         }
     }
 }

@@ -11,16 +11,16 @@ namespace RailwayReservation.Application.Coach.Handler
 {
     public class GetCoachByIdHadler : IRequestHandler<GetCoachByIdQuery, CoachResponse>
     {
-        private readonly IBookingStatusRepository _repo;
+        private readonly ICoachRepository _repo;
 
-        public GetCoachByIdHadler(IBookingStatusRepository repo)
+        public GetCoachByIdHadler(ICoachRepository repo)
         {
             _repo = repo;
         }
 
         public Task<CoachResponse> Handle(GetCoachByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _repo.GetResponseById(request.Id);
         }
     }
 }

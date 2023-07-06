@@ -18,9 +18,9 @@ namespace RailwayReservation.Application.BookingStatus.Handler
             _repo = repo;
         }
 
-        public Task<BookingStatusResponse> Handle(GetBookingStatusByIdQuery request, CancellationToken cancellationToken)
+        public async Task<BookingStatusResponse> Handle(GetBookingStatusByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetResponseById(request.Id);
         }
     }
 }

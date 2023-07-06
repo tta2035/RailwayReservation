@@ -46,7 +46,7 @@ public class GroupFunction
         UpdateTime = updateTime;
     }
 
-    public static GroupFunction Create(Guid groupId, Guid functionId)
+    public static GroupFunction Create(Guid groupId, Guid functionId, Guid? createBy)
     {
         return new(groupId, functionId, null, DateTime.UtcNow, null, DateTime.UtcNow);
     }

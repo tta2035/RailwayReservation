@@ -17,9 +17,11 @@ namespace RailwayReservation.Application.BookingStatus.Handler
             _repo = repo;
         }
 
-        public Task<int> Handle(DeleteBookingStatusCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteBookingStatusCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = _repo.getById(request.Id);
+            if(item is null) return default;
+            return await _repo.Delete(request.Id);
         }
     }
 }

@@ -47,8 +47,8 @@ public sealed class Group// : AggregateRoot<GroupId, Guid>
         UpdateTime = updateTime;
     }
 
-    public static Group Create(string groupName)
+    public static Group Create(string groupName, Guid? createBy)
     {
-        return new(new Guid(), groupName, null, DateTime.UtcNow, null, DateTime.UtcNow);
+        return new(new Guid(), groupName, createBy, DateTime.UtcNow, null, DateTime.UtcNow);
     }
 }

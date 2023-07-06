@@ -23,6 +23,10 @@ namespace RailwayReservation.Application.Trip.Commands
 
         public DateTime? CreateTime { get; set; }
 
+        public CreateTripCommand()
+        {
+        }
+
         public CreateTripCommand(Guid trainId, Guid routeId, DateTime departureTime, DateTime arriveTime, string description, Guid? createBy, DateTime? createTime)
         {
             TrainId = trainId;

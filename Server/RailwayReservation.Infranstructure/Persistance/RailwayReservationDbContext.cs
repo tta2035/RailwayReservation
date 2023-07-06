@@ -17,6 +17,7 @@ using RailwayReservation.Domain.Common.Models;
 using RailwayReservation.Infranstructure.Persistance.Interceptors;
 using RailwayReservation.Domain.Passenger;
 using Microsoft.Extensions.Configuration;
+using RailwayReservation.Domain.Trip;
 
 namespace RailwayReservation.Infranstructure.Persistance;
 
@@ -36,10 +37,7 @@ public sealed class RailwayReservationDbContext : DbContext
         _publishDomainEventsInterceptor = publishDomainEventsInterceptor;
     }
 
-
-    public RailwayReservationDbContext()
-    {
-    }
+    public RailwayReservationDbContext() { }
 
     public DbSet<Domain.Booking.Booking> Bookings { get; set; } = null!;
 
@@ -72,6 +70,8 @@ public sealed class RailwayReservationDbContext : DbContext
     public DbSet<Train> Trains { get; set; } = null!;
 
     public DbSet<User> Users { get; set; } = null!;
+
+    public DbSet<Trip> Trips { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

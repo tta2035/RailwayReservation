@@ -19,8 +19,8 @@ public class GetBookingTicketByBookingHandler : IRequestHandler<GetBookingTicket
         _repo = repo;
     }
 
-    public Task<List<BookingTicketResponse>> Handle(GetBookingTicketByBookingQuery request, CancellationToken cancellationToken)
+    public async Task<List<BookingTicketResponse>> Handle(GetBookingTicketByBookingQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await _repo.GetByBookingId(request.bookingId);
     }
 }

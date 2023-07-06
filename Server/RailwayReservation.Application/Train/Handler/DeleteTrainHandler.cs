@@ -17,9 +17,9 @@ namespace RailwayReservation.Application.Train.Handler
             _trainRepository = trainRepository;
         }
 
-        public Task<int> Handle(DeleteTrainCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteTrainCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _trainRepository.Delete(request.Id);
         }
     }
 }

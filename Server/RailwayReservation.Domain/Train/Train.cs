@@ -48,13 +48,13 @@ public sealed class Train// : AggregateRoot<TrainId, Guid>
         UpdateTime = updateTime;
     }
 
-    public static Train Create(string trainName, string? description)
+    public static Train Create(string trainName, string? description, Guid? createBy)
     {
         return new(
             new Guid(),
             trainName,
             description,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

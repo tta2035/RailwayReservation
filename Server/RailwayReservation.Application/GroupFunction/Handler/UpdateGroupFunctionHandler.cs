@@ -17,9 +17,13 @@ namespace RailwayReservation.Application.GroupFunction.Handler
             _repo = repo;
         }
 
-        public Task<int> Handle(UpdateGroupFunctionCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateGroupFunctionCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = await _repo.GetBy2Id(request.GroupId, request.FunctionId);
+            item.UpdateBy = request.UpdateBy;
+            item.UpdateTime = DateTime.UtcNow;
+
+            return await _repo.Update(item);
         }
     }
 }

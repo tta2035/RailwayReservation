@@ -17,9 +17,15 @@ namespace RailwayReservation.Application.Train.Handler
             _trainRepository = trainRepository;
         }
 
-        public Task<int> Handle(UpdateTrainCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateTrainCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = await _trainRepository.getById(request.Id);
+
+            item.TrainName = request.TrainName;
+            item.Description = request.Description; 
+            item.UpdateBy   = request.UpdateBy;
+            item.UpdateTime = DateTime.UtcNow;
+            return await _trainRepository.Update(item);
         }
     }
 }

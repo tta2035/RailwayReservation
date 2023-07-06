@@ -56,10 +56,11 @@ public sealed class BookingTicket
         UpdateTime = updateTime;
     }
 
-    private static BookingTicket Create(
+    public static BookingTicket Create(
         Guid bookingId,
         Guid ticketId,
-        string? description
+        string? description,
+        Guid? createBy
     )
     {
         return new(
@@ -67,7 +68,7 @@ public sealed class BookingTicket
             bookingId,
             ticketId,
             description,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

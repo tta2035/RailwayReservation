@@ -18,9 +18,9 @@ namespace RailwayReservation.Application.Seat.Handler
             _repo = repo;
         }
 
-        public Task<List<SeatResponse>> Handle(GetSeatListQuery request, CancellationToken cancellationToken)
+        public async Task<List<SeatResponse>> Handle(GetSeatListQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetAll();
         }
     }
 }

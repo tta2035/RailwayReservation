@@ -65,12 +65,13 @@ namespace RailwayReservation.Domain.Trip
             UpdateTime = updateTime;
         }
 
-        private static Trip Create(
+        public static Trip Create(
             Guid trainId,
             Guid routeId,
             DateTime departureTime,
             DateTime arriveTime,
-            string description
+            string description,
+            Guid? updateBy
         )
         {
             return new(
@@ -80,7 +81,7 @@ namespace RailwayReservation.Domain.Trip
                 departureTime,
                 arriveTime,
                 description,
-                null,
+                updateBy,
                 DateTime.UtcNow,
                 null,
                 DateTime.UtcNow

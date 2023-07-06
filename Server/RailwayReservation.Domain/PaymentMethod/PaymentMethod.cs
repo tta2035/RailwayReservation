@@ -47,13 +47,13 @@ public sealed class PaymentMethod// : AggregateRoot<PaymentMethodId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static PaymentMethod Create(string paymentMethodName, string? description)
+    public static PaymentMethod Create(string paymentMethodName, string? description, Guid? createBy)
     {
         return new(
             new Guid(),
             paymentMethodName,
             description,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

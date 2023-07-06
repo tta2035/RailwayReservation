@@ -56,7 +56,7 @@ namespace RailwayReservation.Domain.BookingStatus
             Description = description;
         }
 
-        private static BookingStatus Create(
+        public static BookingStatus Create(
             Guid bookingId,
             string status,
             DateTime statusTime,

@@ -119,6 +119,7 @@ public static class DependencyInjection
         services.AddScoped<IStationRepository, StationRepository>();
         services.AddScoped<ITicketRepository, TicketRepository>();
         services.AddScoped<ITrainRepository, TrainRepository>();
+        services.AddScoped<ITripRepository, TripRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         
         services.AddScoped<IAuthenticationService, AuthenticationService>();
@@ -141,7 +142,7 @@ public static class DependencyInjection
         services.AddTransient<IRequestHandler<CreateBookingTicketCommand, Domain.BookingTicket.BookingTicket>, CreateBookingTicketHandler>();
         services.AddTransient<IRequestHandler<DeleteBookingTicketCommand, int>, DeleteBookingTicketHandler>();
         services.AddTransient<IRequestHandler<UpdateBookingTicketCommand, int>, UpdateBookingTicketHadler>();
-        services.AddTransient<IRequestHandler<GetBookingTicketByIdQuery, BookingTicketResponse>, GetBookingTicketByIdHandler>();
+        //services.AddTransient<IRequestHandler<GetBookingTicketByIdQuery, BookingTicketResponse>, GetBookingTicketByIdHandler>();
         services.AddTransient<IRequestHandler<GetBookingTicketByBookingQuery, List<BookingTicketResponse>>, GetBookingTicketByBookingHandler>();
         services.AddTransient<IRequestHandler<GetBookingTicketListQuery, List<BookingTicketResponse>>, GetBookingTicketListHadler>();
 

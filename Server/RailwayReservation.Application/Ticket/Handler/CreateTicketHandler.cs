@@ -17,9 +17,17 @@ namespace RailwayReservation.Application.Ticket.Handler
             _repo = repo;
         }
 
-        public Task<Domain.Ticket.Ticket> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
+        public async Task<Domain.Ticket.Ticket> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = Domain.Ticket.Ticket.Create(
+                request.TripId,
+                request.SeatId,
+                request.Fare,
+                request.Description,
+                request.Status,
+                request.CreateBy
+            );
+            return await _repo.Insert(item );
         }
     }
 }

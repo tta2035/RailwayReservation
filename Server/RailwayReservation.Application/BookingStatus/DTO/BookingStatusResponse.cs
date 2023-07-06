@@ -31,5 +31,9 @@ namespace RailwayReservation.Application.BookingStatus.DTO
             StatusTime = statusTime;
             Description = description;
         }
+
+        public BookingStatusResponse()
+        {
+        }
     }
 }

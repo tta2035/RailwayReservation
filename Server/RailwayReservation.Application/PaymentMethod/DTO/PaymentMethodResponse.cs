@@ -30,6 +30,10 @@ namespace RailwayReservation.Application.PaymentMethod.DTO
             UpdateTime = updateTime;
         }
 
+        public PaymentMethodResponse()
+        {
+        }
+
         public DateTime? UpdateTime { get; set; }
     }
 }

@@ -10,4 +10,5 @@ namespace RailwayReservation.Application.BookingTicket.Queries;
 
 public class GetBookingTicketByBookingQuery : IRequest<List<BookingTicketResponse>>
 {
+    public Guid bookingId { get; set; }
 }

@@ -8,6 +8,7 @@ namespace RailwayReservation.Application.GroupFunction.Commands
 {
     public class DeleteGroupFunctionCommand : IRequest<int>
     {
-        public Guid Id { get; set; }
+        public Guid GroupId { get; set; }
+        public Guid FunctionId { get; set; }
     }
 }

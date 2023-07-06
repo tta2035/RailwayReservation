@@ -45,12 +45,12 @@ public sealed class Function// : AggregateRoot<FunctionId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Function Create(string functionName)
+    public static Function Create(string functionName, Guid? createBy)
     {
         return new(
             new Guid(),
             functionName,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

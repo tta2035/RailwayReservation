@@ -74,7 +74,8 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
         Guid seatId,
         decimal? fare,
         string? description,
-        string status
+        string status,
+        Guid? createBy
     )
     {
         return new(
@@ -84,7 +85,7 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
             fare,
             description,
             status,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

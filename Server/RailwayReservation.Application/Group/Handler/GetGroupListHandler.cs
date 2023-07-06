@@ -18,9 +18,9 @@ namespace RailwayReservation.Application.Group.Handler
             _repo = repo;
         }
 
-        public Task<List<GroupResponse>> Handle(GetGroupListQuery request, CancellationToken cancellationToken)
+        public async Task<List<GroupResponse>> Handle(GetGroupListQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetAll();
         }
     }
 }

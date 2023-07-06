@@ -18,9 +18,16 @@ namespace RailwayReservation.Application.SeatType.Handler
             _repo = repo;
         }
 
-        public Task<int> Handle(UpdateSeatTypeCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateSeatTypeCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = await _repo.getById(request.Id);
+
+            item.SeatTypeName = request.SeatTypeName;
+            item.RaitoFare  = request.RaitoFare;
+            item.Description = request.Description;
+            item.UpdateBy = request.UpdateBy;
+            item.UpdateTime = DateTime.UtcNow;
+            return await _repo.Update(item);
         }
     }
 }

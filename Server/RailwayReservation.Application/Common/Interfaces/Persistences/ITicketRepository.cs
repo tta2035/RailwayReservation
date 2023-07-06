@@ -9,6 +9,6 @@ namespace RailwayReservation.Application.Common.Interfaces.Persistences
 {
     public interface ITicketRepository : IGenericRepository<Domain.Ticket.Ticket, TicketResponse>
     {
-        
+        Task<List<TicketResponse>> GetByBooking(Guid bookingId);
     }
 }
