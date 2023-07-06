@@ -18,9 +18,9 @@ namespace RailwayReservation.Application.Function.Handler
             _repo = repo;
         }
 
-        public Task<List<FunctionResponse>> Handle(GetFunctionListQuery request, CancellationToken cancellationToken)
+        public async Task<List<FunctionResponse>> Handle(GetFunctionListQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetAll();
         }
     }
 }

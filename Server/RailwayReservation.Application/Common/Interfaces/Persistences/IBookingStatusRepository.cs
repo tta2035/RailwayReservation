@@ -8,6 +8,6 @@ namespace RailwayReservation.Application.Common.Interfaces.Persistences
 {
     public interface IBookingStatusRepository : IGenericRepository<Domain.BookingStatus.BookingStatus, BookingStatusResponse>
     {
-        Task<Domain.BookingStatus.BookingStatus> getBookingStatusResponse(Guid id);
+        Task<List<BookingStatusResponse>> GetByBookingId(Guid id);
     }
 }

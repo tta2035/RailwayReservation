@@ -18,9 +18,9 @@ namespace RailwayReservation.Application.PaymentMethod.Handler
             _repo = repo;
         }
 
-        public Task<PaymentMethodResponse> Handle(GetPaymentMethodByIdQuery request, CancellationToken cancellationToken)
+        public async Task<PaymentMethodResponse> Handle(GetPaymentMethodByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetResponseById(request.Id);
         }
     }
 }

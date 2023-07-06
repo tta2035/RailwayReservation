@@ -19,8 +19,6 @@ namespace RailwayReservation.Application.SeatType.Handler
 
         public async Task<int> Handle(DeleteSeatTypeCommand request, CancellationToken cancellationToken)
         {
-            var item = await _repo.getById(request.Id);
-            if (item is null) return default;
             return await _repo.Delete(request.Id);
         }
     }

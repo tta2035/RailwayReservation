@@ -4,11 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RailwayReservation.Domain.Route.ValueObjects;
-using RailwayReservation.Domain.Train.ValueObjects;
 using RailwayReservation.Domain.Trip;
-using RailwayReservation.Domain.Trip.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Infranstructure.Configurations
 {

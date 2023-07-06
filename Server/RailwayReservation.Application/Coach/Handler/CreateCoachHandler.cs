@@ -17,8 +17,14 @@ public class CreateCoachHandler : IRequestHandler<CreateCoachCommand, Domain.Coa
         _repo = repo;
     }
 
-    public Task<Domain.Coach.Coach> Handle(CreateCoachCommand request, CancellationToken cancellationToken)
+    public async Task<Domain.Coach.Coach> Handle(CreateCoachCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var item = Domain.Coach.Coach.Create(
+            request.CoachNo,
+            request.TrainId,
+            request.CreateBy,
+            request.Description            
+        );
+        return await _repo.Insert(item);
     }
 }

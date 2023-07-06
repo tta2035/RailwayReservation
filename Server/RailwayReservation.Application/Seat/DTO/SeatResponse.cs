@@ -14,6 +14,7 @@ namespace RailwayReservation.Application.Seat.DTO
         public string TrainName { get; set; }
 
         public Guid SeatTypeId { get; set; }
+        public string SeatTypeName { get; set; }
 
         public string SeatNo { get; set; }
 
@@ -33,6 +34,7 @@ namespace RailwayReservation.Application.Seat.DTO
             string coachNo,
             string trainName,
             Guid seatTypeId,
+            string seatTypeName,
             string seatNo,
             string? description,
             Guid? createBy,
@@ -46,12 +48,17 @@ namespace RailwayReservation.Application.Seat.DTO
             CoachNo = coachNo;
             TrainName = trainName;
             SeatTypeId = seatTypeId;
+            SeatTypeName = seatTypeName;
             SeatNo = seatNo;
             Description = description;
             CreateBy = createBy;
             CreateTime = createTime;
             UpdateBy = updateBy;
             UpdateTime = updateTime;
+        }
+
+        public SeatResponse()
+        {
         }
     }
 }

@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RailwayReservation.Domain.Common.Models;
 using RailwayReservation.Domain.Ticket;
 using RailwayReservation.Domain.Train;
-using RailwayReservation.Domain.Train.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

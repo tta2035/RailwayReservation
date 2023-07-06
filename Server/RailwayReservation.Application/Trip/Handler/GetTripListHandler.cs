@@ -18,9 +18,9 @@ namespace RailwayReservation.Application.Trip.Handler
             _repo = repo;
         }
 
-        public Task<List<TripResponse>> Handle(GetTripListQuery request, CancellationToken cancellationToken)
+        public async Task<List<TripResponse>> Handle(GetTripListQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetAll();
         }
     }
 }

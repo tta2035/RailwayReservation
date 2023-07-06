@@ -18,7 +18,13 @@ namespace RailwayReservation.Application.BookingTicket.Commands
 
         public DateTime CreateTime { get; set; }
 
-        public CreateBookingTicketCommand(Guid bookingId, Guid ticketId, string? description, Guid? createBy, DateTime createTime)
+        public CreateBookingTicketCommand(
+            Guid bookingId,
+            Guid ticketId,
+            string? description,
+            Guid? createBy,
+            DateTime createTime
+        )
         {
             BookingId = bookingId;
             TicketId = ticketId;

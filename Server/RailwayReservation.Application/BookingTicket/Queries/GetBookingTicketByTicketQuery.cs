@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace RailwayReservation.Application.BookingTicket.Queries
 {
-    public class GetBookingTicketByIdQuery : IRequest<BookingTicketResponse>
+    public class GetBookingTicketByTicketQuery : IRequest<List<BookingTicketResponse>>
     {
-        public Guid Id { get; set; }
+        public Guid TicketId { get; set; }
     }
 }

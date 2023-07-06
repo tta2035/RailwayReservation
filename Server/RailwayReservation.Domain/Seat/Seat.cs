@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using RailwayReservation.Domain.Coach.ValueObjects;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Seat.ValueObjects;
-using RailwayReservation.Domain.SeatType.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Seat;
 
-public sealed class Seat// : AggregateRoot<SeatId, Guid>
+public sealed class Seat // : AggregateRoot<SeatId, Guid>
 {
     public Guid Id { get; set; }
 
@@ -31,12 +28,17 @@ public sealed class Seat// : AggregateRoot<SeatId, Guid>
 
     public DateTime? UpdateTime { get; set; }
 
+    [JsonIgnore]
     public Coach.Coach Coach { get; set; } = null!;
 
+    [JsonIgnore]
     public SeatType.SeatType SeatType { get; set; } = null!;
+
+    [JsonIgnore]
     public ICollection<Ticket.Ticket> Tickets { get; set; } = new List<Ticket.Ticket>();
 
-    private Seat() {}
+    private Seat() { }
+
     public Seat(
         Guid seatId,
         Guid coachId,
@@ -60,7 +62,7 @@ public sealed class Seat// : AggregateRoot<SeatId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Seat Create(
+    public static Seat Create(
         Guid coachId,
         Guid seatTypeId,
         string seatNo,

@@ -11,16 +11,16 @@ namespace RailwayReservation.Application.Coach.Handler
 {
     public class GetCoachByTrainIdHandler : IRequestHandler<GetCoachByTrainIdQuery, List<CoachResponse>>
     {
-        private readonly IBookingStatusRepository _repo;
+        private readonly ICoachRepository _repo;
 
-        public GetCoachByTrainIdHandler(IBookingStatusRepository repo)
+        public GetCoachByTrainIdHandler(ICoachRepository repo)
         {
             _repo = repo;
         }
 
-        public Task<List<CoachResponse>> Handle(GetCoachByTrainIdQuery request, CancellationToken cancellationToken)
+        public async Task<List<CoachResponse>> Handle(GetCoachByTrainIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetByTrainId(request.TrainId);
         }
     }
 }

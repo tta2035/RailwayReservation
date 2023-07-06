@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using RailwayReservation.Domain.Booking.ValueObjects;
-using RailwayReservation.Domain.BookingTicket.ValueObjects;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Ticket.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.BookingTicket;
 
@@ -28,9 +25,9 @@ public sealed class BookingTicket
     public Guid? UpdateBy { get; set; } = null!;
 
     public DateTime? UpdateTime { get; set; } = null!;
-
+[JsonIgnore]
     public Booking.Booking Booking { get; set; } = null!;
-
+[JsonIgnore]
     public Ticket.Ticket Ticket { get; set; } = null!;
 
     private BookingTicket() {}
@@ -56,10 +53,11 @@ public sealed class BookingTicket
         UpdateTime = updateTime;
     }
 
-    private static BookingTicket Create(
+    public static BookingTicket Create(
         Guid bookingId,
         Guid ticketId,
-        string? description
+        string? description,
+        Guid? createBy
     )
     {
         return new(
@@ -67,7 +65,7 @@ public sealed class BookingTicket
             bookingId,
             ticketId,
             description,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

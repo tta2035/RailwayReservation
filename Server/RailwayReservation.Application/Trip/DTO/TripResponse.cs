@@ -14,8 +14,8 @@ namespace RailwayReservation.Application.Trip.DTO
 
         public Guid RouteId { get; set; }
         public string RouteName { get; set; }
-        public string DepartureStation { get; set; }
-        public string DestinationStation { get; set; }
+        public string DepartureStation { get; set; } = "";
+        public string DestinationStation { get; set; } = "";
 
         public DateTime DepartureTime { get; set; }
 

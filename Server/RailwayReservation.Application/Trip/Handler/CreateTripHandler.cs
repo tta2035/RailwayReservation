@@ -19,7 +19,16 @@ namespace RailwayReservation.Application.Trip.Handler
 
         public Task<Domain.Trip.Trip> Handle(CreateTripCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = Domain.Trip.Trip.Create(
+                request.TrainId,
+                request.RouteId,
+                request.DepartureTime,
+                request.ArriveTime,
+                request.Description,
+                request.CreateBy
+                );
+
+            return _repo.Insert( item );
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace RailwayReservation.Application.BookingTicket.Handler
 {
     // khum can lam
-    public class GetBookingTicketByIdHandler : IRequestHandler<GetBookingTicketByIdQuery, BookingTicketResponse>
+    public class GetBookingTicketByIdHandler : IRequestHandler<GetBookingTicketByTicketQuery, List<BookingTicketResponse>>
     {
         private readonly IBookingTicketRepository _repo;
 
@@ -19,9 +19,9 @@ namespace RailwayReservation.Application.BookingTicket.Handler
             _repo = repo;
         }
 
-        public Task<BookingTicketResponse> Handle(GetBookingTicketByIdQuery request, CancellationToken cancellationToken)
+        public async Task<List<BookingTicketResponse>> Handle(GetBookingTicketByTicketQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.GetByTicketId(request.TicketId);
         }
     }
 }

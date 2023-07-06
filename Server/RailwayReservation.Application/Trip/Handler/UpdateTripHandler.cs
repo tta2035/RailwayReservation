@@ -17,9 +17,20 @@ namespace RailwayReservation.Application.Trip.Handler
             _repo = repo;
         }
 
-        public Task<int> Handle(UpdateTripCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateTripCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = await _repo.getById(request.Id);
+
+            item.Id = request.Id;
+            item.TrainId = request.TrainId;
+            item.RouteId = request.RouteId;
+            item.DepartureTime = request.DepartureTime;
+            item.ArriveTime = request.ArriveTime;
+            item.Description = request.Description;
+            item.UpdateBy = request.UpdateBy;
+            item.UpdateTime = DateTime.UtcNow;
+            return await _repo.Update(item);
+
         }
     }
 }

@@ -10,15 +10,15 @@ namespace RailwayReservation.Application.Group.DTO
 
         public string GroupName { get; set; }
 
-        public Guid? UpdateBy { get; set; }
+        public Guid? CreateBy { get; set; }
 
-        public DateTime? UpdateTime { get; set; }
+        public DateTime? CreateTime { get; set; }
 
-        public CreateGroupRequest(string groupName, Guid? updateBy, DateTime? updateTime)
+        public CreateGroupRequest(string groupName, Guid? createBy, DateTime? createTime)
         {
             GroupName = groupName;
-            UpdateBy = updateBy;
-            UpdateTime = updateTime;
+            CreateBy = createBy;
+            CreateTime = createTime;
         }
     }
 }

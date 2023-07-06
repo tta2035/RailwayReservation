@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using RailwayReservation.Domain.Coach.ValueObjects;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Train.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Coach;
 
@@ -27,9 +25,9 @@ public sealed class Coach// : AggregateRoot<CoachId, Guid>
     public Guid? UpdateBy { get; set; }
 
     public DateTime? UpdateTime { get; set; }
-
+[JsonIgnore]
     public ICollection<Seat.Seat> Seats { get; set; } = new List<Seat.Seat>();
-
+[JsonIgnore]
     public Train.Train Train { get; set; } = null!;
 
     private Coach() {}
@@ -55,14 +53,14 @@ public sealed class Coach// : AggregateRoot<CoachId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Coach Create(string coachNo, Guid trainId, string? description)
+    public static Coach Create(string coachNo, Guid trainId, Guid? createBy, string? description)
     {
         return new(
             new Guid(),
             coachNo,
             trainId,
             description,
-            null,
+            createBy,
             DateTime.UtcNow,
             null,
             DateTime.UtcNow

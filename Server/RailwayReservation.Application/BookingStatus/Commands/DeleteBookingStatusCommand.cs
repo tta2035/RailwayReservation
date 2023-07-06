@@ -8,6 +8,6 @@ namespace RailwayReservation.Application.BookingStatus.Commands
 {
     public class DeleteBookingStatusCommand : IRequest<int>
     {
-        
+        public Guid Id { get; set; }
     }
 }

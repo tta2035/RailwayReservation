@@ -32,5 +32,9 @@ namespace RailwayReservation.Application.Function.DTO
             Groups = groups;
             Users = users;
         }
+
+        public FunctionResponse()
+        {
+        }
     }
 }

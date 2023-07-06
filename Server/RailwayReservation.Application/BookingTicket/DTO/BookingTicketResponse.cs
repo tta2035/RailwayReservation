@@ -31,5 +31,9 @@ namespace RailwayReservation.Application.BookingTicket.DTO
             UpdateBy = updateBy;
             UpdateTime = updateTime;
         }
+
+        public BookingTicketResponse()
+        {
+        }
     }
 }

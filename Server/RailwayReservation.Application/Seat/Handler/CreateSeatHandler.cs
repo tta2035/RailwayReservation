@@ -17,9 +17,16 @@ namespace RailwayReservation.Application.Seat.Handler
             _repo = repo;
         }
 
-        public Task<Domain.Seat.Seat> Handle(CreateSeatCommand request, CancellationToken cancellationToken)
+        public async Task<Domain.Seat.Seat> Handle(CreateSeatCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = Domain.Seat.Seat.Create(
+                request.CoachId,
+                request.SeatTypeId,
+                request.SeatNo,
+                request.Description,
+                request.CreateBy
+            );
+            return await _repo.Insert(item);
         }
     }
 }

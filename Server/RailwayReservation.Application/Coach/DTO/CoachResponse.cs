@@ -38,5 +38,9 @@ namespace RailwayReservation.Application.Coach.DTO
             UpdateBy = updateBy;
             UpdateTime = updateTime;
         }
+
+        public CoachResponse()
+        {
+        }
     }
 }

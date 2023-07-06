@@ -15,25 +15,17 @@ namespace RailwayReservation.Application.Train.DTO
 
         public DateTime CreateTime { get; set; }
 
-        public Guid? UpdateBy { get; set; } = null!;
-
-        public DateTime? UpdateTime { get; set; } = null!;
-
         public CreateTrainRequest(
             string trainName,
             string? description,
             Guid? createBy,
-            DateTime createTime,
-            Guid? updateBy,
-            DateTime? updateTime
+            DateTime createTime
         )
         {
             TrainName = trainName;
             Description = description;
             CreateBy = createBy;
             CreateTime = createTime;
-            UpdateBy = updateBy;
-            UpdateTime = updateTime;
         }
     }
 }

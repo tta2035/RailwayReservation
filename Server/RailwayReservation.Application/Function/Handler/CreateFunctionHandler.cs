@@ -17,9 +17,13 @@ namespace RailwayReservation.Application.Function.Handler
             _repo = repo;
         }
 
-        public Task<Domain.Function.Function> Handle(CreateFunctionCommand request, CancellationToken cancellationToken)
+        public async Task<Domain.Function.Function> Handle(CreateFunctionCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = Domain.Function.Function.Create(
+                request.FunctionName,
+                request.CreateBy
+            );
+            return await _repo.Insert(item);
         }
     }
 }

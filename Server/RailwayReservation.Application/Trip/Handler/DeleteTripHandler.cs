@@ -20,7 +20,7 @@ namespace RailwayReservation.Application.Trip.Handler
 
         public Task<int> Handle(DeleteTripCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _repo.Delete(request.Id);
         }
     }
 }

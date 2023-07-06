@@ -17,9 +17,15 @@ namespace RailwayReservation.Application.PaymentMethod.Handler
             _repo = repo;
         }
 
-        public Task<int> Handle(UpdatePaymentMethodCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdatePaymentMethodCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = await _repo.getById(request.Id);
+
+            item.PaymentMethodName = request.PaymentMethodName;
+            item.Description = request.Description;
+            item.UpdateBy = request.UpdateBy;
+            item.UpdateTime = DateTime.UtcNow;
+            return await _repo.Update(item);
         }
     }
 }

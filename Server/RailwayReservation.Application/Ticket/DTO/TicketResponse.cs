@@ -15,15 +15,16 @@ namespace RailwayReservation.Application.Ticket.DTO
         public string SeatNo { get; set; }
         public string SeatTypeName { get; set; }
         public string TrainNo { get; set; }
+        public Guid RouteId { get; set; }
         public string RouteName { get; set; }
-        public string DepartureStation { get; set; }
-        public string DestinationStation { get; set; }
+        public string DepartureStation { get; set; } = "";
+        public string DestinationStation { get; set; } = "";
 
         public DateTime DepartureTime { get; set; }
 
         public DateTime ArriveTime { get; set; }
 
-        public decimal? Fare { get; set; }
+        public double? Fare { get; set; }
 
         public string? Description { get; set; }
 
@@ -36,7 +37,7 @@ namespace RailwayReservation.Application.Ticket.DTO
         public DateTime? UpdateTime { get; set; }
         public string Status { get; set; }
 
-        public TicketResponse(Guid id, Guid tripId, Guid seatId, string seatNo, string seatTypeName, string trainNo, string routeName, string departureStation, string destinationStation, DateTime departureTime, DateTime arriveTime, decimal? fare, string? description, Guid? createBy, DateTime createTime, Guid? updateBy, DateTime? updateTime, string status)
+        public TicketResponse(Guid id, Guid tripId, Guid seatId, string seatNo, string seatTypeName, string trainNo, Guid routeId, string routeName, string departureStation, string destinationStation, DateTime departureTime, DateTime arriveTime, double? fare, string? description, Guid? createBy, DateTime createTime, Guid? updateBy, DateTime? updateTime, string status)
         {
             Id = id;
             TripId = tripId;
@@ -44,6 +45,7 @@ namespace RailwayReservation.Application.Ticket.DTO
             SeatNo = seatNo;
             SeatTypeName = seatTypeName;
             TrainNo = trainNo;
+            RouteId = routeId;
             RouteName = routeName;
             DepartureStation = departureStation;
             DestinationStation = destinationStation;
@@ -56,6 +58,10 @@ namespace RailwayReservation.Application.Ticket.DTO
             UpdateBy = updateBy;
             UpdateTime = updateTime;
             Status = status;
+        }
+
+        public TicketResponse()
+        {
         }
     }
 }

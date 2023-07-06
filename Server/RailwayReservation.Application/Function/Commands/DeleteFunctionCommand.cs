@@ -8,7 +8,7 @@ namespace RailwayReservation.Application.Function.Commands
 {
     public class DeleteFunctionCommand : IRequest<int>
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         
     }
 }

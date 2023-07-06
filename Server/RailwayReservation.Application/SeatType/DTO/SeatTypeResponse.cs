@@ -34,5 +34,9 @@ namespace RailwayReservation.Application.SeatType.DTO
             UpdateBy = updateBy;
             UpdateTime = updateTime;
         }
+
+        public SeatTypeResponse()
+        {
+        }
     }
 }

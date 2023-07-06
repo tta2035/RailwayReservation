@@ -17,9 +17,9 @@ namespace RailwayReservation.Application.BookingTicket.Handler
             _repo = repo;
         }
 
-        public Task<int> Handle(DeleteBookingTicketCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteBookingTicketCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _repo.DeleteBy2Id(request.BookingId, request.TicketId);
         }
     }
 }

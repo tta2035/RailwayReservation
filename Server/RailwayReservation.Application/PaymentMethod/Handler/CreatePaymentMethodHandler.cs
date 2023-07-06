@@ -17,9 +17,14 @@ namespace RailwayReservation.Application.PaymentMethod.Handler
             _repo = repo;
         }
 
-        public Task<Domain.PaymentMethod.PaymentMethod> Handle(CreatePaymentMethodCommand request, CancellationToken cancellationToken)
+        public async Task<Domain.PaymentMethod.PaymentMethod> Handle(CreatePaymentMethodCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = Domain.PaymentMethod.PaymentMethod.Create(
+                request.PaymentMethodName,
+                request.Description,
+                request.CreateBy
+                );
+            return await _repo.Insert(item);
         }
     }
 }

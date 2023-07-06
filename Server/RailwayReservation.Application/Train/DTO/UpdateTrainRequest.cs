@@ -12,10 +12,6 @@ namespace RailwayReservation.Application.Train.DTO
 
         public string? Description { get; set; }
 
-        public Guid? CreateBy { get; set; }
-
-        public DateTime CreateTime { get; set; }
-
         public Guid? UpdateBy { get; set; }
 
         public DateTime? UpdateTime { get; set; }
@@ -24,8 +20,6 @@ namespace RailwayReservation.Application.Train.DTO
             Guid id,
             string trainName,
             string? description,
-            Guid? createBy,
-            DateTime createTime,
             Guid? updateBy,
             DateTime? updateTime
         )
@@ -33,8 +27,6 @@ namespace RailwayReservation.Application.Train.DTO
             Id = id;
             TrainName = trainName;
             Description = description;
-            CreateBy = createBy;
-            CreateTime = createTime;
             UpdateBy = updateBy;
             UpdateTime = updateTime;
         }

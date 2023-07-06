@@ -8,6 +8,6 @@ namespace RailwayReservation.Application.Common.Interfaces.Persistences
 {
     public interface ICoachRepository : IGenericRepository<Domain.Coach.Coach, CoachResponse>
     {
-        
+        Task<List<CoachResponse>> GetByTrainId(Guid trainId);
     }
 }

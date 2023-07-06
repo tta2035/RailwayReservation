@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using RailwayReservation.Domain.Function.ValueObjects;
-using RailwayReservation.Domain.Group.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.GroupFunction;
 
@@ -23,8 +21,10 @@ public class GroupFunction
 
     public DateTime? UpdateTime { get; set; }
 
+    [JsonIgnore]
     public virtual Function.Function Function { get; set; } = null!;
 
+    [JsonIgnore]
     public virtual Group.Group Group { get; set; } = null!;
 
     private GroupFunction() { }
@@ -46,7 +46,7 @@ public class GroupFunction
         UpdateTime = updateTime;
     }
 
-    public static GroupFunction Create(Guid groupId, Guid functionId)
+    public static GroupFunction Create(Guid groupId, Guid functionId, Guid? createBy)
     {
         return new(groupId, functionId, null, DateTime.UtcNow, null, DateTime.UtcNow);
     }

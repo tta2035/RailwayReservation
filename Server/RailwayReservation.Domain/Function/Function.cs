@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Function.ValueObjects;
 using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Function;
 
-public sealed class Function// : AggregateRoot<FunctionId, Guid>
+public sealed class Function // : AggregateRoot<FunctionId, Guid>
 {
     public Guid Id { get; set; }
 
@@ -23,6 +23,7 @@ public sealed class Function// : AggregateRoot<FunctionId, Guid>
 
     public DateTime? UpdateTime { get; set; }
 
+    [JsonIgnore]
     public ICollection<GroupFunction.GroupFunction> GroupFunctions { get; set; } =
         new List<GroupFunction.GroupFunction>();
 
@@ -45,15 +46,8 @@ public sealed class Function// : AggregateRoot<FunctionId, Guid>
         UpdateTime = updateTime;
     }
 
-    private static Function Create(string functionName)
+    public static Function Create(string functionName, Guid? createBy)
     {
-        return new(
-            new Guid(),
-            functionName,
-            null,
-            DateTime.UtcNow,
-            null,
-            DateTime.UtcNow
-        );
+        return new(new Guid(), functionName, createBy, DateTime.UtcNow, null, DateTime.UtcNow);
     }
 }

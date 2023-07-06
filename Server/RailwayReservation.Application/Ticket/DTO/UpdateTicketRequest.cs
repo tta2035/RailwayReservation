@@ -22,7 +22,16 @@ namespace RailwayReservation.Application.Ticket.DTO
         public DateTime? UpdateTime { get; set; }
         public string Status { get; set; }
 
-        public UpdateTicketRequest(Guid id, Guid tripId, Guid seatId, decimal? fare, string? description, Guid? updateBy, DateTime? updateTime, string status)
+        public UpdateTicketRequest(
+            Guid id,
+            Guid tripId,
+            Guid seatId,
+            decimal? fare,
+            string? description,
+            Guid? updateBy,
+            DateTime? updateTime,
+            string status
+        )
         {
             Id = id;
             TripId = tripId;

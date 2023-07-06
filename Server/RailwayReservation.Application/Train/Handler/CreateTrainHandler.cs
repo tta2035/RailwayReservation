@@ -21,7 +21,8 @@ namespace RailwayReservation.Application.Train.Handler
         {
             var train = Domain.Train.Train.Create(
                 request.TrainName,
-                request.Description
+                request.Description,
+                request.CreateBy
             );
             return await _trainRepository.Insert(train); 
         }

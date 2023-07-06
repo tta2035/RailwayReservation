@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RailwayReservation.Application.BookingStatus.DTO;
+using RailwayReservation.Application.Ticket.DTO;
 using RailwayReservation.Domain.BookingStatus;
 using RailwayReservation.Domain.BookingTicket;
 
@@ -12,6 +14,7 @@ namespace RailwayReservation.Application.Booking.DTO
         public Guid Id { get; set; }
 
         public Guid PassengerId { get; set; }
+        public string PassengerName { get; set; }
 
         public decimal TotalFare { get; set; }
 
@@ -22,6 +25,7 @@ namespace RailwayReservation.Application.Booking.DTO
         public DateTime PaymentTerm { get; set; }
 
         public Guid? PaymentMethodId { get; set; }
+        public string PaymentMethodName { get; set; }
 
         public DateTime? CancellationTime { get; set; }
 
@@ -51,19 +55,20 @@ namespace RailwayReservation.Application.Booking.DTO
 
         public DateTime? RefundTime { get; set; }
 
-        public List<Domain.Ticket.Ticket> ListTicket { get; set; } =
-            new();
-        public List<Domain.BookingStatus.BookingStatus> ListBookingStatus { get; set; } =
-            new();
+        public List<TicketResponse> ListTicket { get; set; } = new();
+        public List<BookingStatusResponse> ListBookingStatus { get; set; } = new();
+        public BookingResponse() {}
 
         public BookingResponse(
             Guid id,
             Guid passengerId,
+            string passengerName,
             decimal totalFare,
             decimal totalPayment,
             string status,
             DateTime paymentTerm,
             Guid? paymentMethodId,
+            string paymentMethodName,
             DateTime? cancellationTime,
             decimal? cancellationFee,
             string? cancellationReason,
@@ -82,11 +87,13 @@ namespace RailwayReservation.Application.Booking.DTO
         {
             Id = id;
             PassengerId = passengerId;
+            PassengerName = passengerName;
             TotalFare = totalFare;
             TotalPayment = totalPayment;
             Status = status;
             PaymentTerm = paymentTerm;
             PaymentMethodId = paymentMethodId;
+            PaymentMethodName = paymentMethodName;
             CancellationTime = cancellationTime;
             CancellationFee = cancellationFee;
             CancellationReason = cancellationReason;

@@ -10,16 +10,23 @@ namespace RailwayReservation.Application.Coach.Handler
 {
     public class UpdateCoachHadler : IRequestHandler<UpdateCoachCommand, int>
     {
-        private readonly IBookingStatusRepository _repo;
+        private readonly ICoachRepository _repo;
 
-        public UpdateCoachHadler(IBookingStatusRepository repo)
+        public UpdateCoachHadler(ICoachRepository repo)
         {
             _repo = repo;
         }
 
-        public Task<int> Handle(UpdateCoachCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateCoachCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var item = await _repo.getById(request.Id);
+
+            item.CoachNo = request.CoachNo;
+            item.TrainId = request.TrainId;
+            item.Description = request.Description;
+            item.UpdateBy = request.UpdateBy;
+            item.UpdateTime = DateTime.UtcNow;
+            return await _repo.Update(item);
         }
     }
 }
