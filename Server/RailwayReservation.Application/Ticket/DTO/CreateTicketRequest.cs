@@ -7,7 +7,6 @@ namespace RailwayReservation.Application.Ticket.DTO
 {
     public class CreateTicketRequest
     {
-
         public Guid TripId { get; set; }
 
         public Guid SeatId { get; set; }
@@ -21,7 +20,15 @@ namespace RailwayReservation.Application.Ticket.DTO
         public DateTime CreateTime { get; set; }
         public string Status { get; set; }
 
-        public CreateTicketRequest(Guid tripId, Guid seatId, decimal? fare, string? description, Guid? createBy, DateTime createTime, string status)
+        public CreateTicketRequest(
+            Guid tripId,
+            Guid seatId,
+            decimal? fare,
+            string? description,
+            Guid? createBy,
+            DateTime createTime,
+            string status
+        )
         {
             TripId = tripId;
             SeatId = seatId;

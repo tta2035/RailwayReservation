@@ -24,7 +24,7 @@ namespace RailwayReservation.Application.Ticket.DTO
 
         public DateTime ArriveTime { get; set; }
 
-        public decimal? Fare { get; set; }
+        public double? Fare { get; set; }
 
         public string? Description { get; set; }
 
@@ -37,7 +37,7 @@ namespace RailwayReservation.Application.Ticket.DTO
         public DateTime? UpdateTime { get; set; }
         public string Status { get; set; }
 
-        public TicketResponse(Guid id, Guid tripId, Guid seatId, string seatNo, string seatTypeName, string trainNo, Guid routeId, string routeName, string departureStation, string destinationStation, DateTime departureTime, DateTime arriveTime, decimal? fare, string? description, Guid? createBy, DateTime createTime, Guid? updateBy, DateTime? updateTime, string status)
+        public TicketResponse(Guid id, Guid tripId, Guid seatId, string seatNo, string seatTypeName, string trainNo, Guid routeId, string routeName, string departureStation, string destinationStation, DateTime departureTime, DateTime arriveTime, double? fare, string? description, Guid? createBy, DateTime createTime, Guid? updateBy, DateTime? updateTime, string status)
         {
             Id = id;
             TripId = tripId;

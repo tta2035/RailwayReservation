@@ -18,6 +18,57 @@ namespace RailwayReservation.Infranstructure.Persistance.Repository
         {
         }
 
+        public async Task<List<Ticket>> AutoCreateWhenCreateTrip(Guid tripId)
+        {
+            List<Ticket> list = new();
+            var prepare = (from trip in _context.Trips
+                         join train in _context.Trains on trip.TrainId equals train.Id
+                         join route in _context.Routes on trip.RouteId equals route.Id
+                         join coach in _context.Coaches on train.Id equals coach.TrainId
+                         join seat in _context.Seats on coach.Id equals seat.CoachId
+                         select new
+                         {
+                             TripId = trip.Id,
+                             CoachId = coach.Id,
+                             RouteFare = route.RouteFare,
+                             Status = "Availabe",
+                         }).FirstOrDefault();
+            var seats = (from seat in _context.Seats
+                         join coach in _context.Coaches on seat.CoachId equals coach.Id
+                         select seat).ToList();
+            foreach (var item in seats)
+            {
+                var RaitoFareQuery = (from st in _context.SeatTypes
+                                      where st.Id == item.SeatTypeId
+                                      select new
+                                      {
+                                          RaitoFare = st.RaitoFare
+                                      }).Single();
+                Double RaitoFare = RaitoFareQuery.RaitoFare;
+                Double fare = prepare.RouteFare != null ? (double)prepare.RouteFare : 0 * RaitoFare;
+                var newTicket = Domain.Ticket.Ticket.Create(
+                    prepare.TripId,
+                    item.Id,
+                    (decimal)fare,
+                    "",
+                    prepare.Status,
+                    null
+                    );
+                list.Add(newTicket);
+                table.Add( newTicket );
+            }
+            try
+            {
+                await _context.SaveChangesAsync();
+                return list;
+            }
+            catch ( Exception ex )
+            {
+                throw new Exception(ex.InnerException.Message);
+            }
+            
+        }
+
         public override async Task<List<TicketResponse>> GetAll()
         {
             var result = await (from ticket in table
@@ -41,7 +92,7 @@ namespace RailwayReservation.Infranstructure.Persistance.Repository
                               DestinationStation = "",
                               DepartureTime = trip.DepartureTime,
                               ArriveTime = trip.ArriveTime,
-                              Fare = ticket.Fare,
+                              Fare = (double)ticket.Fare,
                               Description = ticket.Description,
                               CreateBy = ticket.CreateBy,
                               CreateTime = ticket.CreateTime,

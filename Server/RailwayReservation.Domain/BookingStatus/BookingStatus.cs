@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Booking.ValueObjects;
-using RailwayReservation.Domain.BookingStatus.ValueObjects;
 using RailwayReservation.Domain.Common.Models;
 using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.BookingStatus
 {
-    public class BookingStatus// : AggregateRoot<BookingStatusId, Guid>
+    public class BookingStatus // : AggregateRoot<BookingStatusId, Guid>
     {
         public Guid Id { get; set; }
 
@@ -29,6 +29,7 @@ namespace RailwayReservation.Domain.BookingStatus
 
         public string Description { get; set; }
 
+        [JsonIgnore]
         public virtual Booking.Booking Booking { get; set; }
 
         private BookingStatus() { }

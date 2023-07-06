@@ -57,6 +57,15 @@ public class TicketController : ControllerBase
         return result;
     }
 
+    [HttpPost("auto-create-with-trip")]
+    public async Task<List<Ticket>> AutoCreateWithTrip(Guid tripId)
+    {
+        var result = await mediator.Send(new AutoCreateWhenCreateTripCommand(tripId
+            ));
+        return result;
+    }
+
+
     [HttpPut("update")]
     public async Task<int> Update(UpdateTicketRequest obj)
     {

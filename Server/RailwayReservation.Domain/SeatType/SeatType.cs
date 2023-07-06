@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.SeatType.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.SeatType;
 
@@ -27,6 +26,7 @@ public sealed class SeatType // : AggregateRoot<SeatTypeId, Guid>
 
     public DateTime? UpdateTime { get; set; }
 
+    [JsonIgnore]
     public ICollection<Seat.Seat> Seats { get; set; } = new List<Seat.Seat>();
 
     private SeatType() { }

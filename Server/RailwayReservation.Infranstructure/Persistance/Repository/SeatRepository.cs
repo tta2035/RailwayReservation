@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RailwayReservation.Application.Common.Interfaces.Persistences;
 using RailwayReservation.Application.Seat.DTO;
-using RailwayReservation.Domain.Coach.ValueObjects;
 
 namespace RailwayReservation.Infranstructure.Persistance.Repository
 {

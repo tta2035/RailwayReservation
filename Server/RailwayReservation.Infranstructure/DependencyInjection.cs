@@ -216,6 +216,7 @@ public static class DependencyInjection
 
         // ticket
         services.AddTransient<IRequestHandler<CreateTicketCommand, Domain.Ticket.Ticket>, CreateTicketHandler>();
+        services.AddTransient<IRequestHandler<AutoCreateWhenCreateTripCommand, List<Domain.Ticket.Ticket>>, AutoCreateWhenCreateTripHandler>();
         services.AddTransient<IRequestHandler<DeleteTicketCommand, int>, DeleteTicketHandler>();
         services.AddTransient<IRequestHandler<UpdateTicketCommand, int>, UpdateTicketHandler>();
         services.AddTransient<IRequestHandler<GetTicketByIdQuery, TicketResponse>, GetTicketByIdHandler>();

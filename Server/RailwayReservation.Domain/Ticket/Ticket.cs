@@ -2,18 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Route.ValueObjects;
-using RailwayReservation.Domain.Seat.ValueObjects;
-using RailwayReservation.Domain.Ticket.ValueObjects;
-using RailwayReservation.Domain.Train.ValueObjects;
-using RailwayReservation.Domain.Trip.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Ticket;
 
-public sealed class Ticket// : AggregateRoot<TicketId, Guid>
+public sealed class Ticket // : AggregateRoot<TicketId, Guid>
 {
     public Guid Id { get; set; }
 
@@ -34,9 +29,11 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
     public DateTime? UpdateTime { get; set; }
     public string Status { get; set; }
 
+    [JsonIgnore]
     public ICollection<BookingTicket.BookingTicket> BookingTickets { get; set; } =
         new List<BookingTicket.BookingTicket>();
 
+    [JsonIgnore]
     public Seat.Seat Seat { get; set; } = null!;
 
     public Trip.Trip Trip { get; set; }
@@ -53,7 +50,7 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
         Guid? createBy,
         DateTime createTime,
         Guid? updateBy,
-        DateTime? updateTime        
+        DateTime? updateTime
     )
     {
         // TicketId = ticketId;
@@ -66,7 +63,6 @@ public sealed class Ticket// : AggregateRoot<TicketId, Guid>
         CreateTime = createTime;
         UpdateBy = updateBy;
         UpdateTime = updateTime;
-        
     }
 
     public static Ticket Create(

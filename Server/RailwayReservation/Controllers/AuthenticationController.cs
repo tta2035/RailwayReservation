@@ -6,7 +6,6 @@ using RailwayReservation.Application.Common.Interfaces.Persistences;
 using RailwayReservation.Application.Services.Authentication;
 using RailwayReservation.Contract.Authentication;
 using RailwayReservation.Domain.Passenger;
-using RailwayReservation.Domain.Passenger.ValueObejcts;
 using System;
 
 namespace RailwayReservation.Api.Controllers

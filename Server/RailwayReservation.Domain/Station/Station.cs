@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Station.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Station;
 
-public sealed class Station// : AggregateRoot<StationId, Guid>
+public sealed class Station // : AggregateRoot<StationId, Guid>
 {
     public Guid Id { get; set; }
 
@@ -25,9 +24,11 @@ public sealed class Station// : AggregateRoot<StationId, Guid>
 
     public DateTime? UpdateTime { get; set; }
 
+    [JsonIgnore]
     public ICollection<Route.Route>? RouteDepartureStationNavigations { get; set; } =
         new List<Route.Route>();
 
+    [JsonIgnore]
     public ICollection<Route.Route>? RouteDestinationStationNavigations { get; set; } =
         new List<Route.Route>();
 

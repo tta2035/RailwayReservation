@@ -1,14 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Route.ValueObjects;
-using RailwayReservation.Domain.Seat.ValueObjects;
 using RailwayReservation.Domain.Station;
 using RailwayReservation.Domain.Ticket;
-using RailwayReservation.Domain.Ticket.ValueObjects;
-using RailwayReservation.Domain.Train.ValueObjects;
-using RailwayReservation.Domain.Trip.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +27,6 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .Property(e => e.Id)
             .HasDefaultValueSql("(newid())")
             .HasColumnName("TicketID");
-
-        // builder.Property(e => e.TicketId).HasDefaultValueSql("(newid())").HasColumnName("TicketID");
-        // builder.Property(e => e.ArriveTime).HasColumnType("datetime");
         builder
             .Property(e => e.CreateBy)
             .HasColumnName("createBy");
@@ -45,7 +36,7 @@ public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
             .HasColumnType("datetime")
             .HasColumnName("createTime");
         // builder.Property(e => e.DepartureTime).HasColumnType("datetime");
-        builder.Property(e => e.Fare).HasColumnType("decimal(18, 0)");
+        // builder.Property(e => e.Fare).HasColumnType("decimal(18, 0)");
         builder
             .Property(e => e.TripId)
             .HasColumnName("TripID");

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.PaymentMethod;
 
-public sealed class PaymentMethod// : AggregateRoot<PaymentMethodId, Guid>
+public sealed class PaymentMethod // : AggregateRoot<PaymentMethodId, Guid>
 {
     public Guid Id { get; set; }
 
@@ -24,6 +24,7 @@ public sealed class PaymentMethod// : AggregateRoot<PaymentMethodId, Guid>
 
     public DateTime? UpdateTime { get; set; }
 
+    [JsonIgnore]
     public ICollection<Booking.Booking> Bookings { get; set; } = new List<Booking.Booking>();
 
     private PaymentMethod() { }
@@ -47,7 +48,11 @@ public sealed class PaymentMethod// : AggregateRoot<PaymentMethodId, Guid>
         UpdateTime = updateTime;
     }
 
-    public static PaymentMethod Create(string paymentMethodName, string? description, Guid? createBy)
+    public static PaymentMethod Create(
+        string paymentMethodName,
+        string? description,
+        Guid? createBy
+    )
     {
         return new(
             new Guid(),

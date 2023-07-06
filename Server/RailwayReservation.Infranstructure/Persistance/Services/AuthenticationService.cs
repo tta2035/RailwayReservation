@@ -9,8 +9,6 @@ using RailwayReservation.Application.Common.Interfaces;
 using RailwayReservation.Application.Common.Interfaces.Persistences;
 using RailwayReservation.Domain.Common.Errors;
 using RailwayReservation.Domain.Passenger;
-using RailwayReservation.Domain.Passenger.ValueObejcts;
-using RailwayReservation.Domain.User.ValueObejcts;
 using static System.Net.Mime.MediaTypeNames;
 using RailwayReservation.Application.Services.Authentication;
 

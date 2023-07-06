@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Passenger.ValueObejcts;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Passenger;
 
-public class Passenger// : AggregateRoot<PassengerId, Guid>
+public class Passenger // : AggregateRoot<PassengerId, Guid>
 {
     // [Key]
     public Guid Id { get; set; }
@@ -43,6 +42,7 @@ public class Passenger// : AggregateRoot<PassengerId, Guid>
 
     public DateTime? UpdateTime { get; set; } = null!;
 
+    [JsonIgnore]
     public ICollection<Booking.Booking> Bookings { get; set; } = new List<Booking.Booking>();
 
     private Passenger() { }

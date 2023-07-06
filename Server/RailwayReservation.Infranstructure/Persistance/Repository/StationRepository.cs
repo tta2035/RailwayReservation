@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using RailwayReservation.Application.Common.Interfaces.Persistences;
 using RailwayReservation.Application.Station.DTO;
 using RailwayReservation.Domain.Station;
-using RailwayReservation.Domain.Station.ValueObjects;
 
 namespace RailwayReservation.Infranstructure.Persistance.Repository
 {

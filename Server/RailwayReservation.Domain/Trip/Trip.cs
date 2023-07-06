@@ -1,16 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Route.ValueObjects;
-using RailwayReservation.Domain.Train.ValueObjects;
-using RailwayReservation.Domain.Trip.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Trip
 {
-    public class Trip// : AggregateRoot<TripId, Guid>
+    public class Trip // : AggregateRoot<TripId, Guid>
     {
         public Guid Id { get; set; }
 
@@ -32,10 +29,13 @@ namespace RailwayReservation.Domain.Trip
 
         public DateTime? UpdateTime { get; set; }
 
+        [JsonIgnore]
         public virtual Route.Route Route { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Ticket.Ticket> Tickets { get; set; } = new List<Ticket.Ticket>();
 
+        [JsonIgnore]
         public virtual Train.Train Train { get; set; }
 
         private Trip() { }

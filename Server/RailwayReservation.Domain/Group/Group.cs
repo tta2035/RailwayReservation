@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Group.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.Group;
 
-public sealed class Group// : AggregateRoot<GroupId, Guid>
+public sealed class Group // : AggregateRoot<GroupId, Guid>
 {
     public Guid Id { get; set; }
 
@@ -23,13 +22,16 @@ public sealed class Group// : AggregateRoot<GroupId, Guid>
 
     public DateTime? UpdateTime { get; set; }
 
+    [JsonIgnore]
     public ICollection<GroupFunction.GroupFunction> GroupFunctions { get; set; } =
         new List<GroupFunction.GroupFunction>();
 
+    [JsonIgnore]
     public ICollection<GroupUser.GroupUser> GroupUsers { get; set; } =
         new List<GroupUser.GroupUser>();
 
-    private Group() {}
+    private Group() { }
+
     public Group(
         Guid groupId,
         string groupName,

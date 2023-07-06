@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RailwayReservation.Domain.Coach.ValueObjects;
 using RailwayReservation.Domain.Common.Models;
 using RailwayReservation.Domain.Route;
 using RailwayReservation.Domain.Seat;
-using RailwayReservation.Domain.Seat.ValueObjects;
-using RailwayReservation.Domain.SeatType.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

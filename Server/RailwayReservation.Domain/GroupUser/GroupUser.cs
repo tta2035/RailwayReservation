@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using RailwayReservation.Domain.Group.ValueObjects;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.GroupUser;
 
@@ -22,8 +21,10 @@ public class GroupUser
 
     public DateTime? UpdateTime { get; set; }
 
+    [JsonIgnore]
     public virtual Group.Group Group { get; set; } = null!;
 
+    [JsonIgnore]
     public virtual User.User User { get; set; } = null!;
 
     private GroupUser() { }

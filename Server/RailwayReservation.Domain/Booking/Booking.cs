@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Booking.ValueObjects;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.Passenger.ValueObejcts;
 using RailwayReservation.Domain.PaymentMethod;
 using RailwayReservation.Domain.User.ValueObejcts;
 
