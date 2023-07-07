@@ -8,6 +8,6 @@ namespace RailwayReservation.Application.Common.Interfaces.Persistences
 {
     public interface ITripRepository : IGenericRepository<Domain.Trip.Trip, TripResponse>
     {
-        
+        Task<List<TripResponse>> GetTripByRouteIdAndDate(Guid routeId, DateTime date);
     }
 }
