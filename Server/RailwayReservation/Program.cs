@@ -1,15 +1,7 @@
 using System.Reflection;
 using RailwayReservation.Application;
 using RailwayReservation.Infranstructure;
-using RailwayReservation.Application.Services.Authentication;
-using RailwayReservation.Middleware;
 using RailwayReservation.Api.Filters;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
-using System.Net;
-using RailwayReservation;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using RailwayReservation.Infranstructure.Persistance;
 using MediatR;
 
@@ -31,6 +23,7 @@ builder.Services.AddControllers(option => option.Filters.Add<ErrorHandlingHandli
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddCors(option =>
 {
     option.AddPolicy("MyPolicy", builder =>
@@ -59,7 +52,8 @@ if (app.Environment.IsDevelopment())
 //    return Results.Problem();
 //});
 app.UseHttpsRedirection();
-
+app.UseCors("MyPolicy");
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

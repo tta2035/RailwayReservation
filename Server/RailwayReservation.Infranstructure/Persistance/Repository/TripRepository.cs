@@ -80,5 +80,11 @@ namespace RailwayReservation.Infranstructure.Persistance.Repository
             var list = await GetAll();
             return list.Where(e => e.Id == id).Single();
         }
+
+        public async Task<List<TripResponse>> GetTripByRouteIdAndDate(Guid routeId, DateTime searchDate)
+        {
+            var list = await GetAll();
+            return list.Where(e => e.RouteId == routeId && e.DepartureTime.Date == searchDate.Date).ToList();
+        }
     }
 }
