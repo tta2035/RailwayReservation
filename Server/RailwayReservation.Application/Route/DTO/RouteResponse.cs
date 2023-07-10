@@ -10,8 +10,10 @@ namespace RailwayReservation.Application.Route.DTO
         public Guid Id { get; set; }
 
         public string RouteName { get; set; } = null!;
+        public Guid DepartureStationId { get; set; }
 
         public string DepartureStation { get; set; }
+        public Guid DestinationStationId { get; set; }
 
         public string DestinationStation { get; set; }
 
@@ -34,7 +36,9 @@ namespace RailwayReservation.Application.Route.DTO
         public RouteResponse(
             Guid id,
             string routeName,
+            Guid departureStationId,
             string departureStation,
+            Guid destinationStationId,
             string destinationStation,
             decimal routeFare,
             string? description,
@@ -46,7 +50,9 @@ namespace RailwayReservation.Application.Route.DTO
         {
             Id = id;
             RouteName = routeName;
+            DepartureStationId = departureStationId;
             DepartureStation = departureStation;
+            DestinationStationId = destinationStationId;
             DestinationStation = destinationStation;
             RouteFare = routeFare;
             Description = description;

@@ -22,19 +22,15 @@ namespace RailwayReservation.Application.Route.Handler
             var findRoute = _routeRepository.getById(request.Id).Result;
             if(findRoute == null) return default;
 
-            var newRoute = new Domain.Route.Route(
-                request.Id,
-                request.RouteName,
-                request.DepartureStation,
-                request.DestinationStation,
-                request.RouteFare,
-                request.Description,
-                findRoute.CreateBy,
-                findRoute.CreateTime,
-                request.UpdateBy,
-                request.UpdateTime
-            );
-            return await _routeRepository.Update(newRoute);
+            findRoute.RouteName = request.RouteName;
+            findRoute.DepartureStation = request.DepartureStation;
+            findRoute.DestinationStation = request.DestinationStation;
+            findRoute.RouteFare = request.RouteFare;
+            findRoute.Description = request.Description;
+            findRoute.UpdateBy = request.UpdateBy;
+            findRoute.UpdateTime = request.UpdateTime;
+
+            return await _routeRepository.Update(findRoute);
         }
     }
 }

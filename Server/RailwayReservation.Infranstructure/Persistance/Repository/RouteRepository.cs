@@ -30,7 +30,9 @@ namespace RailwayReservation.Infranstructure.Persistance.Repository
                                 select new RouteResponse(
                                         route.Id,
                                         route.RouteName,
+                                        depStation.Id,
                                         depStation.StationName,
+                                        desStation.Id,
                                         desStation.StationName,
                                         route.RouteFare,
                                         route.Description,
@@ -63,7 +65,9 @@ namespace RailwayReservation.Infranstructure.Persistance.Repository
                 select new RouteResponse(
                     route.Id,
                         route.RouteName,
+                        depStation.Id,
                         depStation.StationName,
+                        desStation.Id,
                         desStation.StationName,
                         route.RouteFare,
                         route.Description,
