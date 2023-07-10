@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using RailwayReservation.Application.Common.Interfaces;
 using RailwayReservation.Application.Common.Interfaces.Persistences;
 using RailwayReservation.Application.Trip.DTO;
+using RailwayReservation.Domain.Trip;
 
 namespace RailwayReservation.Infranstructure.Persistance.Repository
 {
@@ -24,8 +25,7 @@ namespace RailwayReservation.Infranstructure.Persistance.Repository
         {
             try
             {
-
-                var result = await (from trip in table
+                var result = await (from trip in _context.Trips
                                     join train in _context.Trains on trip.TrainId equals train.Id
                                     join route in _context.Routes on trip.RouteId equals route.Id
                                     select new TripResponse()
@@ -38,18 +38,19 @@ namespace RailwayReservation.Infranstructure.Persistance.Repository
                                         DepartureStation = "",
                                         DestinationStation = "",
                                         DepartureTime = trip.DepartureTime,
-                                        ArriveTime = trip.ArriveTime,
-                                        Description = trip.Description,
-                                        CreateBy = trip.CreateBy,
+                                        ArriveTime =  trip.ArriveTime,
+                                        Description = trip.Description == null ? "" : trip.Description,
+                                        CreateBy =  trip.CreateBy,
                                         CreateTime = trip.CreateTime,
                                         UpdateBy = trip.UpdateBy,
-                                        UpdateTime = trip.UpdateTime,
-                                        Tickets = (from ticket in _context.Tickets
-                                                   where ticket.TripId == trip.Id
-                                                   select ticket).ToList()
+                                        UpdateTime = trip.UpdateTime
                                     }).ToListAsync();
+                
                 foreach (var item in result)
                 {
+                    item.Tickets = (from ticket in _context.Tickets
+                                    where ticket.TripId == item.Id
+                                    select ticket).ToList();
                     var dep = (from route in _context.Routes
                                join station in _context.Stations on route.DepartureStation equals station.Id
                                where route.Id == item.RouteId
@@ -66,12 +67,13 @@ namespace RailwayReservation.Infranstructure.Persistance.Repository
                                {
                                    StationName = station.StationName
                                }).Single();
-                    item.DestinationStation = dep.StationName;
+                    item.DestinationStation = des.StationName;
                 }
+                
                 return result;
             } catch (Exception ex)
             {
-                throw new Exception("Lỗi khi lấy trip" + ex.Message);
+                throw new Exception("Lỗi khi lấy trip " + ex.StackTrace);
             }
         }
 
