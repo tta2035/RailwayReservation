@@ -1,0 +1,25 @@
+mat-card{
+
+    user-select: none;
+    width: 40%;
+    height: 300px;
+    cursor: pointer;
+    padding-left: 5px;
+    margin-top: 10px;
+    transition: transform 0.6s linear;
+}
+mat-card:hover{
+    transform: scale(1.02);
+}
+mat-card-title{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px 0 10px;
+    height: 15%;
+}
+mat-card-content{
+    height: 72%;
+}
+mat-card-footer{
+    height: 13%;
+}
