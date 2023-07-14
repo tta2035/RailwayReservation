@@ -102,10 +102,6 @@ export class GetTrainComponent implements OnInit {
     console.log(selected.value);
   }
 
-  showDepartureTime(selected : any) {
-    console.log(selected.value);
-  }
-
 
   onSubmit() {
     console.log(this.newDate);
