@@ -32,8 +32,8 @@ public class GenericRepository<T, DTO> : IGenericRepository<T, DTO>
     {
         var filteredData = await this.getById(id);
         table.Remove(filteredData);
-        return await _context.SaveChangesAsync();
-    }
+        return await CheckSaveChangesAsync();
+        }
 
     public virtual async Task<List<DTO>> GetAll()
     {
@@ -56,13 +56,20 @@ public class GenericRepository<T, DTO> : IGenericRepository<T, DTO>
     public async Task<T> Insert(T obj)
     {
         var result = table.Add(obj);
-        await _context.SaveChangesAsync();
+        await CheckSaveChangesAsync();
         return result.Entity;
     }
 
     public async Task<int> CheckSaveChangesAsync()
     {
-        return await _context.SaveChangesAsync();
+        try
+        {
+            return await _context.SaveChangesAsync();
+        } catch (Exception ex)
+        {
+            throw new Exception(ex.InnerException?.Message);
+        }
+        
     }
 
     public async Task<int> Save()
@@ -73,7 +80,7 @@ public class GenericRepository<T, DTO> : IGenericRepository<T, DTO>
     public async Task<int> Update(T obj)
     {
         table.Update(obj);
-        return await _context.SaveChangesAsync();
+        return await CheckSaveChangesAsync();
     }
 
     public virtual Task<DTO?> GetResponseById(Guid id)

@@ -21,7 +21,7 @@ namespace RailwayReservation.Application.Trip.DTO
 
         public DateTime ArriveTime { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; } = null!;
 
         public Guid? CreateBy { get; set; }
 
@@ -33,7 +33,7 @@ namespace RailwayReservation.Application.Trip.DTO
         public List<Domain.Ticket.Ticket> Tickets { get; set; } = new();
 
 
-        public TripResponse(Guid id, Guid trainId, string trainName, Guid routeId, string routeName, string departureStation, string destinationStation, DateTime departureTime, DateTime arriveTime, string description, Guid? createBy, DateTime? createTime, Guid? updateBy, DateTime? updateTime, List<Domain.Ticket.Ticket> tickets)
+        public TripResponse(Guid id, Guid trainId, string trainName, Guid routeId, string routeName, string departureStation, string destinationStation, DateTime departureTime, DateTime arriveTime, string? description, Guid? createBy, DateTime? createTime, Guid? updateBy, DateTime? updateTime, List<Domain.Ticket.Ticket> tickets)
         {
             Id = id;
             TrainId = trainId;
