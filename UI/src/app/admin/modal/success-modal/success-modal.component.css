@@ -1,0 +1,14 @@
+
+
+.modal-dialog {
+    margin: 0;
+}
+
+.modal-content {
+    max-width: 380px;
+    width: 75%;
+}
+
+.custom-modal {
+    max-width: 380px;
+}

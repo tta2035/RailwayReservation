@@ -1,0 +1,249 @@
+<!-- <button (click)="testModal()">Test Success Modal</button> -->
+<div class="page-content">
+    <div class="container-xl">
+        <div class="page-header d-print-none mb-5">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <span class="status-indicator status-blue status-indicator-animated">
+                        <span class="status-indicator-circle"></span>
+                        <span class="status-indicator-circle"></span>
+                        <span class="status-indicator-circle"></span>
+                    </span>
+                </div>
+                <div class="col">
+                    <h2 class="page-title">
+                        Trip Management
+                    </h2>
+                    <div class="text-muted">
+                        <ul class="list-inline list-inline-dots mb-0">
+                            <li class="list-inline-item page-pretitle">Overview</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-auto ms-auto d-print-none">
+                    <div class="btn-list">
+                        <a class="btn btn-primary" href="javascript:void(0)" (click)="showAddModal(addNewModal)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-invoice"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                                <path d="M9 7l1 0"></path>
+                                <path d="M9 13l6 0"></path>
+                                <path d="M13 17l2 0"></path>
+                            </svg>
+                            Create New Trip
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="container-xl">
+                <div class="row row-deck row-cards">
+                    <div class="table-responsive">
+                        <div *ngIf="!isLoadTrip" class="container container-slim py-4 col-3">
+                            <div class="text-center">
+                                <div class="text-muted mb-3">Loading data . . . </div>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar progress-bar-indeterminate"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <table *ngIf="isLoadTrip" class="table table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th>Route</th>
+                                    <th>Train</th>
+                                    <th>Departure Station</th>
+                                    <th>Destination Station</th>
+                                    <th>Departure Time</th>
+                                    <th>Arrive Time</th>
+                                    <th>Ticket Quantity</th>
+                                    <th>Ticket Sold</th>
+                                    <th>Description</th>
+                                    <!-- <th class="w-1"></th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let trip of Trips">
+                                    <td>{{ trip.routeName }}</td>
+                                    <td class="text-muted">
+                                        {{ trip.trainName }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{ trip.departureStation }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{ trip.destinationStation }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{ trip.departureTime }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{ trip.arriveTime }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{ trip.tickets.length }}
+                                    </td>
+                                    <td class="text-muted">
+                                        0
+                                    </td>
+                                    <td class="text-muted">
+                                        {{ trip.description }}
+                                    </td>
+                                    <!-- <td>
+                                        <a href="javascript:void(0)" (click)="showTripDetail(TripDetail, trip)"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #addNewModal let-c="close" let-d="dismiss">
+    <form [formGroup]="addForm" (submit)="addTrip()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Trip</h5>
+                <button type="button" class="btn-close" (click)="d('Cross Click')"> </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Route Name</label>
+                    <select class="form-select" formControlName="RouteId">
+                        <option *ngFor="let route of Routes" [value]="route.id">{{ route.routeName }}
+                        </option>
+                    </select>
+                    <small
+                        *ngIf="addForm.controls['RouteId'].dirty && addForm.hasError('required', 'RouteId')"
+                        class="text-danger">*Route is required</small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Train Name</label>
+                    <select class="form-select" formControlName="TrainId">
+                        <option *ngFor="let train of Trains" [value]="train.id">{{ train.trainName }}
+                        </option>
+                    </select>
+                    <small
+                        *ngIf="addForm.controls['TrainId'].dirty && addForm.hasError('required', 'TrainId')"
+                        class="text-danger">*Train is required</small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Departure Station</label>
+                    <input type="text" class="form-control" value="{{ addDepartureStation }}" disabled/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Destination Station</label>
+                    <input type="text" class="form-control" value="{{ addDestinationStation }}" disabled/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Departure Time</label>
+                    <input type="datetime-local" class="form-control" formControlName="DepartureTime" [value]="formatDateTime(departureDateTime)" (change)="onDateTimeChange($event.target)">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Arrive Time</label>
+                    <input type="datetime-local" class="form-control" formControlName="ArriveTime" [value]="formatDateTime(departureDateTime)" (change)="onDateTimeChange($event.target)">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input type="text" class="form-control" formControlName="Description"
+                        placeholder="Enter Description" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0)" (click)="resetAddForm()" class="btn btn-link link-secondary"
+                    data-bs-dismiss="modal">
+                    Reset
+                </a>
+                <button class="btn btn-primary ms-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 5l0 14"></path>
+                        <path d="M5 12l14 0"></path>
+                    </svg>
+                    Add
+                </button>
+            </div>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #TripDetail let-c="close" let-d="dismiss">
+    <form [formGroup]="editForm" (submit)="editRoute()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Route Infomation</h5>
+                <button type="button" class="btn-close" (click)="d('Cross Click')"> </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Route Name</label>
+                    <div
+                        [class.error]="editForm.controls['RouteName'].dirty && editForm.hasError('required', 'RouteName')">
+                        <input type="text" formControlName="RouteName" class="form-control"
+                            placeholder="Enter Route Name" required="" />
+                    </div>
+                    <small
+                        *ngIf="editForm.controls['RouteName'].dirty && editForm.hasError('required', 'RouteName')"
+                        class="text-danger">*Route Name is required</small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Departure Station</label>
+                    <select class="form-select">
+                        <option *ngFor="let station of Stations" [value]="station.id">{{ station.stationName }}
+                        </option>
+                    </select>
+                    <small
+                        *ngIf="editForm.controls['DepartureStation'].dirty && editForm.hasError('required', 'DepartureStation')"
+                        class="text-danger">*Departure Station is required</small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Destination Station</label>
+                    <select class="form-select">
+                        <option *ngFor="let station of Stations" [value]="station.id">{{ station.stationName }}
+                        </option>
+                    </select>
+                    <small
+                        *ngIf="editForm.controls['DestinationStation'].dirty && editForm.hasError('required', 'DestinationStation')"
+                        class="text-danger">*Destination Station is required</small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input type="text" class="form-control" formControlName="Description"
+                        placeholder="Enter Description" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Route Fare</label>
+                    <input type="number" class="form-control" formControlName="RouteFare"
+                        placeholder="Enter RouteFare" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0)" (click)="resetEditForm()" class="btn btn-link link-secondary"
+                    data-bs-dismiss="modal">
+                    Reset
+                </a>
+                <button class="btn btn-primary ms-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24"
+                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 5l0 14"></path>
+                        <path d="M5 12l14 0"></path>
+                    </svg>
+                    Save
+                </button>
+            </div>
+        </div>
+    </form>
+</ng-template>

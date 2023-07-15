@@ -1,0 +1,121 @@
+.input-station-name{
+    display: grid;
+    grid-template-columns: 47% 4% 47%;
+    grid-template-rows: 1fr;
+    width: 100%;
+    row-gap: 1px;
+}
+.input-station-name-small{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 40% 20% 40%;
+    width: 100%;
+    height: 60%;
+}
+.input-depart-from{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    z-index: 1;
+}
+.input-depart-from-small{
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    z-index: 1;
+}
+.input-go-to{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    z-index: 1;
+    margin-left: 0;
+}
+.input-go-to-small{
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    z-index: 1;
+    margin-left: 0;
+}
+.departing-from{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    z-index: 2;
+    padding-left: 10px;
+    height: 10%;
+}
+.departing-from-small{
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    z-index: 2;
+    padding-left: 10px;
+    height: 10%;
+}
+.going-to{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    z-index: 2;
+    padding-left: 10px ;
+    height: 10%;
+}
+.going-to-small{
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    z-index: 2;
+    padding-left: 10px ;
+    height: 10%;
+}
+::placeholder{
+    font-weight: bold; 
+    color: darkgray;
+}
+.swap-two-dest{
+    display: flex;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+.swap-two-dest-small{
+    display: flex;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+}
+.swap-icon-dialog{
+    font-size: 180%;
+    height: 50%;
+    margin-top: -50%;
+    cursor: pointer;
+}
+.swap-icon-dialog-small{
+    font-size: 300%;
+    margin-top: -4.5%; 
+    height: 100%;
+    cursor: pointer;
+}
+.get-ticket{
+    width: 20%;
+}
+.get-ticket-small{
+    width: 50%;
+    
+}
+.pick-date{
+    width: 40%;
+    font-size: 30px;
+}
+.pick-date-small{
+    width: 100%;
+    font-size: 26px;
+}
