@@ -24,6 +24,9 @@ import { APassengerComponent } from './admin/components/a-passenger/a-passenger.
 import { ARouteComponent } from './admin/components/a-route/a-route.component';
 import { SeatTypeComponent } from './admin/components/seat-type/seat-type.component';
 import { NgToastModule } from 'ng-angular-popup';
+import { SidebarComponent } from './admin/components/sidebar/sidebar.component';
+import { NavbarComponent } from './admin/components/navbar/navbar.component';
+import { FooterComponent } from './admin/components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +43,10 @@ import { NgToastModule } from 'ng-angular-popup';
     ATicketComponent,
     ATrainComponent,
     ATripComponent,
-    SeatTypeComponent
+    SeatTypeComponent,
+    SidebarComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -50,8 +56,6 @@ import { NgToastModule } from 'ng-angular-popup';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
     PassengersModule,
     SharedModule
   ],

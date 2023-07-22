@@ -109,4 +109,6 @@ export class AdminComponent implements OnInit {
   toggleDropdown(dropdownId: string) {
     this.dropdownStates[dropdownId] = !this.dropdownStates[dropdownId];
   }
+
+  
 }

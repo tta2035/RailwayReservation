@@ -99,6 +99,7 @@ public static class DependencyInjection
 
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddSingleton<IPasswordHasing, PasswordHasing>();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         services.AddScoped<IPassengerRepository, PassengerRepository>();
@@ -241,6 +242,7 @@ public static class DependencyInjection
         // user
         services.AddTransient<IRequestHandler<GetUserListQuery, List<UserDto>>, GetUserListHandler>();        
         services.AddTransient<IRequestHandler<GetUserByIdQuery, UserDto>, GetUserByIdHandler>();
+        services.AddTransient<IRequestHandler<AuthenticationQuery, UserDto>, AuthenticationHandler>();
         services.AddTransient<IRequestHandler<CreateUserCommand, User>, CreateUserHandler>();
         services.AddTransient<IRequestHandler<UpdateUserCommand, int>, UpdateUserHandler>();
         services.AddTransient<IRequestHandler<DeleteUserCommand, int>, DeleteUserHandler>();

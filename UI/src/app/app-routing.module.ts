@@ -11,6 +11,7 @@ import { ARouteComponent } from './admin/components/a-route/a-route.component';
 import { ABookingComponent } from './admin/components/a-booking/a-booking.component';
 import { SeatTypeComponent } from './admin/components/seat-type/seat-type.component';
 import { APassengerComponent } from './admin/components/a-passenger/a-passenger.component';
+import { authGuard } from 'src/app/admin/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'passenger' },
@@ -29,7 +30,7 @@ const routes: Routes = [
       { path: 'passenger', component: APassengerComponent, pathMatch: 'full'},
     ]
   },
-  { path: 'admin/login', component: ALoginComponent, pathMatch: 'full' }
+  { path: 'login', component: ALoginComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
