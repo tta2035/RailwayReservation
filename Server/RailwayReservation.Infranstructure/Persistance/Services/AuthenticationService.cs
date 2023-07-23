@@ -49,7 +49,7 @@ public class AuthenticationService : IAuthenticationService
             "",
             ""
             );
-        passenger.Token = _jwtTokenGenerator.GenerateToken(passenger);
+        passenger.Token = _jwtTokenGenerator.GenerateToken(passenger.Id, passenger.FullName);
         return passenger;
     }
 
@@ -61,7 +61,7 @@ public class AuthenticationService : IAuthenticationService
         {
             throw new Exception("User Not Found");
         }
-        passenger.Token = _jwtTokenGenerator.GenerateToken(passenger);
+        passenger.Token = _jwtTokenGenerator.GenerateToken(passenger.Id, passenger.FullName);
         _passengerRepository.Save();
         return passenger;
     }

@@ -3,69 +3,98 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "UI": {
-      "projectType": "application",
-      "schematics": {},
+    "UI2": {
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "projectType": "application",
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ui",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.css",
-              "src/tabler.css",
-              "src/tabulator_materialize.min.css"
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "src/assets/scss/material-dashboard.scss",
+              "src/assets/css/demo.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js",
+              "node_modules/arrive/src/arrive.js",
+              "node_modules/moment/moment.js",
+              "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js",
+              "node_modules/chartist/dist/chartist.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "rxjs/add/operator/filter",
+              "jquery",
+              "chartist"
+            ]
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": false,
+                  "inlineCritical": false
                 },
+                "fonts": true
+              },
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
                 {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
-              "buildOptimizer": false,
-              "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
+              "namedChunks": true,
+              "buildOptimizer": false,
               "sourceMap": true,
-              "namedChunks": true
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": false,
+                  "inlineCritical": true
+                },
+                "fonts": true
+              },
+              "outputHashing": "all"
             }
-          },
-          "defaultConfiguration": "production"
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "UI2:build"
+          },
           "configurations": {
             "production": {
-              "browserTarget": "UI:build:production"
+              "browserTarget": "UI2:build:production"
             },
             "development": {
-              "browserTarget": "UI:build:development"
+              "browserTarget": "UI2:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,35 +102,59 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "UI:build"
+            "browserTarget": "UI2:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
+            "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js",
+              "node_modules/arrive/src/arrive.js",
+              "node_modules/moment/moment.js",
+              "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js",
+              "node_modules/chartist/dist/chartist.js"
             ],
             "styles": [
-              "src/styles.css",
-              "src/tabler.css",
-              "src/tabulator_materialize.min.css"
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "src/assets/scss/material-dashboard.scss",
+              "src/assets/css/demo.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            "assets": [
+              "src/assets",
+              "src/favicon.ico"
             ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": []
           }
         }
       }
     }
   },
+  "schematics": {
+    "@schematics/angular:application": {
+      "strict": true
+    },
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
   "cli": {
-    "analytics": "d4fc5b8a-5c0a-4170-b056-b2e76a6d3cc6"
+    "analytics": false
   }
 }

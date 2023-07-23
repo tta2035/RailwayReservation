@@ -8,5 +8,5 @@ using RailwayReservation.Application.User.DTOs;
 namespace RailwayReservation.Application.Common.Interfaces.Persistences;
 
 public interface IUserRepository : IGenericRepository<Domain.User.User, UserDto> { 
-    
+    Task<UserDto> Authentication(string email, string password);
 }

@@ -25,7 +25,7 @@ namespace RailwayReservation.Infranstructure.Authentication
             _jwtSettings = jwtSettings.Value;
         }
 
-        public string GenerateToken(Passenger passenger)
+        public string GenerateToken(Guid id, string FullName)
         {
             var signinCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(
@@ -35,8 +35,8 @@ namespace RailwayReservation.Infranstructure.Authentication
 
             var claims = new[]
             {
-                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, "passenger.Id.Value.ToString()"),
-                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.GivenName, passenger.FullName),
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, id.ToString()),
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.GivenName, FullName),
                 new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.FamilyName, ""),
                 new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };

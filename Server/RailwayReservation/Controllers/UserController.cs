@@ -41,7 +41,7 @@ namespace RailwayReservation.Api.Controllers
             return user;
         }
 
-        [HttpPost]
+        [HttpPost("add-user")]
         public async Task<User> AddUser(UserRequest obj) {
             var userSend = await mediator.Send(new CreateUserCommand(
                 obj.UserName,
@@ -73,6 +73,17 @@ namespace RailwayReservation.Api.Controllers
         [HttpDelete]
         public async Task<int> DeleteUser(Guid id) {
             return await mediator.Send(new DeleteUserCommand() { Id = id });
+        }
+
+        [HttpPost("authenticate")]
+        public async Task<UserDto> Authenticate(UserLoginRequest obj)
+        {
+            return await mediator.Send(new AuthenticationQuery()
+            {
+                Email = obj.Email,
+                Password = obj.Password,
+            });
+            
         }
 
     }

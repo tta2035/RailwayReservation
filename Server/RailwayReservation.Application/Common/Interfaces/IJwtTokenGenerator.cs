@@ -9,5 +9,5 @@ namespace RailwayReservation.Application.Common.Interfaces;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(Passenger passenger);
+    string GenerateToken(Guid id, string FullName);
 }

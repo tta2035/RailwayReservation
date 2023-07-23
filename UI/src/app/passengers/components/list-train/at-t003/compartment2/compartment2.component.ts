@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PHomeService } from 'src/app/passengers/services/p-home.service';
-import { TransferService } from 'src/app/passengers/services/transfer.service';
+import { PHomeService } from 'app/passengers/services/p-home.service';
+import { TransferService } from 'app/passengers/services/transfer.service';
 
 @Component({
   selector: 'app-compartment2',
@@ -9,7 +9,9 @@ import { TransferService } from 'src/app/passengers/services/transfer.service';
   styleUrls: ['./compartment2.component.css']
 })
 export class Compartment2Component {
-  constructor(private router:Router,private pHomeService:PHomeService,private transferService:TransferService ){
+  constructor(private router:Router,
+    private pHomeService:PHomeService,
+    private transferService:TransferService ){
 
   }
   seats = Array(61).fill(true);

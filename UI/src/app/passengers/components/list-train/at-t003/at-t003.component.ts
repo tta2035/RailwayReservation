@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { PHomeService } from 'src/app/passengers/services/p-home.service';
-import { TransferService } from 'src/app/passengers/services/transfer.service';
 
 @Component({
   selector: 'app-at-t003',

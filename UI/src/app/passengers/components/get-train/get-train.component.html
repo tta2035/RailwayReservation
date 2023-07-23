@@ -5,8 +5,8 @@
     <form (ngSubmit)="onSubmit()" id="myForm">
         <div [class]="!lessthan?'input-station-name':'input-station-name-small'">
             <!-- <p [class]="!lessthan?'departing-from':'departing-from-small'">Departing from</p> -->
-            <mat-form-field [class]="!lessthan?'input-depart-from':'input-depart-from-small'"
-            hideRequiredMarker style="font-size: 30px;" [color]="'warn'">
+            <mat-form-field [class]="!lessthan?'input-depart-from':'input-depart-from-small'" hideRequiredMarker
+                style="font-size: 30px;" [color]="'warn'">
                 <mat-label>Departing from</mat-label>
                 <mat-select (selectionChange)="selectDepartureStation($event);" required>
                     <mat-option *ngFor="let station of ListStation" [value]="station.id">
@@ -15,9 +15,9 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            
+
             <mat-form-field [class]="!lessthan?'input-go-to':'input-go-to-small'" hideRequiredMarker
-            style="font-size: 30px;  " [color]="'warn'">
+                style="font-size: 30px;  " [color]="'warn'">
                 <mat-label>Going to</mat-label>
                 <mat-select (selectionChange)="selectDestinationStation($event);" required>
                     <mat-option *ngFor="let route of ListDestinationRoute" [value]="route.destinationStation">
@@ -51,8 +51,8 @@
         <mat-form-field [color]="'warn'" [class]="!lessthan?'pick-date':'pick-date-small'" hideRequiredMarker>
 
             <input matInput [matDatepicker]="myDatePicker" [min]="minDate" [max]="maxDate" placeholder="I'm leaving"
-
-                name="datepicker" [(ngModel)]="newDate" autocomplete="off" required (click)="showDepartureTime($event.target);">
+                name="datepicker" [(ngModel)]="newDate" autocomplete="off" required
+                (click)="showDepartureTime($event.target);">
 
             <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
             <mat-datepicker #myDatePicker></mat-datepicker>
