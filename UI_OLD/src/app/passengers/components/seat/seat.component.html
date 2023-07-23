@@ -1,0 +1,60 @@
+<div style="display: flex; justify-content: center;flex-direction: column;">
+    <div style="display: flex; justify-content: center; height: 100px; flex-direction: row; margin: 5px 10px 5px 10px;" >
+        <div class="compart">
+            <div style="display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center; height: 100%; margin-top: 3%;" >
+                <div class="win-compart"></div>
+                <div class="win-compart"></div>
+            </div>
+            <div (click)="compart5Chosen()" ><p style="text-align: center;">Compartment 5</p></div>
+        </div>
+        <div class="compart">
+            <div style="display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;height: 100%;margin-top: 3%;" >
+                <div class="win-compart"></div>
+                <div class="win-compart"></div>
+            </div>
+            <div (click)="compart4Chosen()"><p style="text-align: center;">Compartment 4</p></div>
+        </div>
+        <div class="compart">
+            <div style="display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;height: 100%;margin-top: 3%;" >
+                <div class="win-compart"></div>
+                <div class="win-compart"></div>
+            </div>
+            <div (click)="compart3Chosen()"><p style="text-align: center;">Compartment 3</p></div>
+        </div>
+        <div class="compart">
+            <div style="display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;height: 100%;margin-top: 3%;" >
+                <div class="win-compart"></div>
+                <div class="win-compart"></div>
+            </div>
+            <div (click)="compart2Chosen()"><p style="text-align: center;">Compartment 2</p></div>
+        </div>
+        <div class="compart">
+            <div style="display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;height: 100%;margin-top: 3%;" >
+                <div class="win-compart"></div>
+                <div class="win-compart"></div>
+            </div>
+            <div (click)="compart1Chosen()"><p style="text-align: center;">Compartment 1</p></div>
+        </div>
+        <div class="compart-head">
+            <div class="win-compart-head-2"></div>
+            <div class="win-compart-head"></div>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+    <div style="display: flex; justify-content: center;"><button mat-raised-button (click)="navToBuyTicket()" >Submit</button></div>
+</div>

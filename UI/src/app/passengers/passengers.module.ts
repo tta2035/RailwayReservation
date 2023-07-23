@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HttpClientModule } from '@angular/common/http';
 import { PassengersRoutingModule } from './passengers-routing.module';
@@ -15,9 +15,13 @@ import { Compartment2Component } from './components/list-train/at-t003/compartme
 import { Compartment3Component } from './components/list-train/at-t003/compartment3/compartment3.component';
 import { Compartment4Component } from './components/list-train/at-t003/compartment4/compartment4.component';
 import { Compartment5Component } from './components/list-train/at-t003/compartment5/compartment5.component';
+import { HomeComponent } from './components/home/home.component';
+import { GetTrainComponent } from './components/get-train/get-train.component';
 @NgModule({
   declarations: [
     PassengersComponent,
+    HomeComponent,
+    GetTrainComponent,
     TicketsComponent,
     SeatComponent,
     ATT003Component,
@@ -28,25 +32,15 @@ import { Compartment5Component } from './components/list-train/at-t003/compartme
     Compartment4Component,
     Compartment5Component,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     PassengersRoutingModule,
     MaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule,
     FormsModule,
-    ReactiveFormsModule
-  ],
-  exports:[
-    CommonModule,
-    PassengersRoutingModule,
-    MaterialModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   bootstrap:[PassengersComponent]
 })

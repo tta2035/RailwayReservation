@@ -1,15 +1,18 @@
-<div class="row-12 w-100 main-station" style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 500px;">
-    <p style="font-size: 500%; font-weight: bolder; color: red; ">Plan Your Journey</p>
-    <div  [class]="!lessthan?'station-part':'station-part-small'"(click)="openDialog()" >
-      
-        <div [class]="!lessthan?'depart-from':'depart-from-small'">
-          <p>Departing from</p>
-          <p style="font-size: 30px; font-weight: bold; color: darkgray;">Station name</p>
-        </div>
-        <div [class]="!lessthan?'go-to':'go-to-small'">
-          <p>Going to</p>
-          <p style="font-size: 30px; font-weight: bold; color: darkgray;">Station name</p>
-        </div>
-      <div [class]="!lessthan?'station-part-2':'station-part-2-small'"><mat-icon>swap_horizontal_circle</mat-icon></div>
+<div class="row-12 w-100 main-station"
+  style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 500px;">
+  <p style="font-size: 500%; font-weight: bolder; color: red; ">Plan Your Journey</p>
+  <div [class]="!lessthan?'station-part':'station-part-small'" (click)="openDialog()">
+
+    <div [class]="!lessthan?'depart-from':'depart-from-small'">
+      <p>Departing from</p>
+      <p style="font-size: 30px; font-weight: bold; color: darkgray;">Station name</p>
+    </div>
+    <div [class]="!lessthan?'go-to':'go-to-small'">
+      <p>Going to</p>
+      <p style="font-size: 30px; font-weight: bold; color: darkgray;">Station name</p>
+    </div>
+    <div [class]="!lessthan?'station-part-2':'station-part-2-small'">
+      <mat-icon>swap_horizontal_circle</mat-icon>
     </div>
   </div>
+</div>
