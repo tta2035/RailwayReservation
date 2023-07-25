@@ -1,48 +1,55 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatRippleModule} from '@angular/material/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatSelectModule} from '@angular/material/select';
-import { ComponentsModule } from 'app/admin/components/components.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
+import { SharedModule } from 'app/shared/shared.module';
+import { AdminComponent } from './admin.component';
+import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { TableListComponent } from './components/table-list/table-list.component';
+import { TypographyComponent } from './components/typography/typography.component';
+import { IconsComponent } from './components/icons/icons.component';
+import { MapsComponent } from './components/maps/maps.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { UpgradeComponent } from './components/upgrade/upgrade.component';
+import { TripPanelComponent } from './components/trip-panel/trip-panel.component';
+import { TicketPanelComponent } from './components/ticket-panel/ticket-panel.component';
+import { BookingPanelComponent } from './components/booking-panel/booking-panel.component';
+import { RoutePanelComponent } from './components/route-panel/route-panel.component';
+import { TrainPanelComponent } from './components/train-panel/train-panel.component';
+import { StationPanelComponent } from './components/station-panel/station-panel.component';
+import { SeatTypePanelComponent } from './components/seat-type-panel/seat-type-panel.component';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTooltipModule,
-    ComponentsModule
+    SharedModule
   ],
   declarations: [
+    AdminComponent,
+    SidebarComponent,
+    NavbarComponent,
+    FooterComponent,
     DashboardComponent,
+    
     UserProfileComponent,
     TableListComponent,
     TypographyComponent,
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    UpgradeComponent
+    UpgradeComponent,
+
+    TripPanelComponent,
+    TicketPanelComponent,
+    BookingPanelComponent,
+    RoutePanelComponent,
+    TrainPanelComponent,
+    StationPanelComponent,
+    SeatTypePanelComponent
   ]
 })
 

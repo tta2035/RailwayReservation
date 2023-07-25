@@ -8,7 +8,7 @@ using RailwayReservation.Domain.Common.Models;
 
 namespace RailwayReservation.Domain.BookingTicket;
 
-public sealed class BookingTicket
+public class BookingTicket
 // // : AggregateRoot<BookingTicketId, Guid>
 {
     // public BookingTicketId BookingTicketId { get; set; }
