@@ -4,154 +4,261 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
 import { filter, Subscription } from 'rxjs';
+import { AdminService } from './services/admin.service';
+import { DataService } from './services/data.service';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+    selector: 'app-admin',
+    templateUrl: './admin.component.html',
+    styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  private _router: Subscription;
-  private lastPoppedUrl: string;
-  private yScrollStack: number[] = [];
+    private _router: Subscription;
+    private lastPoppedUrl: string;
+    private yScrollStack: number[] = [];
 
-  constructor( public location: Location, private router: Router) {}
+    constructor(
+        public location: Location,
+        private router: Router,
+        private adminService: AdminService,
+        private dataService: DataService
+    ) { }
 
-  ngOnInit() {
-      const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
+    ngOnInit() {
+        const currentUrl = this.router.url;
 
-      if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
-          // if we are on windows OS we activate the perfectScrollbar function
-
-          document.getElementsByTagName('body')[0].classList.add('perfect-scrollbar-on');
-      } else {
-          document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');
-      }
-      const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
-      const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
-
-      this.location.subscribe((ev:PopStateEvent) => {
-          this.lastPoppedUrl = ev.url;
-      });
-       this.router.events.subscribe((event:any) => {
-          if (event instanceof NavigationStart) {
-             if (event.url != this.lastPoppedUrl)
-                 this.yScrollStack.push(window.scrollY);
-         } else if (event instanceof NavigationEnd) {
-             if (event.url == this.lastPoppedUrl) {
-                 this.lastPoppedUrl = undefined;
-                 window.scrollTo(0, this.yScrollStack.pop());
-             } else
-                 window.scrollTo(0, 0);
-         }
-      });
-      this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
-           elemMainPanel.scrollTop = 0;
-           elemSidebar.scrollTop = 0;
-      });
-      if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
-          let ps = new PerfectScrollbar(elemMainPanel);
-          ps = new PerfectScrollbar(elemSidebar);
-      }
-
-      const window_width = $(window).width();
-      let $sidebar = $('.sidebar');
-      let $sidebar_responsive = $('body > .navbar-collapse');
-      let $sidebar_img_container = $sidebar.find('.sidebar-background');
-
-
-      if(window_width > 767){
-          if($('.fixed-plugin .dropdown').hasClass('show-dropdown')){
-              $('.fixed-plugin .dropdown').addClass('open');
-          }
-
-      }
-
-      $('.fixed-plugin a').click(function(event){
-        // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-          if($(this).hasClass('switch-trigger')){
-              if(event.stopPropagation){
-                  event.stopPropagation();
-              }
-              else if(window.event){
-                 window.event.cancelBubble = true;
-              }
-          }
-      });
-
-      $('.fixed-plugin .badge').click(function(){
-          let $full_page_background = $('.full-page-background');
-
-
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
-
-          var new_color = $(this).data('color');
-
-          if($sidebar.length !== 0){
-              $sidebar.attr('data-color', new_color);
-          }
-
-          if($sidebar_responsive.length != 0){
-              $sidebar_responsive.attr('data-color',new_color);
-          }
-      });
-
-      $('.fixed-plugin .img-holder').click(function(){
-          let $full_page_background = $('.full-page-background');
-
-          $(this).parent('li').siblings().removeClass('active');
-          $(this).parent('li').addClass('active');
-
-
-          var new_image = $(this).find("img").attr('src');
-
-          if($sidebar_img_container.length !=0 ){
-              $sidebar_img_container.fadeOut('fast', function(){
-                 $sidebar_img_container.css('background-image','url("' + new_image + '")');
-                 $sidebar_img_container.fadeIn('fast');
-              });
-          }
-
-          if($full_page_background.length != 0){
-
-              $full_page_background.fadeOut('fast', function(){
-                 $full_page_background.css('background-image','url("' + new_image + '")');
-                 $full_page_background.fadeIn('fast');
-              });
-          }
-
-          if($sidebar_responsive.length != 0){
-              $sidebar_responsive.css('background-image','url("' + new_image + '")');
-          }
-      });
-  }
-  ngAfterViewInit() {
-      this.runOnRouteChange();
-  }
-  isMaps(path){
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      titlee = titlee.slice( 1 );
-      if(path == titlee){
-          return false;
-      }
-      else {
-          return true;
-      }
-  }
-  runOnRouteChange(): void {
-    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
-      const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
-      const ps = new PerfectScrollbar(elemMainPanel);
-      ps.update();
+        this.getAllBooking();
+        this.getAllDashboard();
+        this.getAllRoute();
+        this.getAllStation();
+        this.getAllTicket();
+        this.getAllTrain();
+        this.getAllTrip();
+        this.getAllSeatType();
+        this.getAllUser();
     }
-  }
-  isMac(): boolean {
-      let bool = false;
-      if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {
-          bool = true;
-      }
-      return bool;
-  }
+
+    getAllBooking() {
+        this.adminService.getAllBooking()
+            .subscribe({
+                next: (data) => {
+                    this.dataService.sendBooking(data);
+                }
+            })
+    }
+
+    getAllDashboard() {
+        // this.adminService.getAllBooking
+    }
+
+    getAllPassenger() {
+        this.adminService.getAllPassenger()
+            .subscribe({
+                next: (data) => {
+                    this.dataService.sendPassenger(data);
+                }
+            })
+    }
+
+    getAllRoute() {
+        this.adminService.getAllRoute()
+            .subscribe({
+                next: (data) => {
+                    this.dataService.sendRoute(data);
+                }
+            })
+    }
+
+    getAllStation() {
+        this.adminService.getAllStation()
+            .subscribe({
+                next: (data) => {
+                    this.dataService.sendStation(data);
+                }
+            })
+    }
+
+    getAllTicket() {
+        this.adminService.getAllTicket()
+            .subscribe({
+                next: (data) => {
+                    this.dataService.sendTicket(data);
+                }
+            })
+    }
+
+    getAllTrain() {
+        this.adminService.getAllTrain()
+            .subscribe({
+                next: (data) => {
+                    this.dataService.sendTrain(data);
+                }
+            })
+    }
+
+    getAllTrip() {
+        this.adminService.getAllTrip()
+            .subscribe({
+                next: (data) => {
+                    this.dataService.sendTrip(data);
+                }
+            })
+    }
+
+    getAllSeatType() {
+        this.adminService.getAllSeatType()
+            .subscribe({
+                next: (data) => {
+                    this.dataService.sendSeatType(data);
+                }
+            })
+    }
+
+    getAllUser() {
+        this.adminService.getAllUser()
+            .subscribe({
+                next: (data) => {
+                    this.dataService.sendUser(data);
+                }
+            })
+    }
+
+
+    InitilizeFormTemplate() {
+        const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
+
+        if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
+            // if we are on windows OS we activate the perfectScrollbar function
+
+            document.getElementsByTagName('body')[0].classList.add('perfect-scrollbar-on');
+        } else {
+            document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');
+        }
+        const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
+        const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
+
+        this.location.subscribe((ev: PopStateEvent) => {
+            this.lastPoppedUrl = ev.url;
+        });
+        this.router.events.subscribe((event: any) => {
+            if (event instanceof NavigationStart) {
+                if (event.url != this.lastPoppedUrl)
+                    this.yScrollStack.push(window.scrollY);
+            } else if (event instanceof NavigationEnd) {
+                if (event.url == this.lastPoppedUrl) {
+                    this.lastPoppedUrl = undefined;
+                    window.scrollTo(0, this.yScrollStack.pop());
+                } else
+                    window.scrollTo(0, 0);
+            }
+        });
+        this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
+            elemMainPanel.scrollTop = 0;
+            elemSidebar.scrollTop = 0;
+        });
+        if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+            let ps = new PerfectScrollbar(elemMainPanel);
+            ps = new PerfectScrollbar(elemSidebar);
+        }
+
+        const window_width = $(window).width();
+        let $sidebar = $('.sidebar');
+        let $sidebar_responsive = $('body > .navbar-collapse');
+        let $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+
+        if (window_width > 767) {
+            if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+                $('.fixed-plugin .dropdown').addClass('open');
+            }
+
+        }
+
+        $('.fixed-plugin a').click(function (event) {
+            // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+            if ($(this).hasClass('switch-trigger')) {
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                }
+                else if (window.event) {
+                    window.event.cancelBubble = true;
+                }
+            }
+        });
+
+        $('.fixed-plugin .badge').click(function () {
+            let $full_page_background = $('.full-page-background');
+
+
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+
+            var new_color = $(this).data('color');
+
+            if ($sidebar.length !== 0) {
+                $sidebar.attr('data-color', new_color);
+            }
+
+            if ($sidebar_responsive.length != 0) {
+                $sidebar_responsive.attr('data-color', new_color);
+            }
+        });
+
+        $('.fixed-plugin .img-holder').click(function () {
+            let $full_page_background = $('.full-page-background');
+
+            $(this).parent('li').siblings().removeClass('active');
+            $(this).parent('li').addClass('active');
+
+
+            var new_image = $(this).find("img").attr('src');
+
+            if ($sidebar_img_container.length != 0) {
+                $sidebar_img_container.fadeOut('fast', function () {
+                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                    $sidebar_img_container.fadeIn('fast');
+                });
+            }
+
+            if ($full_page_background.length != 0) {
+
+                $full_page_background.fadeOut('fast', function () {
+                    $full_page_background.css('background-image', 'url("' + new_image + '")');
+                    $full_page_background.fadeIn('fast');
+                });
+            }
+
+            if ($sidebar_responsive.length != 0) {
+                $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+            }
+        });
+    }
+    ngAfterViewInit() {
+        this.runOnRouteChange();
+    }
+    isMaps(path) {
+        var titlee = this.location.prepareExternalUrl(this.location.path());
+        titlee = titlee.slice(1);
+        if (path == titlee) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    runOnRouteChange(): void {
+        if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+            const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
+            const ps = new PerfectScrollbar(elemMainPanel);
+            ps.update();
+        }
+    }
+    isMac(): boolean {
+        let bool = false;
+        if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {
+            bool = true;
+        }
+        return bool;
+    }
 
 }

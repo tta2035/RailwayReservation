@@ -1,0 +1,55 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row mx-auto">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class=" row card-header card-header-danger">
+                        <div class="col-11">
+                            <h4 class="card-title">Station Managerment</h4>
+                            <p class="card-category">Here is a subtitle for this table</p>
+                        </div>
+                        <div class="col-auto example-button-container">
+                            <button mat-fab color="primary" color="white" (click)="openAddStationDialog()">
+                              <mat-icon>add</mat-icon>
+                            </button>
+                          </div>
+                    </div>
+                    <div class="card-content table-responsive table-full-width">
+                        <div class="mat-elevation-z8  full-screen">
+                            <table mat-table *ngIf="true" [dataSource]="dataSource">
+
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="stationName">
+                                    <th mat-header-cell *matHeaderCellDef class="text-danger"> Station Name. </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.stationName}} </td>
+                                </ng-container>
+
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="description">
+                                    <th mat-header-cell *matHeaderCellDef class="text-danger"> Description </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="edit">
+                                    <th mat-header-cell *matHeaderCellDef class="col-1 text-center text-danger"> # </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a class="nav-link text-center" [routerLink]="['/admin']">
+                                            <i class="material-icons text-danger">edit</i>
+                                        </a>
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+
+                            <mat-paginator *ngIf="true" [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons
+                                aria-label="Select page of periodic elements">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
