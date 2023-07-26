@@ -1,6 +1,6 @@
 import { MaterialDashboardAngularPage } from './app.po';
 
-describe('UI2 App', () => {
+describe('UI App', () => {
   let page: MaterialDashboardAngularPage;
 
   beforeEach(() => {

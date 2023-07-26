@@ -3,12 +3,10 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "UI2": {
+    "UI": {
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
       "projectType": "application",
-      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -87,14 +85,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "UI2:build"
+            "browserTarget": "UI:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "UI2:build:production"
+              "browserTarget": "UI:build:production"
             },
             "development": {
-              "browserTarget": "UI2:build:development"
+              "browserTarget": "UI:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -102,7 +100,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "UI2:build"
+            "browserTarget": "UI:build"
           }
         },
         "test": {
@@ -144,14 +142,39 @@
           }
         }
       }
+    },
+    "UI-e2e": {
+      "root": "",
+      "sourceRoot": "",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "UI:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": []
+          }
+        }
+      }
     }
   },
+  "defaultProject": "UI",
   "schematics": {
-    "@schematics/angular:application": {
-      "strict": true
-    },
     "@schematics/angular:component": {
-      "style": "scss"
+      "prefix": "app",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
     }
   },
   "cli": {
