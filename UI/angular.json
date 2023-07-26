@@ -6,7 +6,9 @@
     "UI": {
       "root": "",
       "sourceRoot": "src",
+      "prefix": "app",
       "projectType": "application",
+      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -23,7 +25,8 @@
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
-              "src/assets/css/demo.css"
+              "src/assets/css/demo.css",
+              "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
@@ -123,7 +126,8 @@
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
-              "src/assets/css/demo.css"
+              "src/assets/css/demo.css",
+              "src/styles.css"
             ],
             "assets": [
               "src/assets",
@@ -169,12 +173,11 @@
   },
   "defaultProject": "UI",
   "schematics": {
-    "@schematics/angular:component": {
-      "prefix": "app",
-      "styleext": "scss"
+    "@schematics/angular:application": {
+      "strict": true
     },
-    "@schematics/angular:directive": {
-      "prefix": "app"
+    "@schematics/angular:component": {
+      "style": "scss"
     }
   },
   "cli": {

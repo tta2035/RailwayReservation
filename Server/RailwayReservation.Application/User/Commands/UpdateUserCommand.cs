@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using MediatR;
 using RailwayReservation.Application.User.DTOs;
 using RailwayReservation.Domain.User;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Application.User.Commands
 {

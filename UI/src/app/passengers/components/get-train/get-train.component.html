@@ -1,0 +1,68 @@
+<h1 mat-dialog-title [align]="'center'"
+    style="color: rgb(237, 172, 51); font-size: 500%; margin-top: 20px; line-height: 1.2;">Plan Your Journey</h1>
+
+<mat-dialog-content style="width: 100%;">
+    <form (ngSubmit)="onSubmit()" id="myForm">
+        <div [class]="!lessthan?'input-station-name':'input-station-name-small'">
+            <!-- <p [class]="!lessthan?'departing-from':'departing-from-small'">Departing from</p> -->
+            <mat-form-field [class]="!lessthan?'input-depart-from':'input-depart-from-small'" hideRequiredMarker
+                style="font-size: 30px;" [color]="'warn'">
+                <mat-label>Departing from</mat-label>
+                <mat-select (selectionChange)="selectDepartureStation($event);" required>
+                    <mat-option *ngFor="let station of ListStation" [value]="station.id">
+
+                        {{station.stationName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field [class]="!lessthan?'input-go-to':'input-go-to-small'" hideRequiredMarker
+                style="font-size: 30px;  " [color]="'warn'">
+                <mat-label>Going to</mat-label>
+                <mat-select (selectionChange)="selectDestinationStation($event);" required>
+                    <mat-option *ngFor="let route of ListDestinationRoute" [value]="route.destinationStation">
+                        {{route.destinationStation}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!-- <mat-form-field floatLabel="always" [class]="!lessthan?'input-depart-from':'input-depart-from-small'"
+                hideRequiredMarker style="font-size: 30px;" [color]="'warn'">
+                <input matInput  required placeholder="Station Name"
+                    [(ngModel)]="stationFrom" name="stationFrom" autocomplete="off" [matAutocomplete]="auto"
+                    [matAutocompleteDisabled]="showSelections" [formControl]="myControl" (input)="onInputChange()">
+
+                <mat-autocomplete #auto="matAutocomplete" onclick ="selectStation(this);">
+                    <mat-option *ngFor="let station of ListStation" [value]="station.stationName">
+                        {{ station.stationName }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field> -->
+            <!-- <div [class]="!lessthan?'swap-two-dest': 'swap-two-dest-small'"><mat-icon
+                    [class]="!lessthan?'swap-icon-dialog': 'swap-icon-dialog-small'"
+                    style="width: 100%; justify-content: center; align-items: center; display: flex;">swap_horizontal_circle</mat-icon>
+            </div>
+            <p [class]="!lessthan?'going-to':'going-to-small'">Going to</p>
+            <mat-form-field floatLabel="always" [class]="!lessthan?'input-go-to':'input-go-to-small'" hideRequiredMarker
+                style="font-size: 30px;  " [color]="'warn'">
+                <input matInput required placeholder="Station Name" [(ngModel)]="stationTo" autocomplete="off"
+                    name="stationTo">
+            </mat-form-field> -->
+        </div>
+        <mat-form-field [color]="'warn'" [class]="!lessthan?'pick-date':'pick-date-small'" hideRequiredMarker>
+
+            <input matInput [matDatepicker]="myDatePicker" [min]="minDate" [max]="maxDate" placeholder="I'm leaving"
+                name="datepicker" [(ngModel)]="newDate" autocomplete="off" required
+                (click)="showDepartureTime($event.target);">
+
+            <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #myDatePicker></mat-datepicker>
+
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions [align]="!lessthan?'end':'center'">
+    <button mat-button mat-dialog-close="true" [color]="'warn'" form="myForm" type="submit"
+        [class]="!lessthan?'get-ticket':'get-ticket-small'"
+        style="background-color: rgb(252, 190, 76); font-size: 100%;">Get times and
+        prices<mat-icon>trending_flat</mat-icon></button>
+</mat-dialog-actions>

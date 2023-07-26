@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Định nghĩa style cho thông báo success */
+.success-snackbar {
+    background-color: #43a047;
+    color: white;
+}
+
+/* Định nghĩa style cho thông báo error */
+.error-snackbar {
+    background-color: #d32f2f;
+    color: white;
+}

@@ -1,0 +1,47 @@
+
+.compart{
+    height: 100%;
+    width: 25%;
+    border: solid 1px black;
+    margin-right: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    cursor: pointer;
+}
+.compart:hover{
+    background-color: aqua;
+}
+.compart-head{
+    height: 100%;
+    width: 30%;
+    border: solid 1px black;
+    border-radius: 0 100% 0 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: aqua;
+}
+
+.win-compart{
+    background-color: bisque;
+    margin: 3%;
+    height: 100%;
+    width: 40%;
+}
+.win-compart-head-2{
+    background-color: bisque;
+    margin: 3%;
+    height: 50%;
+    width: 40%;
+}
+.win-compart-head{
+    background-color: bisque;
+    margin: 3%;
+    height: 50%;
+    width: 40%;
+    border-radius: 0 100% 0 0;
+}

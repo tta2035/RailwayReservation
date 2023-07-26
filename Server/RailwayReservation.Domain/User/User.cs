@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RailwayReservation.Domain.Common.Models;
-using RailwayReservation.Domain.User.ValueObejcts;
 
 namespace RailwayReservation.Domain.User;
 

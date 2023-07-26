@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RailwayReservation.Domain.Common.Models;
 using RailwayReservation.Domain.PaymentMethod;
-using RailwayReservation.Domain.User.ValueObejcts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
